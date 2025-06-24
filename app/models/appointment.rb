@@ -1,4 +1,4 @@
 class Appointment < ApplicationRecord
-  belongs_to :patient
-  belongs_to :psychologist
+  belongs_to :patient, class_name: "User"
+  belongs_to :psychologist, class_name: "User"
 end
