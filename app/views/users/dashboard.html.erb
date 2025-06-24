@@ -1,0 +1,20 @@
+<div class="chat-ia-container">
+  <h2>Chat with the IA</h2>
+  <div class="chat-box">
+    <h1>Hola, <%= @user.email %></h1>
+
+    <% if @user.psychologist? %>
+      <%= render 'users/psychologist_dashboard' %>
+    <% elsif @user.patient? %>
+      <%= render 'users/patient_dashboard' %>
+    <% else %>
+      <p>Rol desconocido</p>
+    <% end %>
+
+
+    <div class="chat-input">
+      <input type="text" placeholder="Escribe tu mensaje..." />
+      <button>Submit</button>
+    </div>
+  </div>
+</div>
