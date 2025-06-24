@@ -1,4 +1,4 @@
-puts "🧹 Deleting existing users and profiles..."
+puts "🧹 Deleting existing users and psychologist profiles..."
 PsychologistProfile.destroy_all
 User.destroy_all
 
@@ -7,21 +7,21 @@ puts "👨‍⚕️ Creating psychologists with profiles..."
 psychologists = [
   {
     first_name: "Ana", last_name: "Martinez", email: "anamartinez@gmail.com",
-    bio: "Especialista en terapia cognitivo-conductual.",
-    experience: "5 años de experiencia en adolescentes.",
-    modelity: "Presencial y online"
+    bio: "Specialist in cognitive-behavioral therapy.",
+    experience: "5 years of experience with teenagers.",
+    modelity: "In-person and online"
   },
   {
     first_name: "Carlos", last_name: "Lopez", email: "carloslopez@gmail.com",
-    bio: "Psicólogo clínico enfocado en adultos.",
-    experience: "10 años en terapia individual.",
+    bio: "Clinical psychologist focused on adults.",
+    experience: "10 years of individual therapy.",
     modelity: "Online"
   },
   {
     first_name: "Laura", last_name: "Gomez", email: "lauragomez@gmail.com",
-    bio: "Psicoterapeuta humanista.",
-    experience: "7 años en manejo de ansiedad.",
-    modelity: "Presencial"
+    bio: "Humanistic psychotherapist.",
+    experience: "7 years working with anxiety management.",
+    modelity: "In-person"
   }
 ]
 
