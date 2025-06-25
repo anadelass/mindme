@@ -18,6 +18,10 @@ class TherapyRequestsController < ApplicationController
   end
 
   def requests
-    @requests = current_user.patient_therapy_requests
+    if current_user.role == 0
+      @requests = current_user.patient_therapy_requests
+    else
+      @requests = TherapyRequest.where(psychologist_id: current_user.id)
+    end
   end
 end
