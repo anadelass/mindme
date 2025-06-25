@@ -1,25 +1,59 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="welcome-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="welcome-container">
+          <div class="form-group">
+            <h1 class="text-center">Welcome to mindme</h1>
+            <p class="text-center">Please fill in the details below to create your account.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+        <div class="devise-page">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <div class="signup-container">
+                  <div class="signup-header">
+                    <h2><i class="text-center"></i>Sign Up</h2>
+                    </div>
+                    <div class="signup-body">
+                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= f.error_notification %>
+                        <div class="form-inputs">
+                          <!-- aqui es la parte para escoger si es usuario o terapeuta ME FALTA PONER QUE SE VEA HORIZONTAL-->
+                              <%= f.input :role, as: :radio_buttons, collection: User.roles.keys, item_wrapper_class: 'role-option',
+                                      label_method: :humanize, value_method: :to_s,
+                                      label: "I am a", required: true, inline_label: true %>
+                            </div>
+<!-- aqui es la parte de información general // tiene que ser lo mismo para paciente o terapeuta-->
+                          <div class="row">
+                            <div class="col-md-6">
+                              <%= f.input :first_name, required: true, input_html: { autocomplete: "First name" } %>
+                            </div>
+                            <div class="col-md-6">
+                            <%= f.input :last_name, required: true, input_html: { autocomplete: "Last name" } %>
+                            </div>
+                          </div>
+                          <%= f.input :email,
+                                      required: true,
+                                      autofocus: true,
+                                      input_html: { autocomplete: "email" }%>
+                          <%= f.input :password,
+                                      required: true,
+                                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                                      input_html: { autocomplete: "new-password" } %>
+                          <%= f.input :password_confirmation,
+                                      required: true,
+                                      input_html: { autocomplete: "new-password" } %>
+                        </div>
 
-<%= render "devise/shared/links" %>
+                        <div class="form-actions">
+                          <%= f.button :submit, "Sign up", class: "btn btn-primary btn-signup" %>
+                        </div>
+                      <% end %>
+                      <%= render "devise/shared/links" %>
