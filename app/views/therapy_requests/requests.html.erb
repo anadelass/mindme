@@ -1,0 +1,13 @@
+<ul>
+<% @requests.each do |request| %>
+<li>
+  <%= request.psychologist.first_name %>
+  <%= request.psychologist.last_name %>
+  <%= request.status %>
+  <%= link_to 'Cancel', therapy_request_path(request), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?",
+     }  %>
+</li>
+<% end %>
+</ul>
