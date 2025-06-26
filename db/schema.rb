@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_23_224129) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_25_223305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,9 +55,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_23_224129) do
 
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "day_available"
-    t.string "time_min_avalaible"
-    t.string "time_max_available"
+    t.date "date"
+    t.time "start_hour"
+    t.time "end_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_schedules_on_user_id"
@@ -66,11 +66,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_23_224129) do
   create_table "therapy_requests", force: :cascade do |t|
     t.integer "status"
     t.bigint "patient_id", null: false
-    t.bigint "pshychologist_id", null: false
+    t.bigint "psychologist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["patient_id"], name: "index_therapy_requests_on_patient_id"
-    t.index ["pshychologist_id"], name: "index_therapy_requests_on_pshychologist_id"
+    t.index ["psychologist_id"], name: "index_therapy_requests_on_psychologist_id"
   end
 
   create_table "user_moods", force: :cascade do |t|
@@ -103,6 +103,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_23_224129) do
   add_foreign_key "psychologist_profiles", "users"
   add_foreign_key "schedules", "users"
   add_foreign_key "therapy_requests", "users", column: "patient_id"
-  add_foreign_key "therapy_requests", "users", column: "pshychologist_id"
+  add_foreign_key "therapy_requests", "users", column: "psychologist_id"
   add_foreign_key "user_moods", "ai_chats"
 end

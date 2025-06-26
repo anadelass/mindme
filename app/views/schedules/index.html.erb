@@ -1,2 +1,10 @@
-<h1>Schedules#indexs</h1>
-<p>Find me in app/views/schedules/indexs.html.erb</p>
+  <%= link_to 'Back to new', new_schedule_path %>
+<ul>
+    <% @schedules.each do |schedule| %>
+      <li>
+          <%= schedule.date.strftime("%d/%m/%Y") %>
+          <%= schedule.start_hour.strftime("%H:%M") %>
+          <%= schedule.end_hour.strftime("%H:%M") %>
+      </li>
+    <% end %>
+</ul>
