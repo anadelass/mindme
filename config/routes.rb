@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get 'users/profile', to: 'user#profile'
   get 'psychologists', to: 'users#index'
   get 'psychologists/:id', to: 'users#show'
+  get '/requests', to: 'therapy_requests#requests'
   resources :schedules
-  resources :therapy_requests, only: [ :create ]
+  resources :therapy_requests, only: [ :create, :update, :destroy ]
   resources :appointments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
