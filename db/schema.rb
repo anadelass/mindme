@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_25_010925) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_25_223305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,9 +55,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_010925) do
 
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "day_available"
-    t.string "time_min_avalaible"
-    t.string "time_max_available"
+    t.date "date"
+    t.time "start_hour"
+    t.time "end_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_schedules_on_user_id"
