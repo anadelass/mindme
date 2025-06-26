@@ -1,20 +1,78 @@
-<h2>Log in</h2>
+<%# app/views/devise/sessions/new.html.erb %>
+<div class="devise-page">
+  <div class="page-container">
+    <!-- Sección de Bienvenida  aqui falta que tenga la hojita de mindme-->
+    <div class="welcome-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="welcome-container">
+              <h1>Welcome Back</h1>
+              <p>Sign in to your mindme account to continue your wellness journey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <!-- Formulario de Login -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="signup-container">
+            <div class="signup-header">
+              <h2><i class="fas fa-sign-in-alt"></i> Log In</h2>
+            </div>
+
+            <div class="signup-body">
+              <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                  <!-- Email -->
+                  <div class="form-group">
+                    <%= f.label :email, "Email Address" %>
+                    <%= f.email_field :email,
+                                     required: false,
+                                     autofocus: true,
+                                     class: "form-control",
+                                     placeholder: "Enter your email address",
+                                     autocomplete: "email" %>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-group">
+                    <%= f.label :password, "Password" %>
+                    <%= f.password_field :password,
+                                        required: false,
+                                        class: "form-control",
+                                        placeholder: "Enter your password",
+                                        autocomplete: "current-password" %>
+                  </div>
+
+                  <!-- Remember Me -->
+                  <% if devise_mapping.rememberable? %>
+                    <div class="form-check">
+                      <%= f.check_box :remember_me, class: "form-check-input" %>
+                      <%= f.label :remember_me, "Remember me", class: "form-check-label" %>
+                    </div>
+                  <% end %>
+                </div>
+
+                <!-- Botón de Login -->
+                <div class="form-actions">
+                  <%= f.button :submit, "Sign In", class: "btn btn-primary btn-signup" %>
+                </div>
+              <% end %>
+
+              <!-- Enlaces de Devise -->
+              <div class="devise-links">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
