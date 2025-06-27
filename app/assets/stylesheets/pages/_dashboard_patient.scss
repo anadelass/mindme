@@ -1,33 +1,14 @@
-.dashboard-patient {
+.dashboard {
   display: flex;
-  min-height: 100vh;
-
-  .sidebar {
-    width: 220px;
-    background-color: #f4f4f4;
-    padding: 1rem;
-
-    ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        margin-bottom: 1rem;
-        a {
-          text-decoration: none;
-          color: #333;
-
-          &:hover {
-            color: #007bff;
-          }
-        }
-      }
-    }
-  }
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; // espacio vertical decente
+  padding: 2rem;
+  background-color: #f7f7f7;
 
   .main-content {
-    flex: 1;
-    padding: 2rem;
-    background-color: #fff;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
   }
 }

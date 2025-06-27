@@ -1,54 +1,100 @@
 .header {
-  text-align: center;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
 
   .logo {
-    width: 90px;
-    border-radius: 30%;
+    height: 150px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
   }
 
   .header-buttons {
-    margin-top: 1rem;
     display: flex;
-    justify-content: center;
     gap: 1rem;
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-primary {
+      background-color: #2ec4b5;
+      color: white;
+
+      &:hover {
+        background-color: #25a99c;
+      }
+    }
+
+    .btn-secondary {
+      background-color: #ccc;
+      color: #333;
+
+      &:hover {
+        background-color: #b3b3b3;
+      }
+    }
   }
 }
 
+
+// Contenido principal
 .main-content {
   text-align: center;
-  padding: 1rem;
+  padding: 4rem 2rem;
 
-  .info-title,
-  .testimony-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    padding-top: 2rem;
-  }
+  .info {
+    max-width: 800px;
+    margin: 0 auto 4rem;
 
-  .info-description {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1rem;
-  }
-
-  .carrusel {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-
-    .testimony {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      min-width: 200px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .info-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .active {
-      transform: scale(1.05);
-      transition: transform 0.3s ease;
+    .info-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+  }
+
+  .testimony {
+    .testimony-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .carrusel {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .testimony {
+        background-color: #f0f8f8;
+        padding: 1.2rem 1.5rem;
+        border-left: 4px solid #2ec4b5;
+        border-radius: 6px;
+        font-style: italic;
+        color: #444;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+        &.active {
+          background-color: #e0f7f5;
+          font-weight: bold;
+        }
+      }
     }
   }
 }

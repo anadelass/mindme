@@ -1,45 +1,58 @@
-.simple_form {
-  max-width: 500px;
-  margin: 0 auto;
+.schedule-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 
-  .form-group {
-    margin-bottom: 1.5rem;
+  .schedule-form {
+    background-color: #fefefe;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #333;
-    }
-
-    input[type="date"],
-    input[type="time"] {
+    .form-control {
       width: 100%;
       padding: 0.6rem;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 1rem;
+      transition: border 0.3s ease;
 
       &:focus {
-        border-color: #007acc;
+        border-color: #4B9857;
+        box-shadow: 0 0 5px rgba(46, 196, 181, 0.3);
         outline: none;
-        box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.15);
       }
     }
-  }
 
-  .btn-submit {
-    background-color: #007acc;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    .form-group {
+      margin-bottom: 1.5rem;
 
-    &:hover {
-      background-color: #005f99;
+      label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+    }
+
+    .btn-submit {
+      background-color: #2EC4B5;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #8CDEE0;
+      }
     }
   }
 }

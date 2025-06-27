@@ -1,58 +1,69 @@
-.chat-ai-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.chat-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
 
-  .chat-ai-title {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+
+  .chat-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background: transparent;
+    color: #333;
   }
 
-  .chat-ai-input-container {
-    position: relative;
-    width: 100%;
-    max-width: 750px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 2rem;
+  .chat-icons-right {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     gap: 0.5rem;
+    font-size: 1.1rem;
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
 
-    .chat-ai-input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      padding: 0.5rem;
-    }
+  .icon {
+    color: #666;
+    cursor: pointer;
 
-    .chat-ai-tools-left,
-    .chat-ai-tools-right {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chat-ai-tools-left {
-      margin-right: auto;
-    }
-
-    .chat-ai-tools-right {
-      margin-left: auto;
-    }
-
-    .chat-ai-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-
-      &:hover {
-        opacity: 0.7;
-      }
+    &:hover {
+      color: #000;
     }
   }
+
+  .chat-button {
+  margin-top: 1rem;
+  background-color: #B0B151;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: #7B9F48;
+    box-shadow: 0 4px 12px rgba(171, 230, 230, 1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(171, 230, 230, 1);
+  }
+}
+
 }

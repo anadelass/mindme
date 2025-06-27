@@ -1,0 +1,75 @@
+.therapy-requests-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color:#3E6029;
+  }
+
+  .therapy-request-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .therapy-request-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+
+    div {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+
+      strong {
+        color: #555;
+      }
+    }
+
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+
+      .btn-cancel {
+        background-color: #f44336;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        text-decoration: none;
+        border: none;
+
+        &:hover {
+          background-color: #d32f2f;
+        }
+      }
+
+      .btn-approve {
+        background-color: #4caf50;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        text-decoration: none;
+        border: none;
+
+        &:hover {
+          background-color: #388e3c;
+        }
+      }
+    }
+  }
+}

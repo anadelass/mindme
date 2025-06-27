@@ -1,7 +1,7 @@
+<h1 class="dashboard-title">Hello, <%= current_user.first_name %></h1>
 <div class="chat-ia-container">
-  <h2>Chat with the IA</h2>
+
   <div class="chat-box">
-    <h1>Hola, <%= current_user.email %></h1>
 
     <% if current_user.psychologist? %>
       <%= render 'users/dashboard_psychologist' %>
@@ -10,11 +10,5 @@
     <% else %>
       <p>Rol desconocido</p>
     <% end %>
-
-
-    <div class="chat-input">
-      <input type="text" placeholder="Escribe tu mensaje..." />
-      <button>Submit</button>
-    </div>
   </div>
 </div>

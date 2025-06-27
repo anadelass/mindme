@@ -18,12 +18,17 @@
 //Dashboard
 @import "pages/dashboard_patient";
 @import "pages/dashboard_psychologist";
+@import "pages/dashboard";
 
 //Footer
 @import "components/footer";
 
 //Chat
 @import "components/chat_ai";
-@import "pages/therapy_requests";
+
+//Terapy requests
+@import "pages/requests";
+
+//Schedules
 @import "pages/schedules";
 @import "pages/schedule_form";
