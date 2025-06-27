@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   get 'users/profile', to: 'user#profile'
   get 'psychologists', to: 'users#index'
-  get 'psychologists/:id', to: 'users#show'
+  get 'psychologists/:id', to: 'users#show', as: "psychologist"
   get '/requests', to: 'therapy_requests#requests'
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]

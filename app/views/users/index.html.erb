@@ -1,0 +1,3 @@
+<% @psychologists.each do |psychologist| %>
+  <%= link_to psychologist.first_name, psychologist_path(psychologist) %> <%= psychologist.last_name %>
+<% end %>
