@@ -1,10 +1,14 @@
-  <%= link_to 'Back to new', new_schedule_path %>
-<ul>
-    <% @schedules.each do |schedule| %>
-      <li>
-          <%= schedule.date.strftime("%d/%m/%Y") %>
-          <%= schedule.start_hour.strftime("%H:%M") %>
-          <%= schedule.end_hour.strftime("%H:%M") %>
-      </li>
-    <% end %>
+<h1>My Available Schedules</h1>
+
+<%= link_to 'Back to New', new_schedule_path, class: "btn-back" %>
+
+<ul class="schedule-list">
+  <% @schedules.each do |schedule| %>
+    <li class="schedule-item">
+      <span class="schedule-date"><%= schedule.date.strftime("%d/%m/%Y") %></span>
+      <span class="schedule-time">
+        <%= schedule.start_hour.strftime("%H:%M") %> - <%= schedule.end_hour.strftime("%H:%M") %>
+      </span>
+    </li>
+  <% end %>
 </ul>

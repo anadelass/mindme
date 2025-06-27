@@ -1,0 +1,45 @@
+.simple_form {
+  max-width: 500px;
+  margin: 0 auto;
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+
+      &:focus {
+        border-color: #007acc;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.15);
+      }
+    }
+  }
+
+  .btn-submit {
+    background-color: #007acc;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #005f99;
+    }
+  }
+}

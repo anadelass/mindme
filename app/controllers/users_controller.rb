@@ -12,4 +12,8 @@ class UsersController < ApplicationController
   def show
     @psychologist = User.find(params[:id])
   end
+
+  def dashboard
+    
+  end
 end
