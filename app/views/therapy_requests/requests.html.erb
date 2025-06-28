@@ -1,30 +1,20 @@
-<div class="therapy-requests-wrapper">
-  <h1>Therapy Requests</h1>
-  <ul class="therapy-request-list">
+<div class="d-flex flex-column align-items-center justify-content-center py-5 px-3">
+  <h1 class="text-center fs-2 mb-4 custom-title">Therapy Requests</h1>
+
+  <ul class="list-unstyled w-100" style="max-width:700px;">
     <% @requests.each do |request| %>
-      <li class="therapy-request-item">
-        <% if current_user.role == "patient" %>
-          <div>
-            <strong>Psychologist:</strong>
-            <%= request.psychologist.first_name %> <%= request.psychologist.last_name %>
-          </div>
+      <li class="bg-white border rounded-3 p-4 shadow-sm mb-3">
+        <% if current_user.role == 0 %>
+          <div class="mb-2"><strong>Psychologist:</strong> <%= request.psychologist.first_name %> <%= request.psychologist.last_name %></div>
         <% else %>
-          <div>
-            <strong>Patient:</strong>
-            <%= request.patient.first_name %> <%= request.patient.last_name %>
-          </div>
+          <div class="mb-2"><strong>Patient:</strong> <%= request.patient.first_name %> <%= request.patient.last_name %></div>
         <% end %>
 
-        <div>
-          <strong>Status:</strong> <%= request.status.capitalize %>
-        </div>
+        <div class="mb-2"><strong>Status:</strong> <%= request.status.capitalize %></div>
 
-        <div class="actions">
+        <div class="d-flex justify-content-center gap-2 mt-3">
           <% if current_user.role == 0 %>
-            <%= link_to 'Cancel', therapy_request_path(request), data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure you want to cancel this request?"
-                }, class: "btn-cancel" %>
+            <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-danger" %>
           <% else %>
             <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-success' %>
           <% end %>

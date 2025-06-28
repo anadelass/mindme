@@ -1,22 +1,22 @@
 <div class="dashboard-psychologist">
-  <aside class="sidebar">
-    <h2>Menú</h2>
-    <ul>
-      <li>Inicio</li>
-      <li>Pacientes</li>
-      <li><%= link_to "Schedules", schedules_path %></li>
-      <li><%= link_to "Appointments", appointments_path %></li>
-      <li>Sesiones</li>
-      <li>Perfil</li>
-      <li>Cerrar sesión</li>
-    </ul>
-  </aside>
+  <div style="display: flex; height: 100vh;">
+    <aside class="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><%= link_to "Start", root_path %></li>
+        <li><%= link_to "Messages"%></li>
+        <li><%= link_to "Schedules", schedules_path %></li>
+        <li><%= link_to "Appointments", appointments_path %></li>
+        <li><%= link_to "Sessions", requests_path %></li>
+      </ul>
+    </aside>
+  </div>
 
   <section class="chat">
-    <h2>Chat con el paciente</h2>
+    <h2>Chat with the patient</h2>
     <div class="chat-box">
-      <p><strong>Paciente:</strong> Me siento ansioso últimamente.</p>
-      <p><strong>Psicólogo:</strong> Vamos a explorar eso juntos.</p>
+      <p><strong>Patient</strong> I feel so bad.</p>
+      <p><strong>Psychologit:</strong> Vamos a explorar eso juntos.</p>
     </div>
   </section>
 </div>
