@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     resources :ai_chat_messages, only: [ :index, :create ]
   end
   get 'users/profile', to: 'user#profile'
-  get 'psychologists', to: 'users#index'
-  get 'psychologists/:id', to: 'users#show', as: "psychologist"
   get '/requests', to: 'therapy_requests#requests'
+
+  resources :psychologists, only: [ :index, :show ], controller: "users" do
+    resources :appointments, only: [ :new, :create ]
+  end
+  resources :appointments, except: [ :new, :create ]
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]
-  resources :appointments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
