@@ -1,0 +1,14 @@
+<h1 class="dashboard-title">Hello, <%= current_user.first_name %></h1>
+<div class="chat-ia-container">
+
+  <div class="chat-box">
+
+    <% if current_user.psychologist? %>
+      <%= render 'users/dashboard_psychologist' %>
+    <% elsif current_user.patient? %>
+      <%= render 'users/dashboard_patient' %>
+    <% else %>
+      <p>Rol desconocido</p>
+    <% end %>
+  </div>
+</div>
