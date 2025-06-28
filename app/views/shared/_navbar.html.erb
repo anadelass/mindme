@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
           <li class="">
-            <%= link_to "Hola #{current_user.first_name}", "#", class: "nav-link" %>
+            <%= link_to "Hola #{current_user.first_name}", "#", class: "nav-link" if user_signed_in?%>
           </li>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
