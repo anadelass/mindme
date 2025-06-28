@@ -1,15 +1,13 @@
-<div class="schedules-wrapper">
-  <h1>My Available Schedules</h1>
+<div class="d-flex flex-column align-items-center py-5 px-3 min-vh-100" style="background-color: #f9f9f9; font-family: 'Poppins', sans-serif;">
+  <h1 class="text-center fs-2 mb-4" style="color: #3E6029;">My Available Schedules</h1>
 
-  <%= link_to 'Add new schedule', new_schedule_path, class: "btn-back" %>
+  <%= link_to 'Add new schedule', new_schedule_path, class: "btn mb-4", style: "background-color: #4B9857; color: white; border-radius: 6px;" %>
 
-  <ul class="schedule-list">
+  <ul class="list-unstyled w-100" style="max-width:600px;">
     <% @schedules.each do |schedule| %>
-      <li class="schedule-item">
-        <span class="schedule-date"><%= schedule.date.strftime("%d/%m/%Y") %></span>
-        <span class="schedule-time">
-          <%= schedule.start_hour.strftime("%H:%M") %> - <%= schedule.end_hour.strftime("%H:%M") %>
-        </span>
+      <li class="bg-white border rounded-3 p-3 shadow-sm d-flex justify-content-between mb-3">
+        <span><%= schedule.date.strftime("%d/%m/%Y") %></span>
+        <span><%= schedule.start_hour.strftime("%H:%M") %> - <%= schedule.end_hour.strftime("%H:%M") %></span>
       </li>
     <% end %>
   </ul>
