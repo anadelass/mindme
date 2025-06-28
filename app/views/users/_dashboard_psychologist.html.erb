@@ -4,6 +4,8 @@
     <ul>
       <li>Inicio</li>
       <li>Pacientes</li>
+      <li><%= link_to "Schedules", schedules_path %></li>
+      <li><%= link_to "Appointments", appointments_path %></li>
       <li>Sesiones</li>
       <li>Perfil</li>
       <li>Cerrar sesión</li>
@@ -17,15 +19,4 @@
       <p><strong>Psicólogo:</strong> Vamos a explorar eso juntos.</p>
     </div>
   </section>
-
-  <aside class="right-panel">
-    <button class="btn-agendar">Agendar sesión</button>
-
-    <div class="calendar">
-      <h3>Calendario</h3>
-      <div class="calendar-placeholder">
-        <p>[Calendario aquí]</p>
-      </div>
-    </div>
-  </aside>
 </div>
