@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show]
 
   def profile
+    @user = current_user
   end
 
   def index
@@ -10,5 +11,9 @@ class UsersController < ApplicationController
 
   def show
     @psychologist = User.find(params[:id])
+  end
+
+  def dashboard
+    
   end
 end
