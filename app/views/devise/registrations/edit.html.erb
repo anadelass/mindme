@@ -1,35 +1,192 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%# app/views/devise/registrations/edit.html.erb %>
+<div class="devise-page">
+  <div class="page-container">
+    <!-- Sección de Bienvenida -->
+    <div class="welcome-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="welcome-container">
+              <h1>Edit Your Profile</h1>
+              <p>Update your account information and keep your profile current.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <!-- Formulario de Edición -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="signup-container">
+            <div class="signup-header">
+              <h2><i class="fas fa-user-edit"></i> Update Account</h2>
+              <p>Manage your personal information and security settings</p>
+            </div>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+            <div class="signup-body">
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.error_notification %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+                <!-- Información de la Cuenta -->
+                <div class="form-section">
+                  <h3 class="section-title">
+                    <i class="fas fa-user-circle me-2"></i>
+                    Account Information
+                  </h3>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+                  <div class="form-inputs">
+                    <!-- Email -->
+                    <div class="form-group">
+                      <%= f.label :email, "Email Address" %>
+                      <%= f.email_field :email,
+                                       required: true,
+                                       autofocus: true,
+                                       class: "form-control",
+                                       placeholder: "Enter your email address",
+                                       autocomplete: "email" %>
+                    </div>
+
+                    <!-- Confirmación de Email Pendiente -->
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Confirmation Pending:</strong> Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+                      </div>
+                    <% end %>
+
+                    <!-- Información Personal -->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= f.label :first_name, "First Name" %>
+                          <%= f.text_field :first_name,
+                                          class: "form-control",
+                                          placeholder: "Enter your first name",
+                                          autocomplete: "given-name" %>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= f.label :last_name, "Last Name" %>
+                          <%= f.text_field :last_name,
+                                          class: "form-control",
+                                          placeholder: "Enter your last name",
+                                          autocomplete: "family-name" %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Mostrar rol actual (solo lectura) -->
+                    <div class="form-group">
+                      <label>Account Type</label>
+                      <div class="role-display">
+                        <div class="current-role">
+                          <i class="fas fa-<%= resource.psychologist? ? 'user-md' : 'heart' %> me-2"></i>
+                          <span class="role-name"><%= resource.role.humanize %></span>
+                          <small class="role-note">Contact support to change your account type</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Seguridad y Contraseña -->
+                <div class="form-section">
+                  <h3 class="section-title">
+                    <i class="fas fa-shield-alt me-2"></i>
+                    Security Settings
+                  </h3>
+
+                  <div class="form-inputs">
+                    <!-- Nueva Contraseña -->
+                    <div class="form-group">
+                      <%= f.label :password, "New Password" %>
+                      <%= f.password_field :password,
+                                          required: false,
+                                          class: "form-control",
+                                          placeholder: "Enter new password (leave blank to keep current)",
+                                          autocomplete: "new-password" %>
+                      <div class="help-text">
+                        <i class="fas fa-info-circle"></i>
+                        Leave blank if you don't want to change your password
+                      </div>
+                    </div>
+
+                    <!-- Confirmación de Nueva Contraseña -->
+                    <div class="form-group">
+                      <%= f.label :password_confirmation, "Confirm New Password" %>
+                      <%= f.password_field :password_confirmation,
+                                          required: false,
+                                          class: "form-control",
+                                          placeholder: "Confirm your new password",
+                                          autocomplete: "new-password" %>
+                    </div>
+
+                    <!-- Contraseña Actual (Requerida) -->
+                    <div class="form-group">
+                      <%= f.label :current_password, "Current Password" %>
+                      <%= f.password_field :current_password,
+                                          required: true,
+                                          class: "form-control",
+                                          placeholder: "Enter your current password to confirm changes",
+                                          autocomplete: "current-password" %>
+                      <div class="help-text">
+                        <i class="fas fa-lock"></i>
+                        We need your current password to confirm these changes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="form-actions">
+                  <%= f.button :submit, "Update Profile", class: "btn btn-primary btn-signup" %>
+                </div>
+              <% end %>
+
+              <!-- Sección de Navegación -->
+              <div class="profile-navigation">
+                <%= link_to "Back to Profile", :back, class: "btn btn-outline-secondary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Eliminación de Cuenta -->
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="danger-zone">
+            <div class="danger-zone-header">
+              <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+              <p>Actions in this section are permanent and cannot be undone.</p>
+            </div>
+
+            <div class="danger-zone-body">
+              <div class="danger-action">
+                <div class="danger-info">
+                  <h4>Delete Account</h4>
+                  <p>Once you delete your account, there is no going back. All your data will be permanently removed.</p>
+                </div>
+                <div class="danger-button">
+                  <%= button_to "Delete Account",
+                                registration_path(resource_name),
+                                data: {
+                                  confirm: "Are you absolutely sure? This action cannot be undone and will permanently delete your account and all associated data.",
+                                  turbo_confirm: "Are you absolutely sure? This action cannot be undone and will permanently delete your account and all associated data."
+                                },
+                                method: :delete,
+                                class: "btn btn-danger" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
