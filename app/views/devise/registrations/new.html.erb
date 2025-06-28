@@ -1,12 +1,17 @@
 <%# app/views/devise/registrations/new.html.erb %>
 <div class="devise-page">
   <div class="page-container">
-    <!-- Sección de Bienvenida -->
+    <!-- Sección de Bienvenida con Logo -->
     <div class="welcome-section">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
             <div class="welcome-container">
+              <!-- Logo -->
+              <div class="logo-container">
+                <%= image_tag "logomindme.jpg", alt: "mindme", class: "logo" %>
+              </div>
+
               <h1>Welcome to mindme</h1>
               <p>Please fill in the details below to create your account.</p>
             </div>
@@ -39,7 +44,7 @@
                                 value_method: :last,
                                 label: "I am a",
                                 required: true,
-                                input_html: { class: 'form-check-input' },
+                                input_html: { class: 'form-check-input role-toggle' },
                                 label_html: { class: 'form-check-label' } %>
                   </div>
 
@@ -103,6 +108,58 @@
                                         placeholder: "Confirm your password",
                                         autocomplete: "new-password" %>
                   </div>
+
+                  <!-- Campos específicos para Psicólogos -->
+                  <div id="psychologist-fields" class="psychologist-section" style="display: none;">
+                    <h3 class="section-title">
+                      <i class="fas fa-user-md me-2"></i>
+                      Professional Information
+                    </h3>
+
+                    <%= simple_fields_for :psychologist_profile do |profile_f| %>
+                      <!-- Bio -->
+                      <div class="form-group">
+                        <%= profile_f.label :bio, "Professional Bio" %>
+                        <%= profile_f.text_area :bio,
+                                               class: "form-control",
+                                               placeholder: "Tell us about your professional background and approach...",
+                                               rows: 4 %>
+                        <div class="help-text">
+                          <i class="fas fa-info-circle"></i>
+                          Describe your experience and therapeutic approach
+                        </div>
+                      </div>
+
+                      <!-- Experience -->
+                      <div class="form-group">
+                        <%= profile_f.label :experience, "Years of Experience" %>
+                        <%= profile_f.select :experience,
+                                           options_for_select([
+                                             ['Less than 1 year', 'Less than 1 year'],
+                                             ['1-2 years', '1-2 years'],
+                                             ['3-5 years', '3-5 years'],
+                                             ['6-10 years', '6-10 years'],
+                                             ['11-15 years', '11-15 years'],
+                                             ['More than 15 years', 'More than 15 years']
+                                           ]),
+                                           { prompt: 'Select your experience level' },
+                                           { class: "form-control" } %>
+                      </div>
+
+                      <!-- Modality -->
+                      <div class="form-group">
+                        <%= profile_f.label :modelity, "Therapy Modality" %>
+                        <%= profile_f.select :modelity,
+                                           options_for_select([
+                                             ['Online Only', 'Online Only'],
+                                             ['In-Person Only', 'In-Person Only'],
+                                             ['Hybrid (Online & In-Person)', 'Hybrid']
+                                           ]),
+                                           { prompt: 'Select your preferred modality' },
+                                           { class: "form-control" } %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
 
                 <!-- Botón de Envío -->
@@ -122,3 +179,41 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, setting up role toggle...');
+
+  // Inicializar el campo de psicólogo como oculto
+  const psychologistFields = document.getElementById('psychologist-fields');
+  if (psychologistFields) {
+    psychologistFields.style.display = 'none';
+  }
+
+  // Setup con delay para asegurar que los elementos estén disponibles
+  setTimeout(() => {
+    const psychologistInput = document.querySelector('input[value="psychologist"]');
+    const patientInput = document.querySelector('input[value="patient"]');
+
+    console.log('Psychologist input:', psychologistInput);
+    console.log('Patient input:', patientInput);
+
+    if (psychologistInput && psychologistFields) {
+      psychologistInput.addEventListener('change', function() {
+        console.log('Showing psychologist fields');
+        psychologistFields.style.display = 'block';
+        setTimeout(() => {
+          psychologistFields.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      });
+    }
+
+    if (patientInput && psychologistFields) {
+      patientInput.addEventListener('change', function() {
+        console.log('Hiding psychologist fields');
+        psychologistFields.style.display = 'none';
+      });
+    }
+  }, 1000);
+});
+</script>
