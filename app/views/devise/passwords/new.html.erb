@@ -1,18 +1,64 @@
-<h2>Forgot your password?</h2>
+<div class="devise-page">
+  <div class="page-container">
+    <!-- Sección de Bienvenida -->
+    <div class="welcome-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="welcome-container">
+              <h1>Forgot Your Password?</h1>
+              <p>No worries! Enter your email address and we'll send you instructions to reset your password.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <!-- Formulario de Recuperación -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="signup-container">
+            <div class="signup-header">
+              <h2><i class="fas fa-key"></i> Password Recovery</h2>
+              <p>We'll help you get back into your account</p>
+            </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+            <div class="signup-body">
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                  <!-- Campo de Email -->
+                  <div class="form-group">
+                    <%= f.label :email, "Email Address" %>
+                    <%= f.email_field :email,
+                                     required: true,
+                                     autofocus: true,
+                                     class: "form-control",
+                                     placeholder: "Enter the email associated with your account",
+                                     autocomplete: "email" %>
+                    <div class="help-text">
+                      <i class="fas fa-info-circle"></i>
+                      Make sure this is the email you used to register your account
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="form-actions">
+                  <%= f.button :submit, "Send Reset Instructions", class: "btn btn-primary btn-signup" %>
+                </div>
+              <% end %>
+
+              <!-- Enlaces de Devise -->
+              <div class="devise-links">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
