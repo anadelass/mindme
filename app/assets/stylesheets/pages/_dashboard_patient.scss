@@ -1,0 +1,18 @@
+body{
+font-family: 'Poppins', 'sans-serif';
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; // espacio vertical decente
+  padding: 2rem;
+  background-color: #f7f7f7;
+
+  .main-content {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+  }
+}

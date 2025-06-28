@@ -10,3 +10,22 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+//Home
+@import "components/buttons";
+@import "pages/home";
+
+//Dashboard
+@import "pages/dashboard_patient";
+@import "pages/dashboard_psychologist";
+@import "pages/dashboard";
+
+//Chat
+@import "components/chat_ai";
+
+//Terapy requests
+@import "pages/requests";
+
+//Schedules
+@import "pages/schedules";
+@import "pages/schedule_form";
