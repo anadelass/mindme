@@ -1,6 +1,21 @@
-<%= @psychologist.email %>
-<%= @psychologist.first_name %>
-<%= @psychologist.last_name %>
-
-
-<%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]) %>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Name:</td>
+      <td><%= @psychologist.first_name %>  <%= @psychologist.last_name %></td>
+    </tr>
+        <tr>
+      <td>Bio:</td>
+      <td><%= @psychologist.psychologist_profile.bio %></td>
+    </tr>
+        <tr>
+      <td>Experience</td>
+      <td><%= @psychologist.psychologist_profile.experience %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success' %>
+      </td>
+    </tr>
+  </tbody>
+</table>

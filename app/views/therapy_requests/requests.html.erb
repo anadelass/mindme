@@ -1,10 +1,9 @@
 <div class="therapy-requests-wrapper">
   <h1>Therapy Requests</h1>
-
   <ul class="therapy-request-list">
     <% @requests.each do |request| %>
       <li class="therapy-request-item">
-        <% if current_user.role == 0 %>
+        <% if current_user.role == "patient" %>
           <div>
             <strong>Psychologist:</strong>
             <%= request.psychologist.first_name %> <%= request.psychologist.last_name %>
@@ -27,9 +26,7 @@
                   turbo_confirm: "Are you sure you want to cancel this request?"
                 }, class: "btn-cancel" %>
           <% else %>
-            <%= link_to 'Approve', therapy_request_path(request), data: {
-                  turbo_method: :patch
-                }, class: "btn-approve" %>
+            <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-success' %>
           <% end %>
         </div>
       </li>

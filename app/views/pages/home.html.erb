@@ -2,8 +2,8 @@
   <%= image_tag "logo.png", alt: "Logo", class: "logo" %>
 
   <div class="header-buttons">
-    <%= button_tag "Register", class: "btn btn-primary" %>
-    <%= button_tag "Login", class: "btn btn-secondary" %>
+    <%= link_to "Register", new_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "Login", user_session_path ,class: "btn btn-secondary" %>
   </div>
 </header>
 
