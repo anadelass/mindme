@@ -1,6 +1,10 @@
 class AppointmentsController < ApplicationController
   def index
-    @appointments = Appointment.where(user_id: current_user.id )
+    if current_user.role == "psychologist"
+      @appointments = Appointment.where(psychologist_id: current_user.id).order(scheduled_at: :asc)
+    else
+      @appointments = Appointment.where(patient_id: current_user.id).order(scheduled_at: :asc)
+    end
   end
 
   def show
@@ -27,6 +31,12 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    @appointment = Appointment.find(params[:id])
+    if @appointment.update(appointment_params)
+      redirect_to appointments_path, notice: "Appointment status updated."
+    else
+      render :edit
+    end
   end
 
   def destroy
