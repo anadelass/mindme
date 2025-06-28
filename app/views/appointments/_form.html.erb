@@ -1,0 +1,5 @@
+<%= simple_form_for [@psychologist, @appointment], url: psychologist_appointments_path do |f| %>
+  <%= f.input :scheduled_at, as: :date, label: "Date", input_html: { class: "form-control" }  %>
+  <%= f.input :format, collection: Appointment.formats.keys.map { |f| [f.humanize, f] }, prompt: "Select format" %>
+  <%= f.submit 'Send', class: 'btn btn-success' %>
+<% end %>

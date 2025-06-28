@@ -1,9 +1,8 @@
 <header class="d-flex flex-column align-items-center justify-content-center p-4 bg-white" style="font-family: 'Poppins', sans-serif;">
   <%= image_tag "logo.png", alt: "Logo", class: "mb-3 p-2", style: "height: 150px;" %>
-
-  <div class="d-flex gap-3">
-    <%= button_tag "Register", class: "btn", style: "background-color: #2ec4b5; color: white; font-weight: 600; border-radius: 8px;" %>
-    <%= button_tag "Login", class: "btn", style: "background-color: #ccc; color: #333; font-weight: 600; border-radius: 8px;" %>
+  <div class="header-buttons">
+    <%= link_to "Register", new_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "Login", user_session_path ,class: "btn btn-secondary" %>
   </div>
 </header>
 
