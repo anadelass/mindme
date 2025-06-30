@@ -1,24 +1,136 @@
 <header class="header">
-  <%= image_tag "logo.png", alt: "Logo", class: "logo" %>
-
-  <div class="header-buttons">
-    <%= link_to "Register", new_user_session_path, class: "btn btn-primary" %>
-    <%= link_to "Login", user_session_path ,class: "btn btn-secondary" %>
+  <div class="logo-container">
+    <%= image_tag "logo.png", alt: "Logo", class: "logo" %>
   </div>
+
 </header>
 
-<main class="main-content">
-  <section class="info">
-    <h2 class="info-title">What is?</h2>
-    <p class="info-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </section>
+<!-- Hero Slider con Stimulus -->
+<section class="hero-slider"
+         data-controller="slider"
+         data-slider-autoplay-value="true"
+         data-slider-interval-value="5000"
+         data-action="mouseenter->slider#pauseOnHover mouseleave->slider#resumeOnLeave">
 
-  <section class="testimony">
-    <h2 class="testimony-title">Testimony</h2>
+  <!-- Slide 1 -->
+  <div class="slide active slide-1" data-slider-target="slide">
+    <div class="slide-content">
+      <h1 class="slide-title">Welcome to mindme.</h1>
+      <p class="slide-description">Where you can find your inner peace and mental wellness</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide slide-2" data-slider-target="slide">
+    <div class="slide-content">
+      <h1 class="slide-title">Transform Your Mind</h1>
+      <p class="slide-description">Discover tools and techniques for better mental health</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide slide-3" data-slider-target="slide">
+    <div class="slide-content">
+      <h1 class="slide-title">Join Our Community</h1>
+      <p class="slide-description">Connect with others on their wellness journey</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
+    </div>
+  </div>
+
+        <!-- Navigation Buttons -->
+        <button class="nav-button prev-button" onclick="prevSlide()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button class="nav-button next-button" onclick="nextSlide()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Pagination Dots -->
+        <div class="pagination">
+            <span class="pagination-bullet active" onclick="goToSlide(0)"></span>
+            <span class="pagination-bullet" onclick="goToSlide(1)"></span>
+            <span class="pagination-bullet" onclick="goToSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="welcome-container">
+            <h1>Your Mental Wellness Journey Starts Here</h1>
+            <p>Discover tools, resources, and support for a healthier mind</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Info Section -->
+        <section class="info" id="info">
+            <div class="form-section">
+                <h2 class="info-title">What is MindMe?</h2>
+                <p class="info-description">
+                    MindMe is your personal mental wellness companion, designed to support you on your journey
+                    to better mental health. We provide evidence-based tools, guided exercises, and a supportive
+                    community to help you build resilience, manage stress, and cultivate mindfulness in your daily life.
+                    Whether you're looking to improve your mood, develop coping strategies, or simply find moments
+                    of peace in a busy world, MindMe is here to guide you every step of the way.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="features-container">
+                <h2 class="section-title">How We Help</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h3>Mindfulness Exercises</h3>
+                        <p>Guided meditation and breathing exercises to center your mind</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart feature-icon"></i>
+                        <h3>Mood Tracking</h3>
+                        <p>Monitor your emotional well-being with our intuitive tracking tools</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users feature-icon"></i>
+                        <h3>Community Support</h3>
+                        <p>Connect with others who understand your journey</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimony Section -->
+  <section class="testimony" id="testimonials"
+           data-controller="testimonials"
+           data-testimonials-interval-value="4000">
+    <h2 class="testimony-title">What Our Users Say</h2>
     <div class="carrusel">
-      <div class="testimony active">"Excelente servicio, lo recomiendo."</div>
-      <div class="testimony">"Me ayudó a mejorar mi bienestar."</div>
-      <div class="testimony">"Volvería a usar esta plataforma sin dudar."</div>
+      <div class="testimony-item active" data-testimonials-target="item">
+        MindMe has been a game-changer for my mental health. The daily exercises help me stay centered and focused.
+        <span class="author">Sarah Johnson</span>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        I love the community aspect. It's comforting to know I'm not alone in my wellness journey.
+        <span class="author">Michael Chen</span>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        The mood tracking feature has helped me identify patterns and triggers. Highly recommend!
+        <span class="author">Emma Rodriguez</span>
+      </div>
     </div>
   </section>
 </main>

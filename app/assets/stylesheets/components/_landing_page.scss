@@ -1,0 +1,590 @@
+// ============ LANDING PAGE STYLES ============
+// app/assets/stylesheets/pages/_landing.scss
+
+// Variables (si no las tienes ya definidas en otro lugar)
+:root {
+  --forest-green: #4b9857;
+  --primary-teal: #5ba2b9;
+  --secondary-teal: #518b99;
+  --accent-green: #4b9857;
+  --bright-teal: #8bdef0;
+  --dark-green: #2d5a36;
+  --white: #ffffff;
+  --light-bg: #f4f4f4;
+  --transition: all 0.3s ease;
+  --headers-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============ HERO SLIDER ============ */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(45, 90, 54, 0.9) 0%, rgba(81, 139, 153, 0.8) 100%);
+  padding-top: 80px; /* Espacio para el header fijo */
+}
+
+/* Diferentes fondos para cada slide */
+.slide-1 {
+  background: linear-gradient(135deg, rgba(45, 90, 54, 0.9) 0%, rgba(81, 139, 153, 0.8) 100%),
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23a6e6e6"/><stop offset="100%" stop-color="%238bdef0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+}
+
+.slide-2 {
+  background: linear-gradient(135deg, rgba(75, 152, 87, 0.9) 0%, rgba(91, 162, 185, 0.8) 100%),
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="b" cx="30%" cy="30%"><stop offset="0%" stop-color="%234b9857"/><stop offset="100%" stop-color="%235ba2b9"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23b)"/></svg>');
+}
+
+.slide-3 {
+  background: linear-gradient(135deg, rgba(81, 139, 153, 0.9) 0%, rgba(139, 222, 240, 0.8) 100%),
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="c" cx="70%" cy="70%"><stop offset="0%" stop-color="%238bdef0"/><stop offset="100%" stop-color="%23518b99"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23c)"/></svg>');
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide-content {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.slide-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: var(--headers-font);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.slide-description {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.slide-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.slide-button {
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.slide-button.primary {
+  background: linear-gradient(135deg, var(--accent-green) 0%, var(--primary-teal) 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(75, 152, 87, 0.3);
+}
+
+.slide-button.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(75, 152, 87, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.slide-button.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.slide-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  text-decoration: none;
+  color: white;
+}
+
+/* Para slides sin .slide-actions, mantener estilo original */
+.slide-content > .slide-button:not(.primary):not(.secondary) {
+  background: linear-gradient(135deg, var(--accent-green) 0%, var(--primary-teal) 100%);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(75, 152, 87, 0.3);
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.slide-content > .slide-button:not(.primary):not(.secondary):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(75, 152, 87, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+/* Navigation Buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.prev-button {
+  left: 2rem;
+}
+
+.next-button {
+  right: 2rem;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Pagination */
+.pagination {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination-bullet.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* ============ WELCOME SECTION ============ */
+.welcome-section {
+  padding: 100px 2rem;
+  background: linear-gradient(135deg,
+      rgba(139, 222, 240, 0.1) 0%,
+      rgba(166, 230, 230, 0.15) 50%,
+      rgba(244, 244, 244, 0.2) 100%);
+}
+
+.welcome-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 3rem 2rem;
+  box-shadow:
+      0 20px 40px rgba(75, 152, 87, 0.1),
+      0 8px 16px rgba(91, 162, 185, 0.08);
+  border: 2px solid rgba(166, 230, 230, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(139, 222, 240, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.welcome-container h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--forest-green) 0%, var(--primary-teal) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-container p {
+  font-size: 1.1rem;
+  color: var(--secondary-teal);
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ INFO SECTION ============ */
+.info {
+  padding: 80px 2rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.form-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(166, 230, 230, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(166, 230, 230, 0.2);
+}
+
+.info-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.info-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--secondary-teal);
+  text-align: center;
+}
+
+/* ============ FEATURES SECTION ============ */
+.features {
+  padding: 80px 2rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(45deg, var(--accent-green), var(--primary-teal));
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid rgba(166, 230, 230, 0.3);
+  transition: var(--transition);
+  box-shadow: 0 8px 20px rgba(75, 152, 87, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(75, 152, 87, 0.2);
+  border-color: var(--primary-teal);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: var(--primary-teal);
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+  color: var(--accent-green);
+  transform: scale(1.1);
+}
+
+.feature-card h3 {
+  color: var(--forest-green);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: var(--secondary-teal);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ============ TESTIMONY SECTION ============ */
+.testimony {
+  padding: 100px 2rem;
+  background: linear-gradient(135deg,
+      rgba(45, 90, 54, 0.95) 0%,
+      rgba(81, 139, 153, 0.95) 100%);
+  color: var(--white);
+}
+
+.testimony-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.testimony-title::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(45deg, var(--bright-teal), var(--white));
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carrusel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.testimony-item {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(166, 230, 230, 0.2);
+  position: relative;
+  transition: all 0.6s ease;
+}
+
+.testimony-item.active {
+  display: block;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.testimony-item::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--bright-teal);
+  line-height: 1;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: serif;
+}
+
+.testimony-item::after {
+  content: '"';
+  font-size: 4rem;
+  color: var(--bright-teal);
+  line-height: 1;
+  position: absolute;
+  bottom: -40px;
+  right: 20px;
+  font-family: serif;
+}
+
+.author {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: var(--bright-teal);
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.author::before {
+  content: '— ';
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .hero-slider {
+    padding-top: 70px;
+  }
+
+  .slide-title {
+    font-size: 2.5rem;
+  }
+
+  .slide-description {
+    font-size: 1.1rem;
+  }
+
+  .slide-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .slide-button {
+    padding: 1rem 2rem;
+    width: 200px;
+    text-align: center;
+  }
+
+  .welcome-container {
+    padding: 2rem 1rem;
+  }
+
+  .welcome-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+  }
+
+  .testimony {
+    padding: 60px 1rem;
+  }
+
+  .testimony-title {
+    font-size: 2rem;
+  }
+
+  .testimony-item {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .testimony-item::before,
+  .testimony-item::after {
+    font-size: 3rem;
+  }
+
+  .testimony-item::before {
+    top: -5px;
+    left: 10px;
+  }
+
+  .testimony-item::after {
+    bottom: -30px;
+    right: 10px;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .prev-button {
+    left: 1rem;
+  }
+
+  .next-button {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .welcome-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+  }
+
+  .testimony-item {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
