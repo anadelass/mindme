@@ -1,7 +1,8 @@
+// app/javascript/controllers/slider_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["slide", "bullet"]
+  static targets = ["slide"]
   static values = {
     autoplay: Boolean,
     interval: Number
@@ -16,10 +17,6 @@ export default class extends Controller {
     }
   }
 
-  disconnect() {
-    this.stopAutoplay()
-  }
-
   startAutoplay() {
     this.autoplayTimer = setInterval(() => {
       this.nextSlide()
@@ -32,6 +29,33 @@ export default class extends Controller {
     }
   }
 
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides // Bucle continuo
+    this.showSlide(this.currentSlide)
+  }
+
+  previousSlide() {
+    this.currentSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1 // Bucle continuo
+    this.showSlide(this.currentSlide)
+  }
+
+  goToSlide(event) {
+    this.currentSlide = parseInt(event.target.dataset.slideIndex)
+    this.showSlide(this.currentSlide)
+  }
+
+  showSlide(index) {
+    this.slideTargets.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index)
+    })
+
+    // Actualizar indicadores
+    const indicators = this.element.querySelectorAll('.indicator')
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle("active", i === index)
+    })
+  }
+
   pauseOnHover() {
     this.stopAutoplay()
   }
@@ -40,31 +64,5 @@ export default class extends Controller {
     if (this.autoplayValue) {
       this.startAutoplay()
     }
-  }
-
-  nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.totalSlides
-    this.showSlide(this.currentSlide)
-  }
-
-  prevSlide() {
-    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides
-    this.showSlide(this.currentSlide)
-  }
-
-  goToSlide(event) {
-    const slideNumber = parseInt(event.currentTarget.dataset.slide)
-    this.currentSlide = slideNumber - 1
-    this.showSlide(this.currentSlide)
-  }
-
-  showSlide(index) {
-    this.slideTargets.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index)
-    })
-
-    this.bulletTargets.forEach((bullet, i) => {
-      bullet.classList.toggle('active', i === index)
-    })
   }
 }

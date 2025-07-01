@@ -21,42 +21,77 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(45, 90, 54, 0.9) 0%, rgba(81, 139, 153, 0.8) 100%);
-  padding-top: 80px; /* Espacio para el header fijo */
 }
-
-/* Diferentes fondos para cada slide */
-.slide-1 {
-  background: linear-gradient(135deg, rgba(45, 90, 54, 0.9) 0%, rgba(81, 139, 153, 0.8) 100%),
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23a6e6e6"/><stop offset="100%" stop-color="%238bdef0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
-}
-
-.slide-2 {
-  background: linear-gradient(135deg, rgba(75, 152, 87, 0.9) 0%, rgba(91, 162, 185, 0.8) 100%),
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="b" cx="30%" cy="30%"><stop offset="0%" stop-color="%234b9857"/><stop offset="100%" stop-color="%235ba2b9"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23b)"/></svg>');
-}
-
-.slide-3 {
-  background: linear-gradient(135deg, rgba(81, 139, 153, 0.9) 0%, rgba(139, 222, 240, 0.8) 100%),
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="c" cx="70%" cy="70%"><stop offset="0%" stop-color="%238bdef0"/><stop offset="100%" stop-color="%23518b99"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23c)"/></svg>');
-}
-
 .slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.6s ease;
+}
+.slide.active {
+  opacity: 1;
+}
+.slide-video,
+.slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Diferentes fondos para cada slide */
+.slide-1 {
+  background: linear-gradient(135deg, rgba(45, 90, 54, 0.4) 0%, rgba(81, 139, 153, 0.3) 100%),
+              url('/assets/therapy_header2.jpg');
+  //background: image-url("therapy_header2.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide-2 {
+  background: linear-gradient(135deg, rgba(81, 139, 153, 0.4) 0%, rgba(139, 222, 240, 0.3) 100%),
+              url('/assets/therapy_header1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide-3 {
+  background: linear-gradient(135deg, rgba(81, 139, 153, 0.4) 0%, rgba(139, 222, 240, 0.3) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat
+
+}
+.slide-video {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Overlay más transparente */
+  z-index: -1;
 }
 
 .slide.active {
@@ -64,26 +99,25 @@
 }
 
 .slide-content {
+  position: relative;
   text-align: center;
   color: white;
-  max-width: 800px;
-  padding: 2rem;
-  z-index: 2;
+  z-index: 1;
+  max-width: 600px;
+  padding: 0 20px;
 }
 
 .slide-title {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 1rem;
-  font-family: var(--headers-font);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .slide-description {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .slide-actions {
@@ -91,22 +125,21 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .slide-button {
-  padding: 1.2rem 2.5rem;
-  border-radius: 50px;
+  padding: 12px 24px;
   text-decoration: none;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: var(--transition);
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
   display: inline-block;
 }
 
+
 .slide-button.primary {
-  background: linear-gradient(135deg, var(--accent-green) 0%, var(--primary-teal) 100%);
+  background-color: radient(135deg, var(--accent-green) 0%, var(--primary-teal) 100%);
   color: white;
   box-shadow: 0 8px 25px rgba(75, 152, 87, 0.3);
 }
@@ -119,13 +152,13 @@
 }
 
 .slide-button.secondary {
-  background: transparent;
+  background-color: transparent;
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .slide-button.secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-color: white;
   text-decoration: none;
   color: white;
@@ -374,20 +407,26 @@
 
 /* ============ TESTIMONY SECTION ============ */
 .testimony {
-  padding: 100px 2rem;
-  background: linear-gradient(135deg,
-      rgba(45, 90, 54, 0.95) 0%,
-      rgba(81, 139, 153, 0.95) 100%);
-  color: var(--white);
+  padding: 80px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+
+.testimony {
+  padding: 80px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
 }
 
 .testimony-title {
-  text-align: center;
   font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 3rem;
-  position: relative;
+  font-weight: bold;
+  margin-bottom: 60px;
+  color: #2c3e50;
 }
+
+
 
 .testimony-title::after {
   content: '';
@@ -401,31 +440,29 @@
 }
 
 .carrusel {
-  position: relative;
   max-width: 800px;
   margin: 0 auto;
-  overflow: hidden;
-  min-height: 200px;
+  position: relative;
+  min-height: 300px;
 }
+
 
 .testimony-item {
   display: none;
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.3rem;
-  font-style: italic;
-  line-height: 1.6;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  padding: 40px;
+  background: white;
   border-radius: 20px;
-  border: 1px solid rgba(166, 230, 230, 0.2);
-  position: relative;
-  transition: all 0.6s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px;
 }
 
 .testimony-item.active {
-  display: block;
-  animation: fadeInUp 0.6s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 1;
 }
 
 .testimony-item::before {
@@ -460,6 +497,70 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.testimony-avatar {
+  margin-bottom: 25px;
+}
+.avatar-image {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e8f4f8;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+.avatar-image:hover {
+  transform: scale(1.05);
+}
+.testimony-content {
+  text-align: center;
+  max-width: 600px;
+}
+.testimony-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 25px;
+  position: relative;
+}
+.testimony-text::before {
+  content: '"';
+  font-size: 4rem;
+  color: #81c784;
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  line-height: 1;
+}
+.testimony-text::after {
+  content: '"';
+  font-size: 4rem;
+  color: #81c784;
+  position: absolute;
+  bottom: -40px;
+  right: -30px;
+  line-height: 1;
+}
+.testimony-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.author-title {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: normal;
+}
+
 
 .author::before {
   content: '— ';
@@ -587,4 +688,94 @@
     font-size: 1rem;
     padding: 1rem;
   }
+}
+@media (max-width: 768px) {
+  .testimony-item {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+
+  .avatar-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .testimony-text {
+    font-size: 1rem;
+  }
+
+  .testimony-text::before,
+  .testimony-text::after {
+    font-size: 3rem;
+  }
+
+  .testimony-text::before {
+    top: -15px;
+    left: -20px;
+  }
+
+  .testimony-text::after {
+    bottom: -30px;
+    right: -20px;
+  }
+}
+
+
+// sliders navs de hero
+
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+.slider-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+  left: 20px;
+}
+
+.slider-nav.next {
+  right: 20px;
+}
+
+/* Indicadores */
+.slider-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active,
+.indicator:hover {
+  background: white;
+  border-color: white;
 }
