@@ -1,21 +1,38 @@
-<table class="table">
-  <tbody>
-    <tr>
-      <td>Name:</td>
-      <td><%= @psychologist.first_name %>  <%= @psychologist.last_name %></td>
-    </tr>
-        <tr>
-      <td>Bio:</td>
-      <td><%= @psychologist.psychologist_profile.bio %></td>
-    </tr>
-        <tr>
-      <td>Experience</td>
-      <td><%= @psychologist.psychologist_profile.experience %></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success' %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container py-5">
+  <div class="row bg-primary text-white rounded-4 p-4 shadow-lg">
+    <div class="col-md-4 text-center mb-4 mb-md-0 d-flex flex-column align-items-center justify-content-center">
+      <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg", class: "rounded-circle mb-3", style: "width: 120px; height: 120px; object-fit: cover;" %>
+      <h3 class="fw-bold mb-1"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>
+      <p class="text-light fs-5 mb-3">Licensed Psychologist</p>
+      <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success'%>
+    </div>
+    <div class="col-md-8">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
+            <h5 class="fw-bold">Contact</h5>
+            <p class="mb-0"> <%= @psychologist.email %> </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
+            <h5 class="fw-bold">Bio</h5>
+            <p class="mb-0"><%= @psychologist.psychologist_profile.bio %></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
+            <h5 class="fw-bold">Experience</h5>
+            <p class="mb-0"><%= @psychologist.psychologist_profile.experience %></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
+            <h5 class="fw-bold">Modelity</h5>
+            <p class="mb-0"><%= @psychologist.psychologist_profile.modelity %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

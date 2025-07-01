@@ -5,4 +5,5 @@ class Appointment < ApplicationRecord
   enum status: { pending: 0, accepted: 1, cancelled: 2 }
   enum format: { in_person: 0, online:1 }
 
+  validates :scheduled_at, presence: true
 end

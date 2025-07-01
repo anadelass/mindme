@@ -1,62 +1,8 @@
-body{
-font-family: 'Poppins', 'sans-serif';
-}
-
-.schedule-form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-
-  .schedule-form {
-    background-color: #fefefe;
-    border: 1px solid #e0e0e0;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 500px;
-
-    .form-control {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border 0.3s ease;
-
-      &:focus {
-        border-color: #4B9857;
-        box-shadow: 0 0 5px rgba(46, 196, 181, 0.3);
-        outline: none;
-      }
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-
-      label {
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
-    }
-
-    .btn-submit {
-      background-color: #2EC4B5;
-      color: white;
-      padding: 0.6rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #8CDEE0;
-      }
-    }
+.form-control:focus {
+    border-color: #4B9857;
+    box-shadow: 0 0 5px rgba(46, 196, 181, 0.3);
+    outline: none;
   }
-}
+  .btn:hover {
+    background-color: #8CDEE0 !important;
+  }

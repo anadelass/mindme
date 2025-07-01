@@ -1,5 +1,35 @@
-<%= simple_form_for [@psychologist, @appointment], url: psychologist_appointments_path do |f| %>
-  <%= f.input :scheduled_at, as: :date, label: "Date", input_html: { class: "form-control" }  %>
-  <%= f.input :format, collection: Appointment.formats.keys.map { |f| [f.humanize, f] }, prompt: "Select format" %>
-  <%= f.submit 'Send', class: 'btn btn-success' %>
-<% end %>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 20px;">
+    <div class="text-center mb-4">
+      <%= image_tag("https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg",
+                    class: "rounded-circle",
+                    style: "width: 70px; height: 70px; object-fit: cover;") %>
+      <h4 class="mt-2 mb-0"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h4>
+      <small class="text-muted">Request an Appointment</small>
+    </div>
+
+    <%= simple_form_for [@psychologist, @appointment], url: psychologist_appointments_path do |f| %>
+      <div class="mb-3">
+        <%= f.input :scheduled_at,
+                    as: :date,
+                    label: "📅 Choose a date",
+                    html5: true,
+                    input_html: { class: "form-control", style: "border-radius: 12px;" },
+                    label_html: { class: "form-label fw-bold" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.input :format,
+                    collection: Appointment.formats.keys.map { |f| [f.humanize, f] },
+                    prompt: "💬 Select format",
+                    label: "Format",
+                    input_html: { class: "form-select", style: "border-radius: 12px;" },
+                    label_html: { class: "form-label fw-bold" } %>
+      </div>
+
+      <div class="d-grid mt-4">
+        <%= f.submit 'Send Appointment', class: 'btn btn-success rounded-pill fw-bold py-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>
