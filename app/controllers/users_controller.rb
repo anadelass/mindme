@@ -14,17 +14,22 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @psychologist = current_user
-    @total_patients = User.where(role: 'patient').count
-    @new_patients = User.where(role: 'patient', created_at: Time.zone.today.all_day).count
-    @old_patients = @total_patients - @new_patients
-
-    @today_appointments = Appointment.where(scheduled_at: Time.zone.today.all_day).includes(:patient).map do |appt|
-      {
-        patient_name: "#{appt.patient.first_name} #{appt.patient.last_name}",
-        reason: appt.format,
-        time: appt.scheduled_at.strftime("%I:%M %p")
-      }
+    if current_user.psychologist?
+      @last_appointment = current_user.psychologist_appointments
+                                        .joins(:patient)
+                                        .order(updated_at: :desc).first
+    elsif current_user.patient?
+      @last_appointment = current_user.patient_appointments
+                                      .joins(:psychologist)
+                                      .order(updated_at: :desc).first
     end
+
+  @messages = if @last_appointment
+                PsychologistMessage.where(appointment: @last_appointment).order(created_at: :asc)
+              else
+                []
+              end
+
+  @message = PsychologistMessage.new
   end
 end

@@ -39,7 +39,15 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy_conversation
+    appointment = Appointment.find_by(id: params[:id])
+    if appointment && (current_user.id == appointment.patient_id || current_user.id == appointment.psychologist_id)
+      appointment.destroy
+      flash[:notice] = "Conversation deleted."
+    else
+      flash[:alert] = "You are not authorized to delete this conversation."
+    end
+    redirect_to messages_path
   end
 
   private
