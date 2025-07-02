@@ -1,28 +1,43 @@
-<div class="d-flex flex-column align-items-center justify-content-center py-5 px-3">
-  <h1 class="text-center fs-2 mb-4 custom-title">Therapy Requests</h1>
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold" style="color: #4B9857;">📝 Therapy Requests</h1>
+  </div>
 
-  <ul class="list-unstyled w-100" style="max-width:700px;">
+  <div class="row g-4">
     <% @requests.each do |request| %>
-      <li class="bg-white border rounded-3 p-4 shadow-sm mb-3">
-        <% if current_user.role == 0 %>
-          <div class="mb-2"><strong>Psychologist:</strong> <%= request.psychologist.first_name %> <%= request.psychologist.last_name %></div>
-        <% else %>
-          <div class="mb-2"><strong>Patient:</strong> <%= request.patient.first_name %> <%= request.patient.last_name %></div>
-        <% end %>
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <% if current_user.role == 0 %>
+              <h6 class="fw-bold text-success mb-2">Psychologist</h6>
+              <p class="mb-2"><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></p>
+            <% else %>
+              <h6 class="fw-bold text-success mb-2">Patient</h6>
+              <p class="mb-2"><%= request.patient.first_name %> <%= request.patient.last_name %></p>
+            <% end %>
 
-        <div class="mb-2"><strong>Status:</strong> <%= request.status.capitalize %></div>
+            <div class="mb-3">
+              <% case request.status %>
+              <% when 'pending' %>
+                <span class="badge rounded-pill text-bg-warning">Pending</span>
+              <% when 'accepted' %>
+                <span class="badge rounded-pill text-bg-success">Accepted</span>
+              <% when 'cancelled' %>
+                <span class="badge rounded-pill text-bg-danger">Cancelled</span>
+              <% else %>
+                <span class="badge rounded-pill text-bg-secondary">Unknown</span>
+              <% end %>
+            </div>
 
-        <div class="d-flex justify-content-center gap-2 mt-3">
-          <% if current_user.role == "patient" %>
-            <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-success' %>
-            <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-danger" %>
-          <% else %>
-            <%= link_to 'Accept', therapy_request_path(request), data: {
-              turbo_method: :patch }, class: 'btn btn-secondary'  %>
-          <% end %>
-
+            <% if current_user.role == "patient" %>
+              <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-outline-success btn-sm w-100 mb-2' %>
+              <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-outline-danger btn-sm w-100" %>
+            <% else %>
+              <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: 'btn btn-success btn-sm w-100' %>
+            <% end %>
+          </div>
         </div>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>
