@@ -13,12 +13,16 @@
       <div class="list-group">
         <% @appointments.each do |appt| %>
           <% partner = current_user.psychologist? ? appt.patient : appt.psychologist %>
-          <%= link_to messages_path(appointment_id: appt.id), class: "list-group-item list-group-item-action #{'active' if appt.id == @selected_appointment&.id}", data: { turbo_frame: "chat_frame" } do %>
-            <div class="d-flex w-100 justify-content-between">
-              <strong><%= partner.first_name %> <%= partner.last_name %></strong>
-            </div>
-            <small class="text-muted">📅 <%= l(appt.scheduled_at, format: :short) rescue "" %></small>
-          <% end %>
+          <div id="appointment_<%= appt.id %>">
+            <%= link_to messages_path(appointment_id: appt.id),
+                        class: "list-group-item list-group-item-action #{'active' if appt.id == @selected_appointment&.id}",
+                        data: { turbo_frame: "chat_frame" } do %>
+              <div class="d-flex w-100 justify-content-between">
+                <strong><%= partner.first_name %> <%= partner.last_name %></strong>
+              </div>
+              <small class="text-muted">📅 <%= l(appt.scheduled_at, format: :short) rescue "" %></small>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -29,9 +33,22 @@
           <% partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist %>
 
           <div class="d-flex justify-content-end gap-2 mb-3">
-            <%= button_to "🗑️ Delete Conversation", destroy_conversation_appointment_path(@selected_appointment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+            <%= button_to(
+              "🗑️ Delete Conversation",
+              destroy_conversation_appointment_path(@selected_appointment),
+              method: :delete,
+              data: { turbo_confirm: "Delete the conversation?", turbo_stream: true },
+              class: "btn btn-sm btn-outline-danger"
+            ) %>
 
-            <%= button_to "🗑️ Delete Chat", destroy_chat_appointment_psychologist_messages_path(@selected_appointment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+            <%= button_to(
+              "🗑️ Delete Chat",
+              destroy_chat_appointment_psychologist_messages_path(@selected_appointment),
+              method: :delete,
+              data: { turbo_confirm: "Delete all messages?" },
+              form: { data: { turbo_stream: true } },
+              class: "btn btn-sm btn-outline-danger"
+            ) %>
           </div>
 
           <h5 class="mb-3">Chat with <%= partner.first_name %> <%= partner.last_name %></h5>

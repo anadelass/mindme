@@ -36,16 +36,16 @@ def create
   end
 end
 
-  def destroy_chat
-    appointment = Appointment.find_by(id: params[:appointment_id])
-    if appointment && (current_user.id == appointment.patient_id || current_user.id == appointment.psychologist_id)
-      appointment.psychologist_messages.destroy_all
-      flash[:notice] = "Chat messages deleted."
-    else
-      flash[:alert] = "You are not authorized to delete this chat."
-    end
-    redirect_to messages_path
+def destroy_chat
+  @appointment = Appointment.find(params[:appointment_id])
+  @appointment.psychologist_messages.destroy_all
+
+  respond_to do |format|
+    format.turbo_stream
+    format.html { redirect_to messages_path }
   end
+end
+
 
 private
 
