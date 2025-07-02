@@ -1,2 +1,56 @@
-<h1>PsychologistMessages#index</h1>
-<p>Find me in app/views/psychologist_messages/index.html.erb</p>
+<div class="container-fluid">
+  <div class="row" style="height: 90vh;">
+
+    <div class="col-12 col-md-4 border-end overflow-auto py-3">
+      <h5 class="mb-3">
+        <% if current_user.psychologist? %>
+          Patients
+        <% else %>
+          Psychologists
+        <% end %>
+      </h5>
+
+      <div class="list-group">
+        <% @appointments.each do |appt| %>
+          <% partner = current_user.psychologist? ? appt.patient : appt.psychologist %>
+          <%= link_to messages_path(appointment_id: appt.id), class: "list-group-item list-group-item-action #{'active' if appt.id == @selected_appointment&.id}", data: { turbo_frame: "chat_frame" } do %>
+            <div class="d-flex w-100 justify-content-between">
+              <strong><%= partner.first_name %> <%= partner.last_name %></strong>
+            </div>
+            <small class="text-muted">📅 <%= l(appt.scheduled_at, format: :short) rescue "" %></small>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8 p-3">
+      <%= turbo_frame_tag "chat_frame" do %>
+        <% if @selected_appointment %>
+          <% partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist %>
+
+          <div class="d-flex justify-content-end gap-2 mb-3">
+            <%= button_to "🗑️ Delete Conversation", destroy_conversation_appointment_path(@selected_appointment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+
+            <%= button_to "🗑️ Delete Chat", destroy_chat_appointment_psychologist_messages_path(@selected_appointment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+          </div>
+
+          <h5 class="mb-3">Chat with <%= partner.first_name %> <%= partner.last_name %></h5>
+
+          <div id="messages" class="border rounded p-3 mb-3 overflow-auto" style="height: 60vh;">
+            <%= render partial: "message", collection: @messages %>
+          </div>
+
+          <%= turbo_frame_tag "new_message" do %>
+            <%= form_with model: [@selected_appointment, @message], data: { turbo_stream: true }, class: "d-flex flex-column gap-2" do |f| %>
+              <%= f.text_area :content, rows: 2, class: "form-control", placeholder: "Type a message..." %>
+              <%= f.submit "Send", class: "btn btn-primary align-self-end" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="text-muted">Please select a conversation from the left panel.</div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

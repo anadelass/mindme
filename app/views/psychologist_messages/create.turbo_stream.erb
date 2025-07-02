@@ -1,0 +1,14 @@
+<turbo-stream target="messages" action="append">
+  <template>
+    <%= render partial: "message", object: @message %>
+  </template>
+</turbo-stream>
+
+<turbo-stream target="new_message" action="replace">
+  <template>
+    <%= form_with model: [@selected_appointment, PsychologistMessage.new], data: { turbo_stream: true }, class: "message-form" do |f| %>
+      <%= f.text_area :content, placeholder: "Type a message...", rows: 2, class: "form-control mb-2" %>
+      <%= f.submit "Send", class: "btn btn-primary" %>
+    <% end %>
+  </template>
+</turbo-stream>
