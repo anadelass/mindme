@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :psychologists, only: [ :index, :show ], controller: "users" do
     resources :appointments, only: [ :new, :create ]
   end
-  resources :appointments, except: [ :new, :create ]
+  resources :appointments, except: [ :new, :create ] do
+    resources :psychologist_messages, only: [:index, :create]
+  end
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
