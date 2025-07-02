@@ -1,23 +1,212 @@
-<header class="d-flex flex-column align-items-center justify-content-center p-4 bg-white" style="font-family: 'Poppins', sans-serif;">
-  <%= image_tag "logo.png", alt: "Logo", class: "mb-3 p-2", style: "height: 150px;" %>
-    <div class="d-flex gap-3">
-      <%= link_to "Register", new_user_registration_path, class: "btn btn-signup w-100" %>
-      <%= link_to "Login", new_user_session_path, class: "btn btn-signup w-100" %>
-    </div>
+<header class="header">
+
+
 </header>
 
-<main class="text-center p-5" style="font-family: 'Poppins', sans-serif;">
-  <section class="mx-auto mb-5" style="max-width: 800px;">
-    <h2 class="fs-2 mb-3">What is?</h2>
-    <p class="fs-5 lh-lg text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-  </section>
+<!-- Hero Slider con Stimulus -->
+<section class="hero-slider"
+         data-controller="slider"
+         data-slider-autoplay-value="true"
+         data-slider-interval-value="5000"
+         data-action="mouseenter->slider#pauseOnHover mouseleave->slider#resumeOnLeave">
 
-  <section>
-    <h2 class="fs-2 mb-4">Testimony</h2>
-    <div class="d-flex flex-column gap-4 mx-auto" style="max-width: 600px;">
-      <div class="p-3 rounded border-start border-4" style="background-color: #e0f7f5; border-color: #2ec4b5; font-weight: bold; font-style: italic; color: #444; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">"Excelente servicio, lo recomiendo."</div>
-      <div class="p-3 rounded border-start border-4" style="background-color: #f0f8f8; border-color: #2ec4b5; font-style: italic; color: #444; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">"Me ayudó a mejorar mi bienestar."</div>
-      <div class="p-3 rounded border-start border-4" style="background-color: #f0f8f8; border-color: #2ec4b5; font-style: italic; color: #444; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">"Volvería a usar esta plataforma sin dudar."</div>
+  <!-- Slide 1 -->
+   <div class="slide active slide-1" data-slider-target="slide">
+    <div class="slide-content">
+      <h1 class="slide-title">Welcome to mindme.</h1>
+      <p class="slide-description">Where you can find your inner peace and mental wellness</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide slide-2" data-slider-target="slide">
+    <div class="slide-content">
+      <h1 class="slide-title">Transform Your Mind</h1>
+      <p class="slide-description">Discover tools and techniques for better mental health</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide slide-3" data-slider-target="slide">
+  <video class="slide-video" autoplay muted loop playsinline>
+    <source src="<%= asset_path('patient2vid.mp4') %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="slide-overlay"></div>
+  <div class="slide-content">
+      <h1 class="slide-title">Join Our Community</h1>
+      <p class="slide-description">Connect with others on their wellness journey</p>
+      <div class="slide-actions">
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+        <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+      </div>
+    </div>
+  <!-- Navigation Buttons -->
+  <button class="slider-nav prev" data-action="click->slider#previousSlide">❮</button>
+  <button class="slider-nav next" data-action="click->slider#nextSlide">❯</button>
+
+  <!-- Indicadores -->
+  <div class="slider-indicators">
+    <button class="indicator active" data-action="click->slider#goToSlide" data-slide-index="0"></button>
+    <button class="indicator" data-action="click->slider#goToSlide" data-slide-index="1"></button>
+    <button class="indicator" data-action="click->slider#goToSlide" data-slide-index="2"></button>
+  </div>
+
+
+        <!-- Pagination Dots -->
+        <div class="pagination">
+            <span class="pagination-bullet active" onclick="goToSlide(0)"></span>
+            <span class="pagination-bullet" onclick="goToSlide(1)"></span>
+            <span class="pagination-bullet" onclick="goToSlide(2)"></span>
+        </div>
+    </section>
+</header>
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="welcome-container">
+            <h1>Your Mental Wellness Journey Starts Here</h1>
+            <p>Discover tools, resources, and support for a healthier mind</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Info Section -->
+        <section class="info" id="info">
+            <div class="form-section">
+                <h2 class="info-title">What is MindMe?</h2>
+                <p class="info-description">
+                    MindMe is your personal mental wellness companion, designed to support you on your journey
+                    to better mental health. We provide evidence-based tools, guided exercises, and a supportive
+                    community to help you build resilience, manage stress, and cultivate mindfulness in your daily life.
+                    Whether you're looking to improve your mood, develop coping strategies, or simply find moments
+                    of peace in a busy world, MindMe is here to guide you every step of the way.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="features-container">
+                <h2 class="section-title">How we are helping today</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h3>51% reduction in depression symptoms</h3>
+                        <p>A groundbreaking 2025 study published in NEJM AI found that participants with major depressive disorder who used the AI-powered therapy chatbot "Therabot"
+                          experienced a 51% average reduction in symptoms after just 4 weeks of treatment Psychology TodayNih.
+                          This improvement led to clinically significant improvements in mood and overall well-being,
+                          with results comparable to what researchers would see for people with access to gold-standard cognitive therapy with outpatient providers</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart feature-icon"></i>
+                        <h3>40% of Men Never Discuss Mental Health - AI Provides Anonymous Alternative</h3>
+                        <p>According to a UK survey by Priory Group, 40% of men have never spoken to anyone about their mental health,
+                          with 29% reporting they were "too embarrassed" while 20% cited a "negative stigma" around the issue Understanding young adults
+                          attitudes towards using AI chatbots for psychotherapy: The role of self-stigma - ScienceDirect. AI-powered mental health tools
+                          address these barriers by providing accessible, anonymous, and personalized support that creates emotional
+                          distance, making it easier for men to take that first step toward acknowledging their struggles without
+                          the vulnerability associated with traditional therapy</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users feature-icon"></i>
+                        <h3>AI Reduces Therapist Administrative Workload by 80%</h3>
+                        <p>Research shows that AI-guided self-help has been proven to improve symptoms while taking on 80% of the support load,
+                          freeing up human support for where it's really needed Youper: Artificial Intelligence for Mental Health.
+                          Early studies indicate that AI-based tools can reduce administrative work by up to 30%,
+                          allowing therapists to focus more on patient care, while automating parts of clinical care
+                          (such as taking notes) can reduce therapist workload and possibly burnout, which would likely improve the quality of patient care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimony Section -->
+<section class="testimony" id="testimonials"
+           data-controller="testimonials"
+           data-testimonials-interval-value="4000">
+    <h2 class="testimony-title">What Our Users Say</h2>
+    <div class="carrusel">
+      <div class="testimony-item active" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('patient1.jpg') %>" alt="Andrea Peñaloza" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">MindMe has been a game-changer for my mental health. I have a safe place where I can share my thoughts and have a professional follow up.</p>
+          <div class="testimony-author">
+            <span class="author-name">Andrea Peñaloza</span>
+            <span class="author-title">2 years using mindme.</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('psychologist1.jpg') %>" alt="Mariana Fernandez" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">I believe that mindme has the potential to change lifes, and I am very excited to be a part of this amazing project.</p>
+          <div class="testimony-author">
+            <span class="author-name">Mariana Fernandez</span>
+            <span class="author-title">Licensed psychologist with 10+ years specializing in cognitive behavioral therapy (CBT)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimony-item" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('patient2.jpg') %>" alt="Emilio Bernal" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">There are many things I wasn't used to talking about, and with MindMe I feel as if I can insert all my thoughts. It sort of feels like a cleansing system for myself. </p>
+          <div class="testimony-author">
+            <span class="author-name">Emilio Bernal</span>
+            <span class="author-title">6 months using mindme.</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('psychologist2.jpg') %>" alt="Ana Sofia Sahagun" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">Mindme has helped me keep a closer follow up to my patients, improving our therapy sessions and also helping me organize my calendar.  </p>
+          <div class="testimony-author">
+            <span class="author-name">Ana Sofia Sahagun</span>
+            <span class="author-title">Licensed Clinical Therapist | 7+ Years Experience</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('patient3.jpg') %>" alt="Maria Laguna" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">Through therapy, I learned to understand my feelings, release the burdens I was carrying, and realize that I wasn't broken—I simply needed support. Now I have so much more understanding and respect for myself.</p>
+          <div class="testimony-author">
+            <span class="author-name">Maria Laguna</span>
+            <span class="author-title">8 months using mindme.</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-item" data-testimonials-target="item">
+        <div class="testimony-avatar">
+          <img src="<%= asset_path('psychologist3.jpg') %>" alt="Danielle Natalie Borja" class="avatar-image">
+        </div>
+        <div class="testimony-content">
+          <p class="testimony-text">AI-powered mood tracking apps help my patients identify patterns they might otherwise miss—recognizing that their depression symptoms worsen on specific days or in certain situations gives us crucial data to work with in sessions.</p>
+          <div class="testimony-author">
+            <span class="author-name">Dr Danielle Natalie Borja</span>
+            <span class="author-title">Licensed clinical psycholosgist | +12 years of practice treating depression</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
 </main>

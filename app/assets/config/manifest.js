@@ -4,3 +4,6 @@
 //= link_tree ../../../vendor/javascript .js
 //= link popper.js
 //= link bootstrap.min.js
+//= link patient2vid.mp4
+//= link patient1vid.mp4
+//= link psychologist1.jpg
