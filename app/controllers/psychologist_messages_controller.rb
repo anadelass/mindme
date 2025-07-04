@@ -1,19 +1,8 @@
 class PsychologistMessagesController < ApplicationController
 def index
-  if current_user.psychologist?
-    @appointments = current_user.psychologist_appointments.includes(:patient)
-  else
-    @appointments = current_user.patient_appointments.includes(:psychologist)
-  end
-
-  @selected_appointment = @appointments.find_by(id: params[:appointment_id]) || @appointments.last
-
-  if @selected_appointment
-    @chat_partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist
-    @messages = PsychologistMessage.where(appointment: @selected_appointment).order(:created_at)
-    @message = PsychologistMessage.new
-  end
+  load_chat_data
 end
+
 def create
   @appointment = Appointment.find(params[:appointment_id])
   @message = @appointment.psychologist_messages.new(message_params)
@@ -27,11 +16,13 @@ def create
   end
 
   if @message.save
+    @message = PsychologistMessage.new
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to messages_path }
+      format.html { redirect_to messages_path(appointment_id: @appointment.id) }
+      format.turbo_stream { head :ok }
     end
   else
+    load_chat_data
     render :index
   end
 end
@@ -51,5 +42,21 @@ private
 
 def message_params
   params.require(:psychologist_message).permit(:content)
+end
+
+def load_chat_data
+  if current_user.psychologist?
+    @appointments = current_user.psychologist_appointments.includes(:patient)
+  else
+    @appointments = current_user.patient_appointments.includes(:psychologist)
+  end
+
+  @selected_appointment = @appointments.find_by(id: params[:appointment_id]) || @appointments.last
+
+  if @selected_appointment
+    @chat_partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist
+    @messages = PsychologistMessage.where(appointment: @selected_appointment).order(:created_at)
+    @message = PsychologistMessage.new
+  end
 end
 end

@@ -1,7 +1,10 @@
-<% alignment = message.patient_id == current_user.id ? 'text-start' : 'text-end' %>
-<% bg_class = message.patient_id == current_user.id ? 'bg-light' : 'bg-primary text-white' %>
+<% alignment = message.sender_role == "patient" ? 'text-start' : 'text-end' %>
+<% bg_class = message.sender_role == "patient" ? 'bg-light' : 'bg-primary text-white' %>
 
 <div class="mb-2 d-flex flex-column <%= alignment %>">
+  <div class="small text-muted mb-1">
+    <%= message.sender_role.capitalize %>
+  </div>
   <div class="p-2 rounded <%= bg_class %>" style="max-width: 75%; display: inline-block;">
     <%= message.content %>
   </div>

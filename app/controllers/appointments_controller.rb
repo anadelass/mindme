@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
-      redirect_to appointments_path, notice: "Appointment status updated."
+      redirect_to appointments_path
     else
       render :edit
     end
@@ -47,10 +47,10 @@ class AppointmentsController < ApplicationController
       @appointment.destroy
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to messages_path, notice: "Conversation deleted." }
+        format.html { redirect_to messages_path }
       end
     else
-      redirect_to messages_path, alert: "Not authorized."
+      redirect_to messages_path
     end
   end
 
