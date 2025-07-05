@@ -78,4 +78,4 @@ gem "ruby-openai"
 gem "chartkick"
 gem "groupdate"
 gem 'hotwire-rails'
-
+gem 'neighbor'
