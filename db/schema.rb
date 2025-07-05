@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_25_223305) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_01_231408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_223305) do
     t.datetime "updated_at", null: false
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
     t.index ["psychologist_id"], name: "index_appointments_on_psychologist_id"
+  end
+
+  create_table "psychologist_messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "patient_id", null: false
+    t.bigint "psychologist_id", null: false
+    t.bigint "appointment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_psychologist_messages_on_appointment_id"
+    t.index ["patient_id"], name: "index_psychologist_messages_on_patient_id"
+    t.index ["psychologist_id"], name: "index_psychologist_messages_on_psychologist_id"
   end
 
   create_table "psychologist_profiles", force: :cascade do |t|
@@ -100,6 +112,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_223305) do
   add_foreign_key "ai_chats", "users"
   add_foreign_key "appointments", "users", column: "patient_id"
   add_foreign_key "appointments", "users", column: "psychologist_id"
+  add_foreign_key "psychologist_messages", "appointments"
+  add_foreign_key "psychologist_messages", "users", column: "patient_id"
+  add_foreign_key "psychologist_messages", "users", column: "psychologist_id"
   add_foreign_key "psychologist_profiles", "users"
   add_foreign_key "schedules", "users"
   add_foreign_key "therapy_requests", "users", column: "patient_id"
