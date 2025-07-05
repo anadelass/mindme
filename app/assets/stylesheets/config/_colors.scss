@@ -18,3 +18,14 @@ $sage-green: #7B9F48;
 $forest-green: #176406;
 $olive: #B0B151;
 $dark-green: #3E6029;
+// para la pagina principal
+:root {
+  --forest-green: #{$forest-green};
+  --primary-teal: #{$primary-teal};
+  --secondary-teal: #{$secondary-teal};
+  --accent-green: #{$accent-green};
+  --bright-teal: #{$bright-teal};
+  --dark-green: #{$dark-green};
+  --white: #ffffff;
+  --transition: all 0.3s ease;
+}

@@ -77,3 +77,5 @@ end
 gem "ruby-openai"
 gem "chartkick"
 gem "groupdate"
+gem 'hotwire-rails'
+

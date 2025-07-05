@@ -1,0 +1,143 @@
+.chat-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.chat-row {
+  height: 90vh;
+}
+
+.chat-sidebar {
+  border-right: 3px solid $primary;
+  overflow: auto;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0 20px 20px 0;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+
+  &-title {
+    text-align: center;
+    padding: 0.5rem;
+    background-color: $primary;
+    color: white;
+    border-radius: 50rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+}
+
+.chat-list-item {
+  border-radius: 50rem;
+  margin: 0.25rem 0;
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  &.active {
+    background-color: $info;
+    border-color: $info;
+  }
+}
+
+.chat-main {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: url('https://transparenttextures.com/patterns/always-grey.png');
+}
+
+.chat-header {
+  padding: 1rem;
+  background: $primary;
+  background-image: linear-gradient(to right, $primary, darken($primary, 10%));
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 60vh;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    border-radius: 4px;
+  }
+}
+
+.chat-input {
+  padding: 1rem;
+  background-color: $light;
+  border-top: 1px solid $border-color;
+
+  .input-group {
+    position: relative;
+  }
+
+  .message-input {
+    border-radius: 50rem;
+    padding: 0.5rem 1.5rem;
+    resize: none;
+    border-color: $primary;
+  }
+
+  .message-submit {
+    border-radius: 50rem;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 100px;
+    z-index: 10;
+  }
+}
+
+.chat-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: $gray-600;
+  background-color: rgba(255, 255, 255, 0.7);
+
+  .bi {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .spinner-grow {
+    margin-top: 1rem;
+  }
+}
+
+.chat-notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+
+  .toast {
+    background-color: $info;
+    color: white;
+
+    &-header {
+      background-color: darken($info, 10%);
+      color: white;
+    }
+  }
+}

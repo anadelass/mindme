@@ -16,6 +16,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+  @psychologist = User.find(params[:psychologist_id])
   @appointment = Appointment.new(appointment_params)
   @appointment.patient_id = current_user.id
   @appointment.psychologist_id = params[:psychologist_id]
@@ -33,13 +34,24 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
-      redirect_to appointments_path, notice: "Appointment status updated."
+      redirect_to appointments_path
     else
       render :edit
     end
   end
 
-  def destroy
+  def destroy_conversation
+    @appointment = Appointment.find(params[:id])
+
+    if [@appointment.patient_id, @appointment.psychologist_id].include?(current_user.id)
+      @appointment.destroy
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to messages_path }
+      end
+    else
+      redirect_to messages_path
+    end
   end
 
   private

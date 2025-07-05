@@ -154,6 +154,10 @@ GEM
       activesupport (>= 6.1)
     groupdate (6.7.0)
       activesupport (>= 7.1)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -353,6 +357,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   groupdate
+  hotwire-rails
   importmap-rails
   jbuilder
   pg (~> 1.1)
