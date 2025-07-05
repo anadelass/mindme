@@ -1,13 +1,14 @@
-<div class="dashboard-psychologist">
-  <div style="display: flex; height: 100vh;">
-    <aside class="sidebar">
-      <h2>Menu</h2>
-      <ul>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Messages", messages_path %></li>
-        <li><%= link_to "Schedules", schedules_path %></li>
-        <li><%= link_to "Appointments", appointments_path %></li>
-        <li><%= link_to "Requests", requests_path %></li>
+<div class="devise-page">
+  <div class="d-flex">
+    <!-- Menú lateral fijo -->
+    <aside class="bg-white p-4 border-end" style="width: 220px; min-height: 0vh; position: fixed; top: 64px; left: 0; z-index: 100;">
+      <h2 class="mb-4 fw-bold" style="color: #5BA2B9;">Menu</h2>
+      <ul class="list-unstyled">
+        <li class="mb-3"><%= link_to "Home", root_path, class: "fw-bold text-decoration-none", style: "color: #4b9857;" %></li>
+        <li class="mb-3"><%= link_to "Messages", "#", class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
+        <li class="mb-3"><%= link_to "Schedules", schedules_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
+        <li class="mb-3"><%= link_to "Appointments", appointments_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
+        <li class="mb-3"><%= link_to "Requests", requests_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
       </ul>
     </aside>
 

@@ -1,43 +1,53 @@
 <div class="container py-5">
-  <div class="text-center mb-5">
+  <div class="text-center mb-4">
     <h1 class="fw-bold" style="color: #4B9857;">📝 Therapy Requests</h1>
   </div>
 
-  <div class="row g-4">
-    <% @requests.each do |request| %>
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body">
-            <% if current_user.role == 0 %>
-              <h6 class="fw-bold text-success mb-2">Psychologist</h6>
-              <p class="mb-2"><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></p>
-            <% else %>
-              <h6 class="fw-bold text-success mb-2">Patient</h6>
-              <p class="mb-2"><%= request.patient.first_name %> <%= request.patient.last_name %></p>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm">
+      <thead class="table-bordered">
+        <tr>
+          <th scope="col" class="bg-dark-subtle">Name</th>
+          <th scope="col" class="bg-dark-subtle">Role</th>
+          <th scope="col" class="bg-dark-subtle">Status</th>
+          <th scope="col" class="bg-dark-subtle">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @requests.each do |request| %>
+          <tr>
+            <% if current_user.role == 0 %> <!-- Psychologist -->
+              <td><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></td>
+              <td><span class="badge bg-success">Psychologist</span></td>
+            <% else %> <!-- Patient -->
+              <td><%= request.patient.first_name %> <%= request.patient.last_name %></td>
+              <td><span class="badge bg-primary">Patient</span></td>
             <% end %>
 
-            <div class="mb-3">
+            <td>
               <% case request.status %>
-              <% when 'pending' %>
-                <span class="badge rounded-pill text-bg-warning">Pending</span>
-              <% when 'accepted' %>
-                <span class="badge rounded-pill text-bg-success">Accepted</span>
-              <% when 'cancelled' %>
-                <span class="badge rounded-pill text-bg-danger">Cancelled</span>
-              <% else %>
-                <span class="badge rounded-pill text-bg-secondary">Unknown</span>
+                <% when 'pending' %>
+                  <span class="badge rounded-pill bg-warning text-dark">Pending</span>
+                <% when 'accepted' %>
+                  <span class="badge rounded-pill bg-success">Accepted</span>
+                <% when 'cancelled' %>
+                  <span class="badge rounded-pill bg-danger">Cancelled</span>
+                <% else %>
+                  <span class="badge rounded-pill bg-secondary">Unknown</span>
               <% end %>
-            </div>
+            </td>
 
-            <% if current_user.role == "patient" %>
-              <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-outline-success btn-sm w-100 mb-2' %>
-              <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-outline-danger btn-sm w-100" %>
-            <% else %>
-              <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: 'btn btn-success btn-sm w-100' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+            <td class="text-nowrap">
+              <% if current_user.role == "patient" %>
+                <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-outline-success btn-sm me-1 mb-1' %>
+                <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-outline-danger btn-sm mb-1" %>
+              <% else %>
+                <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: 'btn btn-success btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
