@@ -9,49 +9,39 @@
         <li><%= link_to "Appointments", appointments_path %></li>
         <li><%= link_to "Requests", requests_path %></li>
       </ul>
+    </aside>
 
-
-    </div>
-
-    <!-- Main Content -->
+    <!-- Contenido Principal -->
     <div class="col-md-10 p-4 bg-light">
-      <!-- Top Metrics -->
+      <!-- Métricas -->
       <div class="row text-center mb-4">
         <div class="col-md-4 mb-3">
           <div class="card border-0 shadow-sm p-3">
-            <h6 class="text-muted">Total Patients</h6>
+            <h6 class="text-muted">Total Pacientes</h6>
             <h3 class="text-success fw-bold"><%= @total_patients %></h3>
           </div>
         </div>
         <div class="col-md-4 mb-3">
           <div class="card border-0 shadow-sm p-3">
-            <h6 class="text-muted">Today Patients</h6>
+            <h6 class="text-muted">Pacientes Hoy</h6>
             <h3 class="text-success fw-bold"><%= @today_patients %></h3>
           </div>
         </div>
         <div class="col-md-4 mb-3">
           <div class="card border-0 shadow-sm p-3">
-            <h6 class="text-muted">Date</h6>
+            <h6 class="text-muted">Fecha</h6>
             <h5 class="text-primary"><%= Date.today.strftime("%d %b %Y") %></h5>
           </div>
         </div>
       </div>
 
-      <!-- Graph + Appointments + Patient Info -->
+      <!-- Citas de Hoy (Parte corregida) -->
       <div class="row mb-4">
-        <!-- Chart -->
         <div class="col-md-4 mb-3">
           <div class="card border-0 shadow-sm p-3">
-            <h6 class="fw-semibold text-muted">Patients Chart</h6>
-          </div>
-        </div>
-
-        <!-- Today's Appointments -->
-        <div class="col-md-4 mb-3">
-          <div class="card border-0 shadow-sm p-3">
-            <h6 class="fw-semibold text-muted">Today Appointments</h6>
+            <h6 class="fw-semibold text-muted">Citas Hoy</h6>
             <ul class="list-unstyled small mb-0">
-              <% @today_appointments.each do |appointment| %>
+              <% (@today_appointments || []).each do |appointment| %>
                 <li class="d-flex justify-content-between py-1 border-bottom">
                   <span><strong><%= appointment[:patient_name] %></strong></span>
                   <span class="badge bg-light text-dark border"><%= appointment[:time] %></span>
@@ -60,31 +50,7 @@
             </ul>
           </div>
         </div>
-
-        <!-- Next Patient -->
-        <div class="col-md-4 mb-3">
-          <div class="card border-0 shadow-sm p-3">
-            <h6 class="fw-semibold text-muted">Next Patient</h6>
-            <div class="d-flex align-items-center mb-3">
-              <%= image_tag("https://randomuser.me/api/portraits/men/4.jpg", class: "rounded-circle me-3", style: "width: 50px; height: 50px;") %>
-              <div>
-                <strong>Sanath Deo</strong><br><small>Health Checkup</small>
-              </div>
-            </div>
-            <ul class="list-unstyled small mb-3">
-              <li><strong>D.O.B:</strong> 15 Jan 1989</li>
-              <li><strong>Sex:</strong> Male</li>
-              <li><strong>Height:</strong> 172 cm</li>
-              <li><strong>Weight:</strong> 59 kg</li>
-            </ul>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-warning text-dark">Asthma</span>
-              <span class="badge bg-primary">Hypertension</span>
-              <span class="badge bg-danger">Fever</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
+  </div> <!-- Cierre del div flex -->
 </div>
