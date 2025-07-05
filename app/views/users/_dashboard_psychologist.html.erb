@@ -86,11 +86,13 @@
     </div>
   </div>
 
+
   <!-- Citas en 7 días -->
   <div class="col-md-6">
     <div class="card signup-container p-3">
       <h6 class="fw-semibold text-muted">Appointments in Last 7 Days</h6>
       <%= line_chart @appointments_per_day, height: "150px", library: { colors: ["#4b9857"] } %>
+
     </div>
   </div>
 

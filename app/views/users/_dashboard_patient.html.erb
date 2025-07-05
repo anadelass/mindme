@@ -1,8 +1,128 @@
-<div class="dashboard">
+<!-- Dashboard Container -->
+<div class="dashboard-container">
 
-  <section class="main-content">
-    <%= render "users/chat_ai" %>
-  </section>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <!-- Header -->
+    <div class="sidebar-header">
+      <div class="logo-section">
+        <div class="logo">M</div>
+        <h2>MindMe</h2>
+      </div>
+
+      <div class="user-info">
+        <div class="user-avatar">
+          <%= current_user.first_name.first.upcase if current_user.first_name.present? %>
+        </div>
+        <div class="user-details">
+          <p class="user-name"><%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p class="user-role">Patient</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="section-title">Main</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link active" do %>
+              <i class="fas fa-home nav-icon"></i>
+              <span>Home</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "#", class: "nav-link" do %>
+              <i class="fas fa-comments nav-icon"></i>
+              <span>Messages</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to appointments_path, class: "nav-link" do %>
+              <i class="fas fa-calendar nav-icon"></i>
+              <span>Appointments</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to requests_path, class: "nav-link" do %>
+              <i class="fas fa-clipboard-list nav-icon"></i>
+              <span>Requests</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="section-title">Account</div>
+        <ul class="nav-list">
+          <!--<li class="nav-item">
+            <%= link_to "#", class: "nav-link" do %>
+              <i class="fas fa-user nav-icon"></i>
+              <span>Profile</span>
+            <% end %> -->
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+              <i class="fas fa-sign-out-alt nav-icon"></i>
+              <span>Sign Out</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="page-title">
+          <h1>Welcome back, <%= current_user.first_name %>!</h1>
+          <p class="page-subtitle">How are you feeling today?</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content-area">
+      <div class="content-grid">
+
+        <!-- Chat Interface -->
+        <div class="primary-content">
+          <div class="content-header">
+            <h2>Chat with us</h2>
+            <p>Get immediate support and guidance</p>
+          </div>
+
+          <div class="chat-interface">
+            <%= render "users/chat_ai" %>
+          </div>
+        </div>
+
+        <!-- Sidebar Content -->
+        <div class="secondary-content">
+          <!-- Info Cards -->
+          <div class="info-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <h3>Next Appointment</h3>
+            </div>
+            <div class="card-content">
+              <p>No upcoming appointments</p>
+            </div>
+            <div class="card-action">
+              <%= link_to "Schedule One", appointments_path, class: "btn-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
 </div>
   <%= link_to "Messages", messages_path, class: "btn btn-outline-primary mt-3" %>
