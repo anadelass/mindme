@@ -18,7 +18,7 @@
           <%= link_to "Appointments", appointments_path, class: "nav-link" if current_user.role == "patient" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Contact", "#" , class: "nav-link" %>
+          <%= link_to "Contact", root_path(anchor: "contact") , class: "nav-link" %>
       <% end %>
         </li>
     </ul>
