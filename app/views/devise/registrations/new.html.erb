@@ -30,8 +30,14 @@
             </div>
 
             <div class="signup-body">
-              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
                 <%= f.error_notification %>
+
+                <div class="form-group">
+                  <%= f.label :avatar, "Profile Picture" %>
+                  <%= f.file_field :avatar, class: "form-control" %>
+                </div>
+
 
                 <div class="form-inputs">
                   <!-- Selección de Rol -->

@@ -15,7 +15,11 @@
     <tbody>
       <tr>
         <td>
-          <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg", class: "rounded-circle mb-2 shadow", style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <% if @psychologist.avatar.attached? %>
+            <%= cl_image_tag @psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+          <% end %>
         </td>
         <td>
           <strong><%= @psychologist.first_name %> <%= @psychologist.last_name %></strong>

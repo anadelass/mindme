@@ -1,14 +1,21 @@
-<div class="d-flex flex-column align-items-center py-5 px-3 min-vh-100" style="background-color: #f9f9f9; font-family: 'Poppins', sans-serif;">
-  <h1 class="text-center fs-2 mb-4" style="color: #3E6029;">My Available Schedules</h1>
+<div class="container-fluid py-5 px-3 min-vh-100 d-flex flex-column align-items-center" style=" font-family: 'Poppins', sans-serif; background-color:white;">
+  <h1 class="fs-2 fw-bold mb-4 text-success text-center" style="color: #3E6029;">My Available Schedules</h1>
 
-  <%= link_to 'Add new schedule', new_schedule_path, class: "btn mb-4", style: "background-color: #4B9857; color: white; border-radius: 6px;" %>
+  <%= link_to 'Add new schedule', new_schedule_path, class: "btn btn-success mb-4 px-4 py-2 fw-semibold", style: "background-color: #4B9857; border-radius: 6px;" %>
 
-  <ul class="list-unstyled w-100" style="max-width:600px;">
-    <% @schedules.each do |schedule| %>
-      <li class="bg-white border rounded-3 p-3 shadow-sm d-flex justify-content-between mb-3">
-        <span><%= schedule.date.strftime("%d/%m/%Y") %></span>
-        <span><%= schedule.start_hour.strftime("%H:%M") %> - <%= schedule.end_hour.strftime("%H:%M") %></span>
-      </li>
-    <% end %>
-  </ul>
+  <ul class="list-group w-100 .list-group-item" style="max-width: 600px;">
+  <% @schedules.each do |schedule| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center border rounded-3 shadow-sm mb-3 bg-white">
+      <span class="fw-semibold fs-6 text-dark" style="letter-spacing: 0.5px;">
+        <i class="fas fa-calendar-alt me-2 text-success"></i>
+        <%= schedule.date.strftime("%d/%m/%Y") %>
+      </span>
+      <span class="fw-semibold text-muted fw-light fs-6" style="letter-spacing: 0.5px;">
+        <i class="fas fa-clock me-2"></i>
+        <%= schedule.start_hour.strftime("%H:%M") %> - <%= schedule.end_hour.strftime("%H:%M") %>
+      </span>
+    </li>
+  <% end %>
+</ul>
+
 </div>

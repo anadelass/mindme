@@ -18,7 +18,15 @@
           <tbody>
             <% @appointments.each do |appointment| %>
               <tr>
-                <td class="fw-bold"><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></td>
+                <td class="fw-bold d-flex align-items-center justify-content-center gap-2">
+                  <% if appointment.psychologist.avatar.attached? %>
+                    <%= cl_image_tag appointment.psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: "rounded-circle", style: "width: 40px; height: 40px;" %>
+                  <% end %>
+                  <span><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></span>
+                </td>
+
                 <td>
                   <% if appointment.scheduled_at.present? %>
                     <span class="badge bg-light text-dark p-2"><%= appointment.scheduled_at.strftime("%B %d, %Y") %></span>

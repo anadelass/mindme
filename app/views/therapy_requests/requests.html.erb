@@ -3,24 +3,34 @@
     <h1 class="fw-bold" style="color: #4B9857;">📝 Therapy Requests</h1>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-hover align-middle shadow-sm">
-      <thead class="table-bordered">
-        <tr>
-          <th scope="col" class="bg-dark-subtle">Name</th>
-          <th scope="col" class="bg-dark-subtle">Role</th>
-          <th scope="col" class="bg-dark-subtle">Status</th>
-          <th scope="col" class="bg-dark-subtle">Actions</th>
+  <div class="table-responsive d-flex justify-content-center bg-white">
+    <table class="table table-hover align-middle shadow-sm w-auto">
+      <thead>
+        <tr style="background-color: #3E6029;">
+          <th scope="col" class="fw-semibold text-center">Name</th>
+          <th scope="col" class="fw-semibold text-center">Role</th>
+          <th scope="col" class="fw-semibold text-center">Status</th>
+          <th scope="col" class="fw-semibold text-center">Actions</th>
         </tr>
       </thead>
+
       <tbody>
         <% @requests.each do |request| %>
           <tr>
-            <% if current_user.role == 0 %> <!-- Psychologist -->
+            <% if current_user.role == 0 %>
               <td><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></td>
               <td><span class="badge bg-success">Psychologist</span></td>
-            <% else %> <!-- Patient -->
-              <td><%= request.patient.first_name %> <%= request.patient.last_name %></td>
+            <% else %>
+              <td class="d-flex align-items-center gap-2">
+              <% user = current_user.role == 0 ? request.psychologist : request.patient %>
+              <% if user.avatar.attached? %>
+                <%= cl_image_tag user.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 50px; height: 50px;" %>
+              <% else %>
+                <%= image_tag "default-avatar.png", class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+              <% end %>
+              <span><%= user.first_name %> <%= user.last_name %></span>
+            </td>
+
               <td><span class="badge bg-primary">Patient</span></td>
             <% end %>
 
