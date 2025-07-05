@@ -1,0 +1,94 @@
+<div class="container-fluid chat-container">
+  <div class="row chat-row">
+
+    <div class="col-12 col-md-4 chat-sidebar">
+      <h5 class="chat-sidebar-title">
+        <% if current_user.psychologist? %>
+          👩⚕️ My Patients 👨⚕️
+        <% else %>
+          🧠 My Psychologists 🧠
+        <% end %>
+      </h5>
+
+      <div class="list-group list-group-flush">
+        <% @appointments.each do |appt| %>
+          <% partner = current_user.psychologist? ? appt.patient : appt.psychologist %>
+          <div id="appointment_<%= appt.id %>">
+            <%= link_to messages_path(appointment_id: appt.id),
+                        class: "list-group-item list-group-item-action chat-list-item #{'active' if appt.id == @selected_appointment&.id}",
+                        data: { turbo_frame: "chat_frame" } do %>
+              <div class="d-flex w-100 justify-content-between align-items-center">
+                <strong class="d-flex align-items-center">
+                  <span class="me-2">
+                    <%= image_tag "https://ui-avatars.com/api/?name=#{partner.first_name}+#{partner.last_name}&background=random&size=32", class: "rounded-circle" %>
+                  </span>
+                  <span><%= partner.first_name %> <%= partner.last_name %></span>
+                </strong>
+                <span class="badge bg-primary rounded-pill">💬</span>
+              </div>
+              <small class="text-muted d-block mt-1">📅 <%= l(appt.schedule_at, format: :short) rescue "" %></small>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8 chat-main">
+      <%= turbo_frame_tag "chat_frame" do %>
+        <% if @selected_appointment %>
+          <% partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist %>
+
+          <div class="chat-header">
+            <h4 class="mb-0">
+              💬 Chat with <strong><%= partner.first_name %> <%= partner.last_name %></strong>
+            </h4>
+            <div class="chat-actions">
+              <%= button_to(
+                "🗑️ Delete Conversation",
+                destroy_conversation_appointment_path(@selected_appointment),
+                method: :delete,
+                data: { turbo_confirm: "Delete the conversation?", turbo_stream: true },
+                class: "btn btn-sm btn-outline-light"
+              ) %>
+
+              <%= button_to(
+                "🗑️ Delete Chat",
+                destroy_chat_appointment_psychologist_messages_path(@selected_appointment),
+                method: :delete,
+                data: { turbo_confirm: "Delete all messages?" },
+                form: { data: { turbo_stream: true } },
+                class: "btn btn-sm btn-outline-light"
+              ) %>
+            </div>
+          </div>
+
+          <%= turbo_stream_from "chat_#{@selected_appointment.id}" %>
+          <div id="messages"
+              data-controller="chat-scroll"
+              class="chat-messages">
+            <%= render partial: "message", collection: @messages %>
+          </div>
+
+          <div class="chat-input">
+            <%= turbo_frame_tag "new_message" do %>
+              <%= form_with model: [@selected_appointment, @message], data: { turbo_stream: true, controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }, class: "message-form" do |f| %>
+                <div class="input-group">
+                  <%= f.text_area :content, rows: 2, class: "form-control message-input", placeholder: "Type a message... ✍️" %>
+                  <%= f.submit "Send", class: "btn btn-primary message-submit" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="chat-empty">
+            <i class="bi bi-chat-square-text"></i>
+            <h3>No conversation selected</h3>
+            <p>Please select a conversation from the left panel</p>
+            <div class="spinner-grow text-primary" role="status"></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

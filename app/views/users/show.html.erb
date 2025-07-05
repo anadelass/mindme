@@ -1,38 +1,41 @@
 <div class="container py-5">
-  <div class="row bg-primary text-white rounded-4 p-4 shadow-lg">
-    <div class="col-md-4 text-center mb-4 mb-md-0 d-flex flex-column align-items-center justify-content-center">
-      <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg", class: "rounded-circle mb-3", style: "width: 120px; height: 120px; object-fit: cover;" %>
-      <h3 class="fw-bold mb-1"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>
-      <p class="text-light fs-5 mb-3">Licensed Psychologist</p>
-      <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success'%>
-    </div>
-    <div class="col-md-8">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
-            <h5 class="fw-bold">Contact</h5>
-            <p class="mb-0"> <%= @psychologist.email %> </p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
-            <h5 class="fw-bold">Bio</h5>
-            <p class="mb-0"><%= @psychologist.psychologist_profile.bio %></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
-            <h5 class="fw-bold">Experience</h5>
-            <p class="mb-0"><%= @psychologist.psychologist_profile.experience %></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="bg-white text-dark rounded-4 p-3 h-100 shadow-sm">
-            <h5 class="fw-bold">Modelity</h5>
-            <p class="mb-0"><%= @psychologist.psychologist_profile.modelity %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h2 class="mb-4 text-center fw-bold text-success">Psychologist Profile</h2>
+  <table class="table table-bordered text-center align-middle">
+    <thead class="table-light">
+      <tr>
+        <th class="text-success">Photo</th>
+        <th class="text-success">Name</th>
+        <th class="text-success">Contact</th>
+        <th class="text-success">Bio</th>
+        <th class="text-success">Experience</th>
+        <th class="text-success">Modality</th>
+        <th class="text-success">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg", class: "rounded-circle mb-2 shadow", style: "width: 100px; height: 100px; object-fit: cover;" %>
+        </td>
+        <td>
+          <strong><%= @psychologist.first_name %> <%= @psychologist.last_name %></strong>
+        </td>
+        <td>
+          <%= @psychologist.email %>
+        </td>
+        <td>
+          <%= @psychologist.psychologist_profile&.bio %>
+        </td>
+        <td>
+          <%= @psychologist.psychologist_profile&.experience %>
+        </td>
+        <td>
+          <%= @psychologist.psychologist_profile&.modelity %>
+        </td>
+        <td>
+          <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success rounded-pill' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
