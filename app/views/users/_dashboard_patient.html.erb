@@ -64,7 +64,7 @@
             <% end %> -->
           </li>
           <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+            <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class: "nav-link" do %>
               <i class="fas fa-sign-out-alt nav-icon"></i>
               <span>Sign Out</span>
             <% end %>
@@ -99,6 +99,7 @@
 
           <div class="chat-interface">
             <%= render "users/chat_ai" %>
+            <%#= render "questions/form", question: Question.new %>
           </div>
         </div>
 
@@ -123,6 +124,4 @@
       </div>
     </div>
   </main>
-
 </div>
-  <%= link_to "Messages", messages_path, class: "btn btn-outline-primary mt-3" %>
