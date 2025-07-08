@@ -4,7 +4,9 @@ class GenerateAiAnswerJob < ApplicationJob
   def perform(question_id)
     question = Question.find(question_id)
     return if question.ai_answer.present?
-
-    QuestionResponder.new(question).call
+    psychologists = User.where(role: "psychologist")
+    QuestionResponder.new(question, psychologists).call
   end
+
+  
 end
