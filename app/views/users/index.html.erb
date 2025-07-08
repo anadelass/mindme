@@ -14,10 +14,14 @@
         <tbody>
           <% @psychologists.each do |psychologist| %>
             <tr>
-              <td class="fw-semibold"><%= psychologist.first_name %></td>
-              <td><%= psychologist.last_name %></td>
-              <td><%= psychologist.psychologist_profile&.modelity %></td>
-              <td>
+              <td class="fw-semibold d-flex align-items-center gap-2">
+                <% if psychologist.avatar.attached? %>
+                  <%= cl_image_tag psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+                <% else %>
+                  <%= image_tag "default-avatar.png", class: "rounded-circle", style: "width: 40px; height: 40px;" %>
+                <% end %>
+                <%= psychologist.first_name %>
+
                 <%= link_to 'More details', psychologist_path(psychologist.id), class: 'btn btn-outline-success btn-sm rounded-pill' %>
               </td>
             </tr>

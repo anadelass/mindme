@@ -18,7 +18,7 @@
           <% if @psychologist.avatar.attached? %>
             <%= cl_image_tag @psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
           <% else %>
-            <%= image_tag "default_avatar.jpg", class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+            <%= image_tag "default-avatar.png", class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
           <% end %>
         </td>
         <td>
