@@ -1,0 +1,32 @@
+          <tr>
+            <%= turbo_stream_from "user_#current_user.id" %>
+            <% if current_user.role == 0 %> <!-- Psychologist -->
+              <td><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></td>
+              <td><span class="badge bg-success">Psychologist</span></td>
+            <% else %> <!-- Patient -->
+              <td><%= request.patient.first_name %> <%= request.patient.last_name %></td>
+              <td><span class="badge bg-primary">Patient</span></td>
+            <% end %>
+
+            <td>
+              <% case request.status %>
+                <% when 'pending' %>
+                  <span class="badge rounded-pill bg-warning text-dark">Pending</span>
+                <% when 'accepted' %>
+                  <span class="badge rounded-pill bg-success">Accepted</span>
+                <% when 'cancelled' %>
+                  <span class="badge rounded-pill bg-danger">Cancelled</span>
+                <% else %>
+                  <span class="badge rounded-pill bg-secondary">Unknown</span>
+              <% end %>
+            </td>
+
+            <td class="text-nowrap">
+              <% if current_user.role == "patient" %>
+                <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-outline-success btn-sm me-1 mb-1' %>
+                <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-outline-danger btn-sm mb-1" %>
+              <% else %>
+                <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: "btn btn-success btn-sm #{ 'disabled' if request.status == 'accepted' }" %>
+              <% end %>
+            </td>
+          </tr>

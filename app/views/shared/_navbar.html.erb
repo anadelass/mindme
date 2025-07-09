@@ -1,8 +1,25 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<<<<<<< HEAD
   <div class="container-fluid <%= 'justify-content-end' if minimal %>">
     <% unless minimal %>
       <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "logomindme.jpg" %>
+=======
+  <div class="container-fluid">
+    <%= link_to  root_path , class: "navbar-brand" do %>
+      <%= image_tag "logomindme.jpg" %>
+    <% end %>
+    <ul class="navbar-nav me-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Psychologists", psychologists_path, class: "nav-link" if current_user.role == "patient" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", root_path(anchor: "contact") , class: "nav-link" %>
+>>>>>>> master
       <% end %>
 
       <ul class="navbar-nav me-auto">

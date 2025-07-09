@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @questions = current_user.questions
+    @question = Question.new
+    
     if current_user.psychologist?
       @last_appointment = current_user.psychologist_appointments
                                         .joins(:patient)
