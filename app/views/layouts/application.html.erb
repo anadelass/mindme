@@ -12,6 +12,7 @@
 
 
   <body><%= render "shared/navbar", minimal: @hide_navbar %>
+  <div class="navbar-spacer"></div>
     <p class="alert"><%= alert %></p>
     <%= render "shared/flashes" %>
     <%= javascript_include_tag "application", type: "module" %>

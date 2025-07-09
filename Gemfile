@@ -81,8 +81,5 @@ end
 gem "ruby-openai"
 gem "chartkick"
 gem "groupdate"
-gem 'hotwire-rails'
-<<<<<<< HEAD
-=======
-gem 'neighbor'
->>>>>>> master
+gem "hotwire-rails"
+gem "neighbor"

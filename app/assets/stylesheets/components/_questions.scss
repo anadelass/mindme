@@ -1,55 +1,318 @@
-.chatbot {
+// ===== ESTILOS PARA EL CHAT DE IA =====
+
+body {
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.chat-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+  font-family: 'Poppins';
+}
+
+// Contenedor principal del chat
+.chat-interface {
   background: white;
-  margin-top: 9px;
-  height: calc(100vh - 75px);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 200px);
+  max-height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+  overflow: hidden;
+}
 
-  h1 {
-    border-bottom: 1px solid $gray-200;
-    margin-bottom: 0;
-    padding: 1rem;
+// Área de mensajes
+#questions-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  // Scroll personalizado
+  &::-webkit-scrollbar {
+    width: 6px;
   }
 
-  #questions {
-    height: 100%;
-    overflow: scroll;
-    padding: 1rem;
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
   }
 
-  .question {
-    display: flex;
-    flex-direction: column;
-  }
+  &::-webkit-scrollbar-thumb {
+    background: #B0B151;
+    border-radius: 10px;
 
-  .user-question, .ai-answer {
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    max-width: 70%;
-    width: fit-content;
-    word-wrap: break-word;
-  }
-
-  .user-question {
-    align-self: flex-end;
-    background: $blue;
-    color: $light-gray;
-  }
-
-  .ai-answer {
-    align-self: flex-start;
-    background: $gray-200;
-  }
-
-  #new_question {
-    border-top: 1px solid $gray-200;
-    padding: 1rem;
-
-    .form-group {
-      margin-bottom: 0;
+    &:hover {
+      background: #7B9F48;
     }
+  }
+}
+
+// Contenedor individual de cada pregunta/respuesta
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+// Estilo para las preguntas del usuario (lado derecho)
+.user-question {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #B0B151, #7B9F48);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px 20px 5px 20px;
+  max-width: 70%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(176, 177, 81, 0.3);
+  font-weight: 500;
+  position: relative;
+
+  // Pequeña cola del globo
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #7B9F48;
+    border-right: 0;
+    border-bottom: 0;
+    margin-bottom: -4px;
+  }
+}
+
+// Estilo para las respuestas de IA (lado izquierdo)
+.ai-answer {
+  align-self: flex-start;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #333;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px 20px 20px 5px;
+  max-width: 75%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  line-height: 1.5;
+  position: relative;
+
+  // Pequeña cola del globo
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #f8f9fa;
+    border-left: 0;
+    border-bottom: 0;
+    margin-bottom: -4px;
+  }
+
+  // Indicador de que está cargando la respuesta
+  &:empty::before {
+    content: '...';
+    color: #666;
+    font-size: 1.2rem;
+    animation: typing 1.5s infinite;
+  }
+}
+
+// Animación para el indicador de carga
+@keyframes typing {
+  0%, 60% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.5;
+  }
+}
+
+// Contenedor del formulario
+#question-form {
+  border-top: 1px solid #e9ecef;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 0 0 20px 20px;
+}
+
+// Estilos del formulario de input
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  font-family: 'Poppins';
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+
+  &:focus-within {
+    border-color: #B0B151;
+    box-shadow: 0 4px 20px rgba(176, 177, 81, 0.2);
+  }
+
+  .form-floating {
+    flex: 1;
+    position: relative;
+
+    input {
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      padding: 0.8rem 0.5rem;
+      background: transparent;
+      color: #333;
+      width: 100%;
+      font-family: 'Poppins';
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-50%) scale(0.8);
+        top: 0.2rem;
+        color: #B0B151;
+      }
+    }
+
+    label {
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      transform: translateY(-50%);
+      color: #666;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      background: white;
+      padding: 0 0.3rem;
+    }
+  }
+
+  .chat-icons-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+  }
+
+  .icon {
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #B0B151;
+    }
+  }
+}
+
+// Botón de enviar
+.chat-button,
+#new-question-button {
+  background: linear-gradient(135deg, #B0B151, #7B9F48);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins';
+  margin-left: 1rem;
+  white-space: nowrap;
+
+  &:hover {
+    background: linear-gradient(135deg, #7B9F48, #5a7235);
+    box-shadow: 0 6px 20px rgba(176, 177, 81, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(176, 177, 81, 0.3);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(176, 177, 81, 0.3);
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+// Ajustes responsivos
+@media (max-width: 768px) {
+  .chat-interface {
+    height: calc(100vh - 150px);
+    border-radius: 15px;
+  }
+
+  .user-question,
+  .ai-answer {
+    max-width: 85%;
+    font-size: 0.9rem;
+  }
+
+  #questions-container {
+    padding: 1rem;
+  }
+
+  #question-form {
+    padding: 1rem;
+  }
+
+  .chat-input-container {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+
+    .form-floating {
+      width: 100%;
+    }
+
+    #new-question-button {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
+
+// Animación de entrada para nuevos mensajes
+.question {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
