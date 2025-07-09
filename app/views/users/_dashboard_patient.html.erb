@@ -1,28 +1,8 @@
 <!-- Dashboard Container -->
 <div class="dashboard-container">
-
-
   <!-- Sidebar -->
   <aside class="sidebar">
-    <!-- Header -->
-    <div class="sidebar-header">
-      <div class="logo-section">
-        <div class="logo">M</div>
-        <h2>MindMe</h2>
-      </div>
 
-      <div class="user-info">
-        <div class="user-avatar">
-          <%= current_user.first_name.first.upcase if current_user.first_name.present? %>
-        </div>
-        <div class="user-details">
-          <p class="user-name"><%= current_user.first_name %> <%= current_user.last_name %></p>
-          <p class="user-role">Patient</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
     <nav class="sidebar-nav">
       <div class="nav-section">
         <div class="section-title">Main</div>
@@ -34,9 +14,9 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to messages_path, class: "nav-link" do %>
+            <%= link_to psychologists_path, class: "nav-link" do %>
               <i class="fas fa-comments nav-icon"></i>
-              <span>Messages</span>
+              <span>Psychologists</span>
             <% end %>
           </li>
           <li class="nav-item">
@@ -57,16 +37,10 @@
       <div class="nav-section">
         <div class="section-title">Account</div>
         <ul class="nav-list">
-          <!--<li class="nav-item">
-            <%= link_to "#", class: "nav-link" do %>
-              <i class="fas fa-user nav-icon"></i>
-              <span>Profile</span>
-            <% end %> -->
-          </li>
           <li class="nav-item">
-            <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class: "nav-link" do %>
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" do %>
               <i class="fas fa-sign-out-alt nav-icon"></i>
-              <span>Sign Out</span>
+              <span>Log out</span>
             <% end %>
           </li>
         </ul>
@@ -97,11 +71,12 @@
             <p>Get immediate support and guidance</p>
           </div>
 
-          <div class="chat-interface">
-            <%= render "users/chat_ai" %>
-            <%#= render "questions/form", question: Question.new %>
+           <div class="chat-interface">
+              <div id="questions-container">
+              </div>
+              <%= render "questions/form", question: Question.new %>
+              </div>
           </div>
-        </div>
 
         <!-- Sidebar Content -->
         <div class="secondary-content">

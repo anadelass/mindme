@@ -1,7 +1,15 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
+
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;

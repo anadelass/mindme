@@ -28,4 +28,25 @@ $dark-green: #3E6029;
   --dark-green: #{$dark-green};
   --white: #ffffff;
   --transition: all 0.3s ease;
+  --lighter-teal: #{$lighter-teal};
+  --light-teal: #{$light-teal};
+  --card-bg-gradient: linear-gradient(135deg, #{$primary-teal} 0%, #{$secondary-teal} 100%);
+  --card-shadow: 0 20px 40px rgba(91, 162, 185, 0.15), 0 8px 16px rgba(81, 139, 153, 0.1);
+  --teal-opacity-10: rgba(166, 230, 230, 0.1);
+  --teal-opacity-15: rgba(166, 230, 230, 0.15);
+  --teal-opacity-20: rgba(166, 230, 230, 0.2);
+  --teal-opacity-30: rgba(166, 230, 230, 0.3);
+  --teal-opacity-40: rgba(166, 230, 230, 0.4);
+  --border-radius-sm: 15px;
+  --border-radius-md: 20px;
+  --border-radius-lg: 25px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  --button-gradient: linear-gradient(135deg, #{$accent-green} 0%, #{$forest-green} 100%);
+  --button-shadow: 0 8px 20px rgba(75, 152, 87, 0.3);
+  --transition-slow: all 0.5s ease;
+
 }
