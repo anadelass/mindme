@@ -108,3 +108,155 @@ footer .quick-links {
   color: white;
   padding: 2rem 0;
 }
+
+#generic_price_table {
+  background-color: var(--white);
+  margin: 50px 0;
+
+  /* Título con color corporativo y tipografía Poppins */
+  .price-heading h1 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--accent-green);
+    font-weight: 600;
+  }
+
+  .generic_content {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--white);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #eee;
+    transition: var(--transition);
+
+    .generic_head_price {
+      background-color: #f6f6f6;
+      margin-bottom: 20px;
+
+      .generic_head_content {
+        margin-bottom: 50px;
+        position: relative;
+
+        .head_bg {
+          border-style: solid;
+          border-width: 90px 1411px 23px 399px;
+          border-color: #e4e4e4 transparent transparent #e4e4e4;
+          position: absolute;
+          transition: var(--transition);
+        }
+
+        .head {
+          padding-top: 40px;
+          position: relative;
+          z-index: 1;
+
+          span {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #525252;
+            transition: var(--transition);
+          }
+        }
+      }
+
+      .generic_price_tag {
+        padding-bottom: 20px;
+
+        .price {
+          display: block;
+
+          .sign {
+            font-size: 28px;
+            color: #414141;
+          }
+          .currency {
+            font-size: 60px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            color: #414141;
+          }
+          .month {
+            font-size: 18px;
+            letter-spacing: 3px;
+            color: #414141;
+          }
+        }
+      }
+    }
+
+    .generic_feature_list {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          font-size: 16px;
+          padding: 15px 0;
+          color: #6b6b6b;
+          transition: var(--transition);
+
+          span {
+            color: #414141;
+          }
+
+          &:hover {
+            background-color: #e4e4e4;
+            border-left: 5px solid var(--accent-green);
+          }
+        }
+      }
+    }
+
+    .generic_price_btn {
+      margin: 20px 0 32px;
+
+      a {
+        display: inline-block;
+        padding: 12px 30px;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-radius: 50px;
+        border: 1px solid var(--accent-green);
+        color: var(--accent-green);
+        transition: var(--transition);
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(73, 137, 87, 0.3);
+
+      .generic_head_price .generic_head_content .head_bg {
+        border-color: var(--accent-green) transparent transparent var(--accent-green);
+      }
+
+      .generic_head_price .generic_head_content .head span {
+        color: var(--white);
+      }
+
+      .generic_price_btn a {
+        background-color: var(--accent-green);
+        color: var(--white);
+      }
+    }
+  }
+
+  /* 5 columns on large screens */
+  @media (min-width: 992px) {
+    .col-md-4 {
+      width: 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+
+  /* spacing on small screens */
+  @media (max-width: 767px) {
+    .generic_content {
+      margin-bottom: 75px;
+    }
+  }
+}
