@@ -80,3 +80,4 @@ gem "groupdate"
 gem 'hotwire-rails'
 gem "cloudinary"
 gem 'image_processing', '~> 1.2'
+gem "neighbor"

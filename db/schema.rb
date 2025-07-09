@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.1].define(version: 2025_07_05_161135) do
-=======
 ActiveRecord::Schema[7.1].define(version: 2025_07_05_202716) do
->>>>>>> 0bbe534b64e5b60e915b8590f32ef44c30933ab7
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
