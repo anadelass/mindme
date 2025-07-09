@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
 
+  has_neighbors :embedding
+  after_create :set_embedding
+
   enum role: { patient: 0, psychologist: 1 }
   has_one :psychologist_profile
   has_many :psychologist_therapy_requests, class_name: "TherapyRequest" ,foreign_key: "psychologist_id", dependent: :destroy
@@ -17,4 +20,3 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 end
-

@@ -5,50 +5,53 @@
       <h2 class="mb-4 fw-bold" style="color: #5BA2B9;">Menu</h2>
       <ul class="list-unstyled">
         <li class="mb-3"><%= link_to "Home", root_path, class: "fw-bold text-decoration-none", style: "color: #4b9857;" %></li>
-        <li class="mb-3"><%= link_to "Messages", "#", class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
+        <li class="mb-3"><%= link_to "Messages", messages_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
         <li class="mb-3"><%= link_to "Schedules", schedules_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
         <li class="mb-3"><%= link_to "Appointments", appointments_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
         <li class="mb-3"><%= link_to "Requests", requests_path, class: "fw-bold text-decoration-none", style: "color: #4b9857; letter-spacing: 1px;" %></li>
       </ul>
     </aside>
 
-    <!-- Contenido principal desplazado a la derecha -->
-    <section class="flex-grow-1 p-4" style="margin-left: 220px; padding-top: 80px;">
-      <h1 class="fw-bold mb-4 text-center" style="color: #4b9857;">👩‍⚕️ Psychologist Dashboard</h1>
-
-        <!-- Métricas principales -->
-        <div class="row text-center mb-5">
-          <div class="col-md-4 mb-3">
-            <div class="card signup-container p-3">
-              <h6 class="text-muted">Total Patients</h6>
-              <h3 class="fw-bold" style="color: #4b9857;"><%= @total_patients %></h3>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card signup-container p-3">
-              <h6 class="text-muted">New Today</h6>
-              <h3 class="fw-bold" style="color: #4b9857;"><%= @new_patients %></h3>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card signup-container p-3">
-              <h6 class="text-muted">Old Patients</h6>
-              <h3 class="fw-bold" style="color: #4b9857;"><%= @old_patients %></h3>
-            </div>
+    <!-- Contenido Principal -->
+    <div class="col-md-10 p-4 bg-light">
+      <!-- Métricas -->
+      <div class="row text-center mb-4">
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm p-3">
+            <h6 class="text-muted">Total Pacientes</h6>
+            <h3 class="text-success fw-bold"><%= @total_patients %></h3>
           </div>
         </div>
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm p-3">
+            <h6 class="text-muted">Pacientes Hoy</h6>
+            <h3 class="text-success fw-bold"><%= @today_patients %></h3>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm p-3">
+            <h6 class="text-muted">Fecha</h6>
+            <h5 class="text-primary"><%= Date.today.strftime("%d %b %Y") %></h5>
+          </div>
+        </div>
+      </div>
 
-        <!-- Gráficas y secciones en dos columnas -->
-<div class="row g-4">
-
-  <!-- Distribución de pacientes -->
-  <div class="col-md-6">
-    <div class="card signup-container p-3">
-      <h6 class="fw-semibold text-muted">Patient Distribution</h6>
-      <%= pie_chart [
-        ["New", @new_patients],
-        ["Old", @old_patients]
-      ], height: "150px", library: { colors: ["#4b9857", "#6c757d"] } %>
+      <!-- Citas de Hoy (Parte corregida) -->
+      <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm p-3">
+            <h6 class="fw-semibold text-muted">Citas Hoy</h6>
+            <ul class="list-unstyled small mb-0">
+              <% (@today_appointments || []).each do |appointment| %>
+                <li class="d-flex justify-content-between py-1 border-bottom">
+                  <span><strong><%= appointment[:patient_name] %></strong></span>
+                  <span class="badge bg-light text-dark border"><%= appointment[:time] %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
