@@ -13,7 +13,7 @@
 
           <h3 class="name"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>
           <p class="specialty">Psicólogo Clínico</p>
-          <span class="license">Profesional Verificado</span>
+          <span class="license">Verified</span>
         </div>
 
         <div class="contact-links">
@@ -31,9 +31,7 @@
             <i class="fas fa-user-md"></i>
           </a>
 
-          <a href="#" class="contact-icon" title="Mensajes">
-            <i class="fas fa-comments"></i>
-          </a>
+
         </div>
 
         <div class="profile-stats">
@@ -41,12 +39,12 @@
             <span class="stat-number">
               <%= @psychologist.psychologist_profile&.experience || '5+' %>
             </span>
-            <span class="stat-label">Experiencia</span>
+            <span class="stat-label">Experience</span>
           </div>
 
           <div class="stat-item">
             <span class="stat-number">100+</span>
-            <span class="stat-label">Sesiones</span>
+            <span class="stat-label">Sessions</span>
           </div>
 
           <div class="stat-item">
@@ -68,7 +66,7 @@
 
           <div class="info-grid">
             <div class="info-item">
-              <span class="info-label">Modalidad</span>
+              <span class="info-label">Modality</span>
               <span class="info-value">
                 <%= @psychologist.psychologist_profile&.modelity || 'Presencial y Online' %>
               </span>
@@ -79,72 +77,24 @@
               <span class="info-value"><%= @psychologist.email %></span>
             </div>
 
-            <div class="info-item">
-              <span class="info-label">Disponible</span>
-              <span class="info-value">Lun-Vie 9:00-18:00</span>
-            </div>
 
-            <div class="info-item">
-              <span class="info-label">Estado</span>
-              <span class="info-value">
-                <span class="badge bg-success">Activo</span>
-              </span>
-            </div>
+
+
           </div>
         </div>
 
         <div class="action-buttons">
-          <%= button_to 'Solicitar Terapia',
+          <%= button_to 'Request therapy',
                         therapy_requests_path(psychologist_id: params[:id]),
                         method: :post,
                         class: 'btn btn-primary-custom',
                         data: {
-                          confirm: '¿Estás seguro de que quieres solicitar terapia con este psicólogo?'
+                          confirm: '¿Are you sure you would like to request a therapy session?'
                         } %>
 
           <a href="#" class="btn btn-secondary-custom" onclick="window.history.back()">
             Volver
           </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sección adicional con más información -->
-  <div class="row mt-5">
-    <div class="col-12">
-      <div class="card shadow-sm">
-        <div class="card-header bg-light">
-          <h5 class="mb-0 text-success">
-            <i class="fas fa-info-circle me-2"></i>
-            Información Adicional
-          </h5>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <h6 class="text-muted">Experiencia Profesional</h6>
-              <p><%= @psychologist.psychologist_profile&.experience || 'Información no disponible' %></p>
-            </div>
-            <div class="col-md-6">
-              <h6 class="text-muted">Especialidades</h6>
-              <p>Terapia cognitivo-conductual, ansiedad, depresión</p>
-            </div>
-          </div>
-
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <h6 class="text-muted">Modalidad de Atención</h6>
-              <p><%= @psychologist.psychologist_profile&.modelity || 'Presencial y Online' %></p>
-            </div>
-            <div class="col-md-6">
-              <h6 class="text-muted">Contacto</h6>
-              <p>
-                <i class="fas fa-envelope me-2"></i>
-                <%= @psychologist.email %>
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
