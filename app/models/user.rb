@@ -18,5 +18,19 @@ class User < ApplicationRecord
   has_many :psychologist_messages_as_patient, class_name: "PsychologistMessage", foreign_key: "patient_id"
   has_many :psychologist_messages_as_psychologist, class_name: "PsychologistMessage", foreign_key: "psychologist_id"
 
+  has_many :questions
   has_one_attached :avatar
+
+
+    def set_embedding
+    client = OpenAI::Client.new
+    response = client.embeddings(
+      parameters: {
+        model: 'text-embedding-3-small',
+        input: "First name: #{first_name}. Last name #{last_name} Role: #{role}"
+      }
+    )
+    embedding = response['data'][0]['embedding']
+    update(embedding: embedding)
+    end
 end
