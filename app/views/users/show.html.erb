@@ -1,45 +1,103 @@
-<div class="container py-5">
-  <h2 class="mb-4 text-center fw-bold text-success">Psychologist Profile</h2>
-  <table class="table table-bordered text-center align-middle">
-    <thead class="table-light">
-      <tr>
-        <th class="text-success">Photo</th>
-        <th class="text-success">Name</th>
-        <th class="text-success">Contact</th>
-        <th class="text-success">Bio</th>
-        <th class="text-success">Experience</th>
-        <th class="text-success">Modality</th>
-        <th class="text-success">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <% if @psychologist.avatar.attached? %>
-            <%= cl_image_tag @psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
-          <% else %>
-            <%= image_tag "default-avatar.png", class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
+<div class="container py-5 psychologist-profiles">
+  <h2 class="mb-5 text-center fw-bold text-success">Psychologist profile/h2>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="profile-image">
+            <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg",
+                         alt: "#{@psychologist.first_name} #{@psychologist.last_name}",
+                         class: 'img-fluid' %>
+          </div>
+
+          <h3 class="name"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>
+          <p class="specialty">Clinical Psychologist</p>
+          <span class="license">Verified</span>
+        </div>
+
+        <div class="contact-links">
+          <% if @psychologist.email.present? %>
+            <a href="mailto:<%= @psychologist.email %>" class="contact-icon" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
           <% end %>
-        </td>
-        <td>
-          <strong><%= @psychologist.first_name %> <%= @psychologist.last_name %></strong>
-        </td>
-        <td>
-          <%= @psychologist.email %>
-        </td>
-        <td>
-          <%= @psychologist.psychologist_profile&.bio %>
-        </td>
-        <td>
-          <%= @psychologist.psychologist_profile&.experience %>
-        </td>
-        <td>
-          <%= @psychologist.psychologist_profile&.modelity %>
-        </td>
-        <td>
-          <%= button_to 'Request', therapy_requests_path(psychologist_id: params[:id]), class: 'btn btn-success rounded-pill' %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+          <a href="#" class="contact-icon" title="Teléfono" onclick="alert('Contacta para más información')">
+            <i class="fas fa-phone"></i>
+          </a>
+
+          <a href="#" class="contact-icon" title="Perfil profesional">
+            <i class="fas fa-user-md"></i>
+          </a>
+
+
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-number">
+              <%= @psychologist.psychologist_profile&.experience || '5+' %>
+            </span>
+            <span class="stat-label">Experience</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Sessions</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-number">4.9</span>
+            <span class="stat-label">Rating</span>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <% if @psychologist.psychologist_profile&.bio.present? %>
+            <div class="bio">
+              <%= @psychologist.psychologist_profile.bio %>
+            </div>
+          <% else %>
+            <div class="bio">
+              Professional psychologist specializing in providing support and guidance for mental and emotional well-being.
+            </div>
+          <% end %>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Modality</span>
+              <span class="info-value">
+                <%= @psychologist.psychologist_profile&.modelity || 'Presencial y Online' %>
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value"><%= @psychologist.email %></span>
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <%= button_to 'Request therapy',
+                        therapy_requests_path(psychologist_id: params[:id]),
+                        method: :post,
+                        class: 'btn btn-primary-custom',
+                        data: {
+                          confirm: '¿Are you sure you would like to request a therapy session?'
+                        } %>
+
+          <a href="#" class="btn btn-secondary-custom" onclick="window.history.back()">
+            Volver
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

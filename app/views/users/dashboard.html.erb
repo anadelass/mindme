@@ -1,7 +1,5 @@
 <div class="chat-ia-container">
-
   <div class="chat-box">
-
     <% if current_user.psychologist? %>
       <%= render 'users/dashboard_psychologist' %>
     <% elsif current_user.patient? %>
