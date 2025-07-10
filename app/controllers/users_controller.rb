@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :hide_navbar!, only: [:dashboard, :profile]
+
 
   def profile
     @user = current_user
@@ -74,4 +76,11 @@ class UsersController < ApplicationController
                      .pluck("DATE(scheduled_at)")
                      .first
   end
+
+  private
+
+  def hide_navbar!
+    @hide_navbar = true
+  end
+
 end
