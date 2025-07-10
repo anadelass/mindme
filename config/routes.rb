@@ -15,6 +15,7 @@ resources :appointments, except: [:new, :create] do
   resources :psychologist_messages, only: [:index, :create] do
     delete :destroy_chat, on: :collection
   end
+  resource :review, only: [:new, :create]
 end
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]

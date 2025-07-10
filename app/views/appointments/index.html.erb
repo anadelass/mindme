@@ -13,43 +13,54 @@
               <th>Status</th>
               <th>Actions</th>
               <th>Requested On</th>
+              <th>Review</th>
             </tr>
           </thead>
-          <tbody>
-            <% @appointments.each do |appointment| %>
-              <tr>
-                <td class="fw-bold"><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></td>
-                <td>
-                  <% if appointment.scheduled_at.present? %>
-                    <span class="badge bg-light text-dark p-2"><%= appointment.scheduled_at.strftime("%B %d, %Y") %></span>
-                  <% else %>
-                    <span class="text-muted">Date not set</span>
-                  <% end %>
-                </td>
-                <td><%= appointment.format.present? ? appointment.format.humanize : "N/A" %></td>
-                <td>
-                  <% case appointment.status %>
-                  <% when "pending" %>
-                    <span class="badge bg-warning text-dark">Pending</span>
-                  <% when "accepted" %>
-                    <span class="badge bg-success">Accepted</span>
-                  <% when "cancelled" %>
-                    <span class="badge bg-danger">Cancelled</span>
-                  <% else %>
-                    <span class="badge bg-secondary">Unknown</span>
-                  <% end %>
-                </td>
-                <td>
-                  <% if current_user.role == "patient" %>
-                    <%= button_to "Cancel", appointment_path(appointment, appointment: { status: "cancelled" }), method: :patch, class: "btn btn-outline-danger btn-sm rounded-pill" %>
-                  <% else %>
-                    <%= button_to "Accept", appointment_path(appointment, appointment: { status: "accepted" }), method: :patch, class: "btn btn-outline-success btn-sm rounded-pill" %>
-                  <% end %>
-                </td>
-                <td><small class="text-muted"><%= appointment.created_at.strftime("%b %d, %Y %H:%M") %></small></td>
-              </tr>
-            <% end %>
-          </tbody>
+<tbody>
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td class="fw-bold"><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></td>
+      <td>
+        <% if appointment.scheduled_at.present? %>
+          <span class="badge bg-light text-dark p-2"><%= appointment.scheduled_at.strftime("%B %d, %Y") %></span>
+        <% else %>
+          <span class="text-muted">Date not set</span>
+        <% end %>
+      </td>
+      <td><%= appointment.format.present? ? appointment.format.humanize : "N/A" %></td>
+      <td>
+        <% case appointment.status %>
+        <% when "pending" %>
+          <span class="badge bg-warning text-dark">Pending</span>
+        <% when "accepted" %>
+          <span class="badge bg-success">Accepted</span>
+        <% when "cancelled" %>
+          <span class="badge bg-danger">Cancelled</span>
+        <% else %>
+          <span class="badge bg-secondary">Unknown</span>
+        <% end %>
+      </td>
+      <td>
+        <% if current_user.role == "patient" %>
+          <%= button_to "Cancel", appointment_path(appointment, appointment: { status: "cancelled" }), method: :patch, class: "btn btn-outline-danger btn-sm rounded-pill" %>
+        <% else %>
+          <%= button_to "Accept", appointment_path(appointment, appointment: { status: "accepted" }), method: :patch, class: "btn btn-outline-success btn-sm rounded-pill" %>
+        <% end %>
+      </td>
+      <td><small class="text-muted"><%= appointment.created_at.strftime("%b %d, %Y %H:%M") %></small></td>
+      <td>
+        <% if current_user.role == "patient" && appointment.scheduled_at.present? && appointment.scheduled_at < Time.current && appointment.review.nil? %>
+          <%= link_to "Dejar reseña", new_appointment_review_path(appointment), class: "btn btn-sm btn-outline-primary rounded-pill" %>
+        <% elsif appointment.review.present? %>
+          <span class="badge bg-secondary">Reseña enviada</span>
+        <% else %>
+          <span class="text-muted">—</span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+
         </table>
       </div>
     <% else %>
