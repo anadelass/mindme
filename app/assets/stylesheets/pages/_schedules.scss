@@ -1,3 +1,9 @@
 .btn:hover {
     background-color: #7B9F48 !important;
   }
+
+.list-group-item:hover {
+  background-color: #f0fdf4;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}

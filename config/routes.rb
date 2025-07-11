@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :psychologists, only: [ :index, :show ], controller: "users" do
     resources :appointments, only: [ :new, :create ]
   end
-resources :appointments, except: [:new, :create] do
+  resources :appointments, except: [:new, :create] do
   delete :destroy_conversation, on: :member
   delete :destroy_appointment, on: :member
   resources :psychologist_messages, only: [:index, :create] do

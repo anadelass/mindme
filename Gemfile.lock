@@ -378,7 +378,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   groupdate
   hotwire-rails
-  image_processing
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   neighbor
