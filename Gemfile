@@ -28,7 +28,6 @@ gem "jbuilder"
 
 # instalar para las fotos de perfil cloudinary
 gem 'cloudinary'
-gem 'image_processing'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -82,6 +81,5 @@ gem "ruby-openai"
 gem "chartkick"
 gem "groupdate"
 gem 'hotwire-rails'
-gem "cloudinary"
 gem 'image_processing', '~> 1.2'
 gem "neighbor"
