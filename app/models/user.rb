@@ -18,7 +18,12 @@ class User < ApplicationRecord
   has_many :psychologist_messages_as_patient, class_name: "PsychologistMessage", foreign_key: "patient_id"
   has_many :psychologist_messages_as_psychologist, class_name: "PsychologistMessage", foreign_key: "psychologist_id"
 
+  has_many :given_reviews, class_name: 'Review', foreign_key: 'patient_id', dependent: :destroy
+  has_many :received_reviews, class_name: 'Review', foreign_key: 'psychologist_id', dependent: :destroy
+
   has_many :questions
+  has_one_attached :avatar
+
 
     def set_embedding
     client = OpenAI::Client.new
@@ -30,5 +35,5 @@ class User < ApplicationRecord
     )
     embedding = response['data'][0]['embedding']
     update(embedding: embedding)
-  end
+    end
 end
