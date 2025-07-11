@@ -71,7 +71,14 @@
 
           <div class="chat-input">
             <%= turbo_frame_tag "new_message" do %>
-              <%= form_with model: [@selected_appointment, @message], data: { turbo_stream: true, controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }, class: "message-form" do |f| %>
+            <%= form_with model: [@selected_appointment, @message],
+              data: {
+                turbo_stream: true,
+                controller: "form-reset enter-submit",
+                action: "turbo:submit-end->form-reset#reset"
+              },
+              class: "message-form" do |f| %>
+
                 <div class="input-group">
                   <%= f.text_area :content, rows: 2, class: "form-control message-input", placeholder: "Type a message... ✍️" %>
                   <%= f.submit "Send", class: "btn btn-primary message-submit" %>
