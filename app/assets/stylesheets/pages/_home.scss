@@ -261,3 +261,102 @@ footer {
     }
   }
 }
+
+.our-team-section {
+  background: #fff;
+  margin-top: 5rem;
+
+  .section-title {
+    font-family: $headers-font;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $accent-green;
+    margin-bottom: 2rem;
+  }
+}
+
+.our-team {
+  padding: 1.2rem 0.75rem;
+  background: #fff;
+  border-radius: 1rem;
+  text-align: center;
+  border: 1px solid $accent-green;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 12px;
+  transition: all 0.3s ease;
+
+  .pic {
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.5s ease;
+  }
+
+  &:hover .pic {
+    background: $accent-green;
+    border-radius: 50%;
+  }
+
+  .pic img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  .title {
+    display: block;
+    font-family: $headers-font;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $accent-green;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .post {
+    display: block;
+    font-family: $body-font;
+    font-size: 1rem;
+    color: $primary-teal;
+    margin-bottom: 1rem;
+  }
+
+  .social {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+
+      a {
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        border-radius: 50%;
+        font-size: 1rem;
+        color: $primary-teal;
+        border: 1px solid $primary-teal;
+        transition: all 0.3s ease;
+
+        i {
+          line-height: 2rem;
+        }
+
+        &:hover {
+          background: $primary-teal;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .our-team {
+    margin-bottom: 2rem;
+  }
+}
