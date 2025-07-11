@@ -54,6 +54,20 @@ class AppointmentsController < ApplicationController
     end
   end
 
+    def destroy_appointment
+    @appointment = Appointment.find(params[:id])
+
+    if [@appointment.patient_id, @appointment.psychologist_id].include?(current_user.id)
+      @appointment.destroy
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to appointments_path, notice: "Appointment deleted." }
+      end
+    else
+      redirect_to appointments_path, alert: "Not authorized"
+    end
+  end
+
   private
 
   def appointment_params

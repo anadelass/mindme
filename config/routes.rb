@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 resources :appointments, except: [:new, :create] do
   delete :destroy_conversation, on: :member
+  delete :destroy_appointment, on: :member
   resources :psychologist_messages, only: [:index, :create] do
     delete :destroy_chat, on: :collection
   end
