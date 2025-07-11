@@ -13,4 +13,5 @@ class TherapyRequest < ApplicationRecord
         locals: { request: self }
       )
   end
+  
 end

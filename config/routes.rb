@@ -12,13 +12,14 @@ Rails.application.routes.draw do
   end
   resources :appointments, except: [:new, :create] do
   delete :destroy_conversation, on: :member
+  delete :destroy_appointment, on: :member
   resources :psychologist_messages, only: [:index, :create] do
     delete :destroy_chat, on: :collection
   end
   end
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]
-  resources :questions, only: [:index, :create]
+  resources :questions, only: [:create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
