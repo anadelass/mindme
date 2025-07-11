@@ -13,12 +13,4 @@ class PsychologistMessage < ApplicationRecord
       locals: { message: self }
     )
   end
-
-def sender_role
-  if patient_id.present?
-    'patient'
-  else
-    'psychologist'
-  end
-end
 end

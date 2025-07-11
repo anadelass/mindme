@@ -10,15 +10,6 @@
           <li class="nav-item active">
             <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </li>
-          <li class="nav-item active">
-            <%= link_to "Psychologists", psychologists_path, class: "nav-link" if current_user.role == "patient" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Requests", requests_path, class: "nav-link" if current_user.role == "patient" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Appointments", appointments_path, class: "nav-link" if current_user.role == "patient" %>
-          </li>
           <li class="nav-item">
             <%= link_to "Contact", "#", class: "nav-link" %>
           </li>

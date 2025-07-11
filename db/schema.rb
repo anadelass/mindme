@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_05_202716) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_09_012913) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -103,6 +103,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_05_202716) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "psychologist_id", null: false
+    t.text "comments"
+    t.integer "rating"
+    t.integer "appointment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_reviews_on_appointment_id"
+    t.index ["patient_id"], name: "index_reviews_on_patient_id"
+    t.index ["psychologist_id"], name: "index_reviews_on_psychologist_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date"
@@ -158,6 +171,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_05_202716) do
   add_foreign_key "psychologist_messages", "users", column: "psychologist_id"
   add_foreign_key "psychologist_profiles", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "reviews", "appointments"
+  add_foreign_key "reviews", "users", column: "patient_id"
+  add_foreign_key "reviews", "users", column: "psychologist_id"
   add_foreign_key "schedules", "users"
   add_foreign_key "therapy_requests", "users", column: "patient_id"
   add_foreign_key "therapy_requests", "users", column: "psychologist_id"

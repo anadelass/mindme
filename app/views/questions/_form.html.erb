@@ -1,4 +1,4 @@
-<%= simple_form_for question, html: { data: { controller: "form-reset", action: "turbo:submit-end->form-reset#reset" }} do |f| %>
+<%= simple_form_for question, html: { data: { controller: "form-reset enter-submit", action: "turbo:submit-end->form-reset#reset" }} do |f| %>
   <div class="input-group mb-3 w-100">
     <div class="form-floating">
       <%= f.input :user_question, label: false, wrapper: false %>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def dashboard
     @questions = current_user.questions
     @question = Question.new
-    
+
     if current_user.psychologist?
       @last_appointment = current_user.psychologist_appointments
                                         .joins(:patient)
@@ -40,12 +40,10 @@ class UsersController < ApplicationController
 
     @psychologist = current_user
 
-    # Total de pacientes
     @total_patients = User.where(role: 'patient').count
     @new_patients = User.where(role: 'patient', created_at: Time.zone.today.all_day).count
     @old_patients = @total_patients - @new_patients
 
-    # Citas de hoy
     @today_appointments = Appointment.where(scheduled_at: Time.zone.today.all_day)
                                      .includes(:patient)
                                      .map do |appt|
@@ -56,7 +54,6 @@ class UsersController < ApplicationController
       }
     end
 
-    # Top 3 pacientes con más citas
     @top_patients = User.joins(:patient_appointments)
                         .where(role: 'patient')
                         .group("users.id")
@@ -64,17 +61,14 @@ class UsersController < ApplicationController
                         .order("appointments_count DESC")
                         .limit(3)
 
-    # Citas por día (últimos 7 días)
     @appointments_per_day = Appointment
                               .where("DATE(scheduled_at) >= ?", Date.today - 6)
                               .group("DATE(scheduled_at)")
                               .order("DATE(scheduled_at)")
                               .count
 
-    # Estados de solicitudes de terapia
     @therapy_request_statuses = TherapyRequest.group(:status).count
 
-    # Día más activo (con más citas)
     @busiest_day = Appointment
                      .group("DATE(scheduled_at)")
                      .order(Arel.sql("COUNT(*) DESC"))
