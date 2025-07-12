@@ -7,7 +7,10 @@
         <table class="table align-middle text-center">
           <thead class="table-success">
             <tr>
-              <th>Dr.</th>
+              <th><%= current_user.role == "patient" ? "Dr." : "Patient" %></th>
+
+
+
               <th>Date</th>
               <th>Format</th>
               <th>Status</th>
@@ -20,7 +23,7 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr id="<%= dom_id(appointment) %>">
-        <td class="fw-bold"><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></td>
+        <td class="fw-bold"><%= current_user.role == "patient" ? "#{appointment.psychologist.first_name} #{appointment.psychologist.last_name}" : "#{appointment.patient.first_name} #{appointment.patient.last_name}" %></td>
         <td>
           <% if appointment.scheduled_at.present? %>
             <span class="badge bg-light text-dark p-2"><%= appointment.scheduled_at.strftime("%B %d, %Y") %></span>

@@ -8,7 +8,6 @@
       <thead>
         <tr style="background-color: #3E6029;">
           <th scope="col" class="fw-semibold text-center">Name</th>
-          <th scope="col" class="fw-semibold text-center">Role</th>
           <th scope="col" class="fw-semibold text-center">Status</th>
           <th scope="col" class="fw-semibold text-center">Actions</th>
         </tr>
@@ -16,6 +15,7 @@
 
       <tbody>
         <% @requests.each do |request| %>
+          <% user = current_user.role == "patient" ? request.psychologist : request.patient %>
           <tr>
             <% if current_user.role == 0 %>
               <td><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></td>
@@ -31,28 +31,25 @@
               <span><%= user.first_name %> <%= user.last_name %></span>
             </td>
 
-              <td><span class="badge bg-primary">Patient</span></td>
-            <% end %>
-
-            <td>
-              <% case request.status %>
-                <% when 'pending' %>
-                  <span class="badge rounded-pill bg-warning text-dark">Pending</span>
-                <% when 'accepted' %>
-                  <span class="badge rounded-pill bg-success">Accepted</span>
-                <% when 'cancelled' %>
-                  <span class="badge rounded-pill bg-danger">Cancelled</span>
-                <% else %>
-                  <span class="badge rounded-pill bg-secondary">Unknown</span>
-              <% end %>
-            </td>
+              <td>
+                <% case request.status %>
+                  <% when 'pending' %>
+                    <span class="text-warning">Pending</span>
+                  <% when 'accepted' %>
+                    <span class="text-success">Accepted</span>
+                  <% when 'cancelled' %>
+                    <span class="text-danger">Cancelled</span>
+                  <% else %>
+                    <span class="text-secondary">Unknown</span>
+                <% end %>
+              </td>
 
             <td class="text-nowrap">
               <% if current_user.role == "patient" %>
                 <%= link_to 'Appointments', new_psychologist_appointment_path(request.psychologist_id), class: 'btn btn-outline-success btn-sm me-1 mb-1' %>
                 <%= link_to 'Cancel', therapy_request_path(request), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this request?" }, class: "btn btn-outline-danger btn-sm mb-1" %>
               <% else %>
-                <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: 'btn btn-success btn-sm' %>
+                <%= link_to 'Accept', therapy_request_path(request), data: { turbo_method: :patch }, class: 'btn btn-outline-success btn-sm me-1 mb-1'  %>
               <% end %>
             </td>
           </tr>

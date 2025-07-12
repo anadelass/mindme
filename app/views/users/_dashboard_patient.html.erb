@@ -78,10 +78,21 @@
           </div>
 
           <div class="chat-interface">
-              <div id="questions-container">
-              </div>
-              <%= render "questions/form", question: Question.new %>
-              </div>
+
+          <div class="d-flex justify-content-end">
+            <%= button_to destroy_all_questions_path,
+                          method: :delete,
+                          data: { turbo_confirm: "Are you sure you want to clear the chat?" },
+                          class: "btn btn-outline-danger mb-3",
+                          title: "Clear Chat" do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+            <div id="questions-container" data-controller="chat-scroll">
+              <%= render partial: "questions/question", collection: @questions, as: :question %>
+            </div>
+
+            <%= render "questions/form", question: @question %>
           </div>
 
         <!-- Sidebar Content -->
