@@ -7,6 +7,4 @@ class GenerateAiAnswerJob < ApplicationJob
     psychologists = User.where(role: "psychologist")
     QuestionResponder.new(question, psychologists).call
   end
-
-  
 end

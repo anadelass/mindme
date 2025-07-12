@@ -78,10 +78,11 @@
           </div>
 
           <div class="chat-interface">
-              <div id="questions-container">
-              </div>
-              <%= render "questions/form", question: Question.new %>
-              </div>
+            <div id="questions-container" data-controller="chat-scroll">
+              <%= render partial: "questions/question", collection: @questions, as: :question %>
+            </div>
+
+            <%= render "questions/form", question: @question %>
           </div>
 
         <!-- Sidebar Content -->
