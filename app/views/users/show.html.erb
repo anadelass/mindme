@@ -1,14 +1,18 @@
 <div class="container py-5 psychologist-profiles">
-  <h2 class="mb-5 text-center fw-bold text-success">Psychologist profile/h2>
+  <h2 class="mb-5 text-center fw-bold text-success">Psychologist profile</h2>
 
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-10">
       <div class="profile-card">
         <div class="profile-header">
+        
           <div class="profile-image">
-            <%= image_tag "https://t4.ftcdn.net/jpg/11/66/06/77/360_F_1166067709_2SooAuPWXp20XkGev7oOT7nuK1VThCsN.jpg",
-                         alt: "#{@psychologist.first_name} #{@psychologist.last_name}",
-                         class: 'img-fluid' %>
+            <% if current_user.avatar.attached? %>
+              <%= cl_image_tag current_user.avatar.key, class: "rounded-circle img-fluid", style: "object-fit: cover; width: 40px; height: 40px;", alt: "#{current_user.first_name} #{current_user.last_name}" %>
+            <% else %>
+              <%= cl_image_tag "default-avatar", class: "rounded-circle img-fluid", style: "width: 120px; height: 120px;", alt: "#{current_user.first_name} #{current_user.last_name}" %>
+            <% end %>
+
           </div>
 
           <h3 class="name"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>
@@ -68,7 +72,7 @@
             <div class="info-item">
               <span class="info-label">Modality</span>
               <span class="info-value">
-                <%= @psychologist.psychologist_profile&.modelity || 'Presencial y Online' %>
+                <%= @psychologist.psychologist_profile&.modelity || 'In Person and Online' %>
               </span>
             </div>
 
@@ -93,7 +97,7 @@
                         } %>
 
           <a href="#" class="btn btn-secondary-custom" onclick="window.history.back()">
-            Volver
+            Back
           </a>
         </div>
       </div>

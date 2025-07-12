@@ -17,9 +17,19 @@
         <% @requests.each do |request| %>
           <% user = current_user.role == "patient" ? request.psychologist : request.patient %>
           <tr>
-            <td class="d-flex align-items-center gap-2">
-              <%= user.avatar.attached? ? cl_image_tag(user.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 50px; height: 50px;") : image_tag("default-avatar.png", class: "rounded-circle", style: "width: 50px; height: 50px;") %>
-              <span><%= "#{user.first_name} #{user.last_name}" %></span>
+            <% if current_user.role == 0 %>
+              <td><%= request.psychologist.first_name %> <%= request.psychologist.last_name %></td>
+              <td><span class="badge bg-success">Psychologist</span></td>
+            <% else %>
+              <td class="d-flex align-items-center gap-2">
+              <% user = current_user.role == 0 ? request.psychologist : request.patient %>
+            <% end %>
+              <% if user.avatar.attached? %>
+                <%= cl_image_tag user.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 60px; height: 60px;" %>
+              <% else %>
+                <%= cl_image_tag "default-avatar", class: "rounded-circle", style: "width: 60px; height: 60px;" %>
+              <% end %>
+              <span><%= user.first_name %> <%= user.last_name %></span>
             </td>
 
               <td>
