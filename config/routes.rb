@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :psychologist_messages, only: [:index, :create] do
     delete :destroy_chat, on: :collection
   end
-  end
+  resource :review, only: [:new, :create]
+end
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]
   resources :questions, only: [:create]
