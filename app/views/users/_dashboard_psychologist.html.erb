@@ -1,59 +1,50 @@
+<!-- DASHBOARD PSYCHOLOGIST -->
 <div class="dashboard-container">
-  <!-- Menú lateral -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <nav class="sidebar-nav">
       <div class="nav-section">
-        <h6 class="text-uppercase text-muted fw-semibold small mb-3">Main</h6>
-        <ul class="nav-list list-unstyled">
-
-          <li class="nav-item mb-2">
-            <%= link_to root_path, class: "d-flex align-items-center gap-2 px-3 py-2 rounded active", style: "background-color: #EAF9F9; color: #4B9857; font-weight: 600; position: relative;" do %>
-              <i class="fas fa-home" style="color: #4B9857;"></i>
+        <div class="section-title">Main</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link active" do %>
+              <i class="fas fa-home nav-icon"></i>
               <span>Home</span>
-              <span style="position: absolute; top: 0; left: 12px; height: 4px; width: 24px; background-color: #4B9857; border-radius: 2px;"></span>
             <% end %>
           </li>
-
-          <li class="nav-item mb-2">
-            <%= link_to psychologists_path, class: "d-flex align-items-center gap-2 px-3 py-2 rounded text-decoration-none", style: "color: #6c7a89;" do %>
-              <i class="fas fa-comments"></i>
-              <span>Psychologists</span>
-            <% end %>
-          </li>
-
-          <li class="nav-item mb-2">
-            <%= link_to appointments_path, class: "d-flex align-items-center gap-2 px-3 py-2 rounded text-decoration-none", style: "color: #6c7a89;" do %>
-              <i class="fas fa-calendar"></i>
-              <span>Appointments</span>
-            <% end %>
-          </li>
-
-          <li class="nav-item mb-2">
-            <%= link_to requests_path, class: "d-flex align-items-center gap-2 px-3 py-2 rounded text-decoration-none", style: "color: #6c7a89;" do %>
-              <i class="fas fa-clipboard-list"></i>
-              <span>Requests</span>
-            <% end %>
-          </li>
-
-          <li class="nav-item mb-2">
-            <%= link_to messages_path, class: "d-flex align-items-center gap-2 px-3 py-2 rounded text-decoration-none", style: "color: #6c7a89;" do %>
-              <i class="fa-solid fa-message"></i>
+          <li class="nav-item">
+            <%= link_to messages_path, class: "nav-link" do %>
+              <i class="fas fa-users nav-icon"></i>
               <span>Messages</span>
             <% end %>
           </li>
-
+          <li class="nav-item">
+            <%= link_to schedules_path, class: "nav-link" do %>
+              <i class="fas fa-calendar-alt nav-icon"></i>
+              <span>Schedule</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to appointments_path, class: "nav-link" do %>
+              <i class="fas fa-clipboard-list nav-icon"></i>
+              <span>Appointment</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to requests_path, class: "nav-link" do %>
+              <i class="fas fa-envelope nav-icon"></i>
+              <span>Requests</span>
+            <% end %>
+          </li>
         </ul>
       </div>
 
-      <div class="nav-section mt-4">
-        <h6 class="text-uppercase text-muted fw-semibold small mb-3 position-relative" style="padding-bottom: 4px;">
-          Account
-          <div style="width: 32px; height: 3px; background-color: #4B9857; border-radius: 2px;"></div>
-        </h6>
-        <ul class="nav-list list-unstyled">
-          <li class="nav-item mb-2">
-            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "d-flex align-items-center gap-2 px-3 py-2 rounded text-decoration-none", style: "color: #6c7a89;" do %>
-              <i class="fas fa-sign-out-alt"></i>
+      <div class="nav-section">
+        <div class="section-title">Account</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" do %>
+              <i class="fas fa-sign-out-alt nav-icon"></i>
               <span>Log out</span>
             <% end %>
           </li>
@@ -62,98 +53,80 @@
     </nav>
   </aside>
 
-  <!-- Contenido principal -->
-  <main class="main-content p-4" style="background-color: #F9FBFC;">
-    <!-- Métricas -->
-    <div class="row text-center mb-4">
-      <div class="col-md-4 mb-3">
-        <div class="card border-0 shadow-sm p-3" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="text-muted">Total Patients</h6>
-          <h3 class="fw-bold" style="color: #4B9857;"><%= @total_patients %></h3>
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <header class="main-header">
+      <div class="header-content">
+        <div class="page-title">
+          <h1>Hello, <%= current_user.first_name %>!</h1>
+          <p class="page-subtitle">Dashboard overview</p>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <div class="card border-0 shadow-sm p-3" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="text-muted">Patients Today</h6>
-          <h3 class="fw-bold" style="color: #4B9857;"><%= @today_patients %></h3>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3">
-        <div class="card border-0 shadow-sm p-3" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="text-muted">Date</h6>
-          <h5 style="color: #518B99;"><%= Date.today.strftime("%d %b %Y") %></h5>
-        </div>
-      </div>
-    </div>
+    </header>
 
-    <!-- Citas de Hoy -->
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card p-3 shadow-sm" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="fw-semibold" style="color: #518B99;">Today's Appointments</h6>
-          <% if @today_appointments.any? %>
-            <ul class="list-unstyled small mb-0">
-              <% @today_appointments.each do |appt| %>
-                <li class="d-flex justify-content-between py-2 border-bottom">
-                  <strong><%= appt[:patient_name] %></strong>
-                  <span class="badge border bg-light text-dark"><%= appt[:time] %></span>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="text-muted">No appointments for today.</p>
-          <% end %>
-        </div>
-      </div>
+    <div class="content-area">
+      <div class="content-grid">
+        <!-- LEFT: STAT CARDS -->
+        <div class="primary-content">
+          <div class="content-header">
+            <h2>Overview</h2>
+            <p>Summary of today’s activity</p>
+          </div>
 
-      <!-- Top pacientes -->
-      <div class="col-md-6">
-        <div class="card p-3 shadow-sm" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="fw-semibold" style="color: #518B99;">Top Active Patients</h6>
-          <ul class="list-group list-group-flush">
-            <% @top_patients.each do |patient| %>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center gap-2">
-                  <% if patient.avatar.attached? %>
-                    <%= cl_image_tag patient.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
-                  <% else %>
-                    <%= cl_image_tag "default-avatar", class: "rounded-circle", style: "width: 40px; height: 40px;" %>
-                  <% end %>
-                  <strong><%= "#{patient.first_name} #{patient.last_name}" %></strong>
-                </div>
-                <span class="badge rounded-pill text-white" style="background-color: #4B9857;"><%= patient.appointments_count %> appointments</span>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
+          <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+              <div class="card border-0 shadow-sm p-3" style="border-radius: 16px;">
+                <h6 class="text-muted">Total Patients</h6>
+                <h3 class="fw-bold" style="color: var(--forest-green);"><%= @total_patients %></h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card border-0 shadow-sm p-3" style="border-radius: 16px;">
+                <h6 class="text-muted">Patients Today</h6>
+                <h3 class="fw-bold" style="color: var(--forest-green);"><%= @today_patients %></h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card border-0 shadow-sm p-3" style="border-radius: 16px;">
+                <h6 class="text-muted">Date</h6>
+                <h5 style="color: var(--primary-teal);"><%= Date.today.strftime("%d %b %Y") %></h5>
+              </div>
+            </div>
+          </div>
 
-    <!-- Gráficas -->
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card p-3 shadow-sm" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="fw-semibold" style="color: #518B99;">Appointments in Last 7 Days</h6>
-          <%= line_chart @appointments_per_day, height: "150px", library: { colors: ["#B0B151"] } %>
+          <!-- CHARTS -->
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card p-3 shadow-sm" style="border-radius: 16px;">
+                <h6 class="fw-semibold" style="color: var(--primary-teal);">Appointments in Last 7 Days</h6>
+                <%= line_chart @appointments_per_day, height: "150px", library: { colors: ["#B0B151"] } %>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card p-3 shadow-sm" style="border-radius: 16px;">
+                <h6 class="fw-semibold" style="color: var(--primary-teal);">Therapy Requests by Status</h6>
+                <%= pie_chart @therapy_request_statuses, height: "150px", library: { colors: ["#7B9F48", "#176406", "#B0B151", "#3E6029"] } %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-md-6">
-        <div class="card p-3 shadow-sm" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="fw-semibold" style="color: #518B99;">Therapy Requests by Status</h6>
-          <%= pie_chart @therapy_request_statuses, height: "150px", library: { colors: ["#7B9F48", "#176406", "#B0B151", "#3E6029"] } %>
-        </div>
-      </div>
-    </div>
-
-    <!-- Día más activo -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card p-3 shadow-sm" style="background-color: #ffffff; border: 1px solid #D3EAF1; border-radius: 16px;">
-          <h6 class="fw-semibold" style="color: #518B99;">Busiest Day</h6>
-          <p class="fs-5 fw-bold mb-0" style="color: #518B99;">
-            <%= @busiest_day.strftime("%A, %d %b %Y") if @busiest_day %>
-          </p>
+        <!-- RIGHT: INFO CARDS -->
+        <div class="secondary-content">
+          <div class="info-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <h3>Next Appointment</h3>
+            </div>
+            <div class="card-content">
+              <p>No upcoming appointments</p>
+            </div>
+            <div class="card-action">
+              <%= link_to "Schedule One", appointments_path, class: "btn-secondary" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
