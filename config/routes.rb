@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 end
   resources :schedules
   resources :therapy_requests, only: [ :create, :update, :destroy ]
-  resources :questions, only: [:create]
+  resources :questions, only: [:create] do
+    collection do
+      delete :destroy_all
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
