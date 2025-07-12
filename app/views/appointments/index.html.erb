@@ -17,49 +17,6 @@
               <th>Delete Appointmnet</th>
             </tr>
           </thead>
-<<<<<<< HEAD
-          <tbody>
-            <% @appointments.each do |appointment| %>
-              <tr>
-                <td class="fw-bold d-flex align-items-center justify-content-center gap-2">
-                  <% if appointment.psychologist.avatar.attached? %>
-                    <%= cl_image_tag appointment.psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 40px; height: 40px;" %>
-                  <% else %>
-                    <%= image_tag "default-avatar.png", class: "rounded-circle", style: "width: 40px; height: 40px;" %>
-                  <% end %>
-                  <span><%= appointment.psychologist.first_name %> <%= appointment.psychologist.last_name %></span>
-                </td>
-
-                <td>
-                  <% if appointment.scheduled_at.present? %>
-                    <span class="badge bg-light text-dark p-2"><%= appointment.scheduled_at.strftime("%B %d, %Y") %></span>
-                  <% else %>
-                    <span class="text-muted">Date not set</span>
-                  <% end %>
-                </td>
-                <td><%= appointment.format.present? ? appointment.format.humanize : "N/A" %></td>
-                <td>
-                  <% case appointment.status %>
-                  <% when "pending" %>
-                    <span class="badge bg-warning text-dark">Pending</span>
-                  <% when "accepted" %>
-                    <span class="badge bg-success">Accepted</span>
-                  <% when "cancelled" %>
-                    <span class="badge bg-danger">Cancelled</span>
-                  <% else %>
-                    <span class="badge bg-secondary">Unknown</span>
-                  <% end %>
-                </td>
-                <td>
-                  <% if current_user.role == "patient" %>
-                    <%= button_to "Cancel", appointment_path(appointment, appointment: { status: "cancelled" }), method: :patch, class: "btn btn-outline-danger btn-sm rounded-pill" %>
-                  <% else %>
-                    <%= button_to "Accept", appointment_path(appointment, appointment: { status: "accepted" }), method: :patch, class: "btn btn-outline-success btn-sm rounded-pill" %>
-                  <% end %>
-                </td>
-                <td><small class="text-muted"><%= appointment.created_at.strftime("%b %d, %Y %H:%M") %></small></td>
-              </tr>
-=======
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr id="<%= dom_id(appointment) %>">
@@ -103,7 +60,6 @@
               <% else %>
                 <i class="fa fa-star-o text-muted"></i>
               <% end %>
->>>>>>> cd03ea1c35b4da3d0f157e266613a80ecb5caa65
             <% end %>
             <% if appointment.review.comments.present? %>
               <div class="mt-1" style="font-style: italic; font-size: 0.85em; max-height: 3.5em; overflow: hidden; text-overflow: ellipsis;">
