@@ -23,19 +23,22 @@ class QuestionsController < ApplicationController
     end
   end
 
-      def destroy_all
-      current_user.questions.destroy_all
+def destroy_all
+  current_user.questions.destroy_all
 
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            "questions-container",
-            partial: "questions/empty_chat"
-          )
-        end
-        format.html { redirect_to dashboard_path, notice: "Chat cleared." }
-      end
+  respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: [
+        turbo_stream.update("questions-container", ""),
+        turbo_stream.update("empty-chat-notice",
+          "<p>Your chat is empty. Start by asking a question!</p>"
+        )
+      ]
     end
+
+    format.html { redirect_to dashboard_path, notice: "Chat cleared." }
+  end
+end
 
   private
 
