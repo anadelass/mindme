@@ -1,9 +1,9 @@
 <% if message.patient_id.present? %>
-  <% alignment = 'text-start' %>
-  <% bg_class = 'bg-light' %>
-<% else %>
   <% alignment = 'text-end' %>
   <% bg_class = 'bg-primary text-white' %>
+<% else %>
+  <% alignment = 'text-start' %>
+  <% bg_class = 'bg-light' %>
 <% end %>
 
 <div class="mb-2 d-flex flex-column <%= alignment %>">
