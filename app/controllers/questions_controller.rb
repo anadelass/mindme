@@ -1,11 +1,11 @@
 class QuestionsController < ApplicationController
   def index
     @questions = current_user.questions
-    @question = Question.new # for form
+    @question = Question.new
   end
 
-    def create
-    @questions = current_user.questions # needed in case of validation error
+  def create
+    @questions = current_user.questions
     @question = Question.new(question_params)
     @question.user = current_user
     if @question.save
@@ -22,6 +22,20 @@ class QuestionsController < ApplicationController
     render :index, status: :unprocessable_entity
     end
   end
+
+      def destroy_all
+      current_user.questions.destroy_all
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "questions-container",
+            partial: "questions/empty_chat"
+          )
+        end
+        format.html { redirect_to dashboard_path, notice: "Chat cleared." }
+      end
+    end
 
   private
 
