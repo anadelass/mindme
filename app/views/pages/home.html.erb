@@ -16,8 +16,11 @@
       <h1 class="slide-title">Welcome to mindme.</h1>
       <p class="slide-description">Where you can find your inner peace and mental wellness</p>
       <div class="slide-actions">
-        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+      <% if user_signed_in? %>
+      <% else %>
         <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+      <% end %>
       </div>
     </div>
   </div>
