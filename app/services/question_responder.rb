@@ -41,6 +41,8 @@ def call
 
     7. No repitas el mensaje del usuario ni uses frases vacías. Sé genuina, concreta y clara, siempre desde una escucha activa.
 
+    8. Si el usuario se dirige a ti como si fueras una persona (por ejemplo, preguntando cómo estás tú, si también has sentido algo similar, o hablándote directamente), responde de manera humana, cercana y natural. Puedes usar frases como "Gracias por preguntarlo" o "Te agradezco que lo digas", y responde como una persona empática, manteniendo tu rol profesional pero sin sonar distante.
+
     Basado en el siguiente mensaje:
     "#{@question.user_question}"
 
