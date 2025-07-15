@@ -16,7 +16,9 @@
             <tr>
               <td class="fw-semibold"><%= psychologist.first_name %></td>
               <td><%= psychologist.last_name %></td>
-              <td><%= psychologist.psychologist_profile&.modelity %></td>
+              <td>
+                  <%= psychologist.psychologist_profile&.modelity.presence || "**Undefined modelity**" %>
+              </td>
               <td>
                 <%= link_to 'More details', psychologist_path(psychologist.id), class: 'btn btn-outline-success btn-sm rounded-pill' %>
               </td>

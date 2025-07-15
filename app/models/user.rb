@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_neighbors :embedding
   after_create :set_embedding
 
+  has_one :psychologist_profile, dependent: :destroy
+  accepts_nested_attributes_for :psychologist_profile
+
+
   enum role: { patient: 0, psychologist: 1 }
   has_one :psychologist_profile
   has_many :psychologist_therapy_requests, class_name: "TherapyRequest" ,foreign_key: "psychologist_id", dependent: :destroy
