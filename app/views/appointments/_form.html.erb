@@ -3,11 +3,11 @@
     <div class="col-md-6">
       <div class="signup-container">
         <div class="signup-header text-center">
-          <% if psychologist.avatar.attached? %>
-            <%= cl_image_tag psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 60px; height: 60px;" %>
-          <% else %>
-            <%= cl_image_tag "default-avatar", class: "rounded-circle", style: "width: 60px; height: 60px;" %>
-          <% end %>
+          <%# if psychologist.avatar.attached? %>
+            <%#= cl_image_tag psychologist.avatar.key, class: "rounded-circle", style: "object-fit: cover; width: 60px; height: 60px;" %>
+          <%# else %>
+            <%#= cl_image_tag "default-avatar", class: "rounded-circle", style: "width: 60px; height: 60px;" %>
+          <%# end %>
 
           <h2 class="fw-bold text-success"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h2>
           <p>Request an Appointment</p>

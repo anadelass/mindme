@@ -5,14 +5,13 @@
     <div class="col-lg-6 col-md-8 col-sm-10">
       <div class="profile-card">
         <div class="profile-header">
-        
+
           <div class="profile-image">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, class: "rounded-circle img-fluid", style: "object-fit: cover; width: 40px; height: 40px;", alt: "#{current_user.first_name} #{current_user.last_name}" %>
+            <% if @psychologist.avatar.attached? %>
+              <%= cl_image_tag @psychologist.avatar.key, class: "rounded-circle img-fluid", style: "object-fit: cover; width: 120px; height: 120px;", alt: "#{current_user.first_name} #{current_user.last_name}" %>
             <% else %>
               <%= cl_image_tag "default-avatar", class: "rounded-circle img-fluid", style: "width: 120px; height: 120px;", alt: "#{current_user.first_name} #{current_user.last_name}" %>
             <% end %>
-
           </div>
 
           <h3 class="name"><%= @psychologist.first_name %> <%= @psychologist.last_name %></h3>

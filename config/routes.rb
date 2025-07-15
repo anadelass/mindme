@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :ai_chats, only: [ :create ] do
     resources :ai_chat_messages, only: [ :index, :create ]
   end
-  get 'users/profile', to: 'user#profile'
+  # get 'users/profile', to: 'users#profile'
+  # patch 'users/profile', to: 'users#update_profile', as: 'user_update_profile'
+
+
   get '/requests', to: 'therapy_requests#requests'
   get "/messages(/:appointment_id)", to: "psychologist_messages#index", as: :messages
 

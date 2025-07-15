@@ -1,5 +1,43 @@
-<h1>My profile</h1>
+<h1 class="text-center">My Profile</h1>
+<div class="profile-container" style="max-width: 500px; margin: auto;">
 
-<p><strong>Name:</strong> <%= @user.name %></p>
-<p><strong>Email:</strong> <%= @user.email %></p>
-<p><strong>Role:</strong> <%= @user.role %></p>
+  <div class="profile-image mb-3 text-center">
+    <% if @user.avatar.attached? %>
+      <%= cl_image_tag @user.avatar.key, class: "rounded-circle", style: "width: 120px; height: 120px; object-fit: cover;" %>
+    <% else %>
+      <%= cl_image_tag "default-avatar", class: "rounded-circle", style: "width: 120px; height: 120px;" %>
+    <% end %>
+  </div>
+
+  <%= form_with model: @user, url: user_update_profile_path, local: true, method: :patch, multipart: true do |f| %>
+    <div class="form-group mb-3">
+      <%= f.label :first_name, "Nombre" %>
+      <%= f.text_field :first_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :last_name, "Apellido" %>
+      <%= f.text_field :last_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :email, "Correo electrónico" %>
+      <%= f.email_field :email, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :avatar, "Foto de perfil" %>
+      <%= f.file_field :avatar, accept: "image/*", class: "form-control" %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :role, "Rol" %>
+      <%= f.select :role, User.roles.keys.map { |r| [r.humanize.capitalize, r] }, {}, disabled: true, class: "form-select" %>
+      <small class="text-muted">El rol no puede ser editado aquí.</small>
+    </div>
+
+    <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
+  <% end %>
+
+<%= link_to "back", root_path  %>
+</div>
