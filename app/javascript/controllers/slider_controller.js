@@ -11,22 +11,6 @@ export default class extends Controller {
   connect() {
     this.currentSlide = 0
     this.totalSlides = this.slideTargets.length
-
-    if (this.autoplayValue) {
-      this.startAutoplay()
-    }
-  }
-
-  startAutoplay() {
-    this.autoplayTimer = setInterval(() => {
-      this.nextSlide()
-    }, this.intervalValue || 5000)
-  }
-
-  stopAutoplay() {
-    if (this.autoplayTimer) {
-      clearInterval(this.autoplayTimer)
-    }
   }
 
   nextSlide() {
