@@ -1,14 +1,12 @@
 .btn:hover {
-    filter: brightness(0.9);
-  }
+  filter: brightness(0.9);
+}
 
-  $link-light-grey: #F4F4F4;
-$primary-orange: #B0B151; //before: fed136
-$footer-background-light-grey: #F4F4F4;
-$footer-background-grey: #3E6029;
-$social-buttons-circle-dark-grey: #F4F4F4;
-
-
+$link-light-grey: $light-gray;
+$primary-orange: $olive; //before: fed136
+$footer-background-light-grey: $light-gray;
+$footer-background-grey: $dark-green;
+$social-buttons-circle-dark-grey: $light-gray;
 
 a {
   color: $link-light-grey;
@@ -25,7 +23,7 @@ a:hover {
 
 footer {
   padding: 2rem 0;
-  background-color: $forest-green; // reemplaza #3E6029 con tu variable
+  background-color: $forest-green;
 
   .footer-column:not(:first-child) {
     padding-top: 2rem;
@@ -40,11 +38,11 @@ footer {
     .nav-item {
       .nav-link {
         padding: 0.1rem 0;
-        color: $light-gray; // usa un color claro para enlaces
+        color: $light-gray;
       }
 
       span.nav-link {
-        color: $light-gray; // links en texto plano
+        color: $light-gray;
       }
 
       span.footer-title {
@@ -56,7 +54,7 @@ footer {
 
       .fas {
         margin-right: 0.5rem;
-        color: $light-teal; // iconos
+        color: $light-teal;
       }
     }
 
@@ -111,28 +109,27 @@ footer {
 }
 
 #generic_price_table {
-  background-color: var(--white);
+  background-color: #fff;
   margin: 50px 0;
 
-  /* Título con color corporativo y tipografía Poppins */
   .price-heading h1 {
     font-family: 'Poppins', sans-serif;
-    color: var(--accent-green);
+    color: $accent-green;
     font-weight: 600;
   }
 
   .generic_content {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--white);
+    background-color: #fff;
     text-align: center;
     overflow: hidden;
     position: relative;
     border: 1px solid #ccc;
     border-radius: 10px;
-    transition: var(--transition);
+    transition: all 0.3s;
 
     .generic_head_price {
-      background-color: #f6f6f6;
+      background-color: #fff; // BLANCO previo al hover
       margin-bottom: 20px;
 
       .generic_head_content {
@@ -142,9 +139,9 @@ footer {
         .head_bg {
           border-style: solid;
           border-width: 90px 1411px 23px 399px;
-          border-color: #e4e4e4 transparent transparent #e4e4e4;
+          border-color: #fff transparent transparent #fff; // BLANCO previo al hover
           position: absolute;
-          transition: var(--transition);
+          transition: all 0.3s;
         }
 
         .head {
@@ -157,8 +154,8 @@ footer {
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #525252;
-            transition: var(--transition);
+            color: $dark-green;
+            transition: all 0.3s;
           }
         }
       }
@@ -171,18 +168,18 @@ footer {
 
           .sign {
             font-size: 28px;
-            color: #414141;
+            color: $dark-green;
           }
           .currency {
             font-size: 60px;
             font-weight: 300;
             letter-spacing: -2px;
-            color: #414141;
+            color: $dark-green;
           }
           .month {
             font-size: 18px;
             letter-spacing: 3px;
-            color: #414141;
+            color: $dark-green;
           }
         }
       }
@@ -198,15 +195,15 @@ footer {
           font-size: 16px;
           padding: 15px 0;
           color: #6b6b6b;
-          transition: var(--transition);
+          transition: all 0.3s;
 
           span {
             color: #414141;
           }
 
           &:hover {
-            background-color: #e4e4e4;
-            border-left: 5px solid var(--accent-green);
+            background-color: $light-gray;
+            border-left: 5px solid $accent-green;
           }
         }
       }
@@ -222,9 +219,9 @@ footer {
         text-decoration: none;
         text-transform: uppercase;
         border-radius: 50px;
-        border: 1px solid var(--accent-green);
-        color: var(--accent-green);
-        transition: var(--transition);
+        border: 1px solid $accent-green;
+        color: $accent-green;
+        transition: all 0.3s;
       }
     }
 
@@ -232,21 +229,20 @@ footer {
       box-shadow: 0 0 15px rgba(73, 137, 87, 0.3);
 
       .generic_head_price .generic_head_content .head_bg {
-        border-color: var(--accent-green) transparent transparent var(--accent-green);
+        border-color: $accent-green transparent transparent $accent-green;
       }
 
       .generic_head_price .generic_head_content .head span {
-        color: var(--white);
+        color: #fff;
       }
 
       .generic_price_btn a {
-        background-color: var(--accent-green);
-        color: var(--white);
+        background-color: $accent-green;
+        color: #fff;
       }
     }
   }
 
-  /* 5 columns on large screens */
   @media (min-width: 992px) {
     .col-md-4 {
       width: 20%;
@@ -255,7 +251,6 @@ footer {
     }
   }
 
-  /* spacing on small screens */
   @media (max-width: 767px) {
     .generic_content {
       margin-bottom: 75px;
@@ -364,8 +359,8 @@ footer {
 
 .feature-card {
   background-color: transparent;
-  width: 350px;         /* Más ancho */
-  height: 700px;        /* Más alto */
+  width: 350px;
+  height: 700px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -378,7 +373,6 @@ footer {
   transform-style: preserve-3d;
 }
 
-/* Efecto flip al hover */
 .feature-card:hover .card-inner {
   transform: rotateY(180deg);
 }
@@ -409,20 +403,18 @@ footer {
   text-align: center;
 }
 
-/* La parte de atrás con texto justificado */
 .card-back p {
   text-align: justify;
   font-size: 0.95rem;
 }
 
-/* Parte trasera rotada */
 .card-back {
   transform: rotateY(180deg);
 }
 
 .photo-wrapper {
-  width: 160px;      /* O el tamaño que quieras (ejemplo: 160px) */
-  height: 160px;     /* Mismo alto que ancho */
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid transparent;
@@ -430,11 +422,20 @@ footer {
 }
 
 .photo-wrapper:hover {
-  border: 3px solid #3FA34D;
+  border: 3px solid $accent-green;
 }
 
 .team-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.testimony-title {
+  font-family: $headers-font;
+  font-weight: 600;
+  font-size: 2rem;
+  color: $accent-green; // este es el mismo verde
+  margin-bottom: 2rem;
+  text-align: center;
 }
