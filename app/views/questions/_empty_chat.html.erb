@@ -1,3 +1,7 @@
-<div id="empty-chat-message" class="empty-chat">
-  <p>Your chat is empty. Start by asking a question!</p>
+<div id="empty-chat-notice" style="display: none;" class="alert alert-info my-3">
+  Your chat is empty. Start by asking a question!
+</div>
+
+<div id="questions-container" data-controller="chat-scroll">
+  <%= render partial: "questions/question", collection: @questions, as: :question %>
 </div>

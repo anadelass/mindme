@@ -1,16 +1,20 @@
-<% if message.patient_id.present? %>
+
+<% if message.content.split("-").last.to_i == session[:sender_id].to_i%>
   <% alignment = 'text-end' %>
+  <% bg_class = 'bg-light' %>
+<% else %>
+  <% alignment = 'text-primary' %>
+
   <% bg_class = 'bg-primary text-white' %>
 <% else %>
   <% alignment = 'text-start' %>
   <% bg_class = 'bg-light' %>
 <% end %>
-
-<div class="mb-2 d-flex flex-column <%= alignment %>">
+<div class="mb-2 <%= alignment %>">
   <div class="p-2 rounded <%= bg_class %>" style="max-width: 75%; display: inline-block;">
-    <%= message.content %>
+    <%= message.content.split("-").first %>
   </div>
   <small class="text-muted">
-    <%= message.created_at.present? ? l(message.created_at, format: :short) : "" %>
+    <%#= message.created_at.present? ? l(message.created_at, format: :short) : "" %>
   </small>
 </div>

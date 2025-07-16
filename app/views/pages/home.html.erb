@@ -16,8 +16,11 @@
       <h1 class="slide-title">Welcome to mindme.</h1>
       <p class="slide-description">Where you can find your inner peace and mental wellness</p>
       <div class="slide-actions">
-        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+      <% if user_signed_in? %>
+      <% else %>
         <%= link_to "Login", new_user_session_path, class: "slide-button secondary" %>
+        <%= link_to "Register", new_user_registration_path, class: "slide-button primary" %>
+      <% end %>
       </div>
     </div>
   </div>
@@ -96,33 +99,55 @@
             <div class="features-container">
                 <h2 class="section-title">How we are helping today</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
+                  <div class="feature-card">
+                    <div class="card-inner">
+                      <div class="card-front">
                         <i class="fas fa-brain feature-icon"></i>
                         <h3>51% reduction in depression symptoms</h3>
-                        <p>A groundbreaking 2025 study published in NEJM AI found that participants with major depressive disorder who used the AI-powered therapy chatbot "Therabot"
-                          experienced a 51% average reduction in symptoms after just 4 weeks of treatment Psychology TodayNih.
-                          This improvement led to clinically significant improvements in mood and overall well-being,
-                          with results comparable to what researchers would see for people with access to gold-standard cognitive therapy with outpatient providers</p>
+                      </div>
+                      <div class="card-back">
+                        <p>
+                          A groundbreaking 2025 study published in NEJM AI found that participants with major depressive disorder who used the AI-powered therapy chatbot "Therabot"
+                          experienced a 51% average reduction in symptoms after just 4 weeks of treatment. This improvement led to clinically significant improvements in mood and overall well-being,
+                          with results comparable to what researchers would see for people with access to gold-standard cognitive therapy with outpatient providers.
+                        </p>
+                      </div>
                     </div>
-                    <div class="feature-card">
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="card-inner">
+                      <div class="card-front">
                         <i class="fas fa-heart feature-icon"></i>
-                        <h3>40% of Men Never Discuss Mental Health - AI Provides Anonymous Alternative</h3>
-                        <p>According to a UK survey by Priory Group, 40% of men have never spoken to anyone about their mental health,
-                          with 29% reporting they were "too embarrassed" while 20% cited a "negative stigma" around the issue Understanding young adults
-                          attitudes towards using AI chatbots for psychotherapy: The role of self-stigma - ScienceDirect. AI-powered mental health tools
-                          address these barriers by providing accessible, anonymous, and personalized support that creates emotional
-                          distance, making it easier for men to take that first step toward acknowledging their struggles without
-                          the vulnerability associated with traditional therapy</p>
+                        <h3>40% of Men Never Discuss Mental Health</h3>
+                      </div>
+                      <div class="card-back">
+                        <p>
+                          According to a UK survey by Priory Group, 40% of men have never spoken to anyone about their mental health,
+                          with 29% reporting they were "too embarrassed" while 20% cited a "negative stigma" around the issue.
+                          AI-powered mental health tools address these barriers by providing accessible, anonymous, and personalized support
+                          that creates emotional distance, making it easier for men to acknowledge their struggles without the vulnerability associated with traditional therapy.
+                        </p>
+                      </div>
                     </div>
-                    <div class="feature-card">
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="card-inner">
+                      <div class="card-front">
                         <i class="fas fa-users feature-icon"></i>
                         <h3>AI Reduces Therapist Administrative Workload by 80%</h3>
-                        <p>Research shows that AI-guided self-help has been proven to improve symptoms while taking on 80% of the support load,
-                          freeing up human support for where it's really needed Youper: Artificial Intelligence for Mental Health.
-                          Early studies indicate that AI-based tools can reduce administrative work by up to 30%,
-                          allowing therapists to focus more on patient care, while automating parts of clinical care
-                          (such as taking notes) can reduce therapist workload and possibly burnout, which would likely improve the quality of patient care.</p>
+                      </div>
+                      <div class="card-back">
+                        <p>
+                          Research shows that AI-guided self-help has been proven to improve symptoms while taking on 80% of the support load,
+                          freeing up human support for where it's really needed. Early studies indicate that AI-based tools can reduce administrative work by up to 30%,
+                          allowing therapists to focus more on patient care. Automating parts of clinical care (such as taking notes) can reduce therapist workload and possibly burnout,
+                          improving the quality of patient care.
+                        </p>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </section>
@@ -385,56 +410,56 @@
   <div class="row">
     <div class="col-md-3 col-sm-6">
       <div class="our-team">
-        <div class="pic">
-          <img src="https://cdn-icons-png.flaticon.com/512/146/146031.png" alt="Ana Delano">
+        <div class="photo-wrapper mx-auto my-5">
+          <%= cl_image_tag "ourteam-ana", class: "team-photo rounded-circle img-fluid" %>
         </div>
         <h3 class="title">Ana Delano</h3>
         <span class="post">Frontend Developer</span>
         <ul class="social">
-          <li><a href="#"><i class="fab fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa fa-linkedin"></i></a></li>
+          <li><a href="https://github.com/anadelass"><i class="fab fa fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/ana-d%C3%A9lano-b042171b3/"><i class="fab fa fa-linkedin"></i></a></li>
         </ul>
       </div>
     </div>
 
     <div class="col-md-3 col-sm-6">
       <div class="our-team">
-        <div class="pic">
-          <img src="https://cdn-icons-png.flaticon.com/512/146/146031.png" alt="Evelyn Avilés">
+        <div class="photo-wrapper mx-auto my-5">
+           <%= cl_image_tag "ourteam-evelyn", class: "team-photo rounded-circle img-fluid" %>
         </div>
         <h3 class="title">Evelyn Avilés</h3>
         <span class="post">Frontend Developer</span>
         <ul class="social">
-          <li><a href="#"><i class="fab fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa fa-linkedin"></i></a></li>
+          <li><a href="https://github.com/3v3AH"><i class="fab fa fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/evelyn-avil%C3%A9s-herrera-20b58b191/"><i class="fab fa fa-linkedin"></i></a></li>
         </ul>
       </div>
     </div>
 
     <div class="col-md-3 col-sm-6">
       <div class="our-team">
-        <div class="pic">
-          <img src="https://cdn-icons-png.flaticon.com/512/146/146031.png" alt="Rodrigo Jaramillo">
+        <div class="photo-wrapper mx-auto my-5">
+          <%= cl_image_tag "ourteam-rodrigo", class: "team-photo rounded-circle img-fluid" %>
         </div>
         <h3 class="title">Rodrigo Jaramillo</h3>
         <span class="post">Backend Developer</span>
         <ul class="social">
-          <li><a href="#"><i class="fab fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa fa-linkedin"></i></a></li>
+          <li><a href="https://github.com/rodrigojg11"><i class="fab fa fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/rodrigo-jaramillo-307048350/"><i class="fab fa fa-linkedin"></i></a></li>
         </ul>
       </div>
     </div>
 
     <div class="col-md-3 col-sm-6">
       <div class="our-team">
-        <div class="pic">
-          <img src="https://cdn-icons-png.flaticon.com/512/146/146031.png" alt="Joaquín Taiba">
+        <div class="photo-wrapper mx-auto my-5">
+          <%= cl_image_tag "ourteam-joaquin", class: "team-photo rounded-circle img-fluid" %>
         </div>
         <h3 class="title">Joaquín Taiba</h3>
         <span class="post">Frontend Developer</span>
         <ul class="social">
-          <li><a href="#"><i class="fab fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa fa-linkedin"></i></a></li>
+          <li><a href="https://github.com/JoaquinTaiba"><i class="fab fa fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/joaquin-taiba/?originalSubdomain=cl"><i class="fab fa fa-linkedin"></i></a></li>
         </ul>
       </div>
     </div>

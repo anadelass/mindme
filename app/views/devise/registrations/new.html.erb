@@ -30,6 +30,7 @@
             </div>
 
             <div class="signup-body">
+              <% resource.build_psychologist_profile if resource.psychologist_profile.nil? %>
               <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
                 <%= f.error_notification %>
 
@@ -122,7 +123,7 @@
                       Professional Information
                     </h3>
 
-                    <%= simple_fields_for :psychologist_profile do |profile_f| %>
+                    <%= f.simple_fields_for :psychologist_profile do |profile_f| %>
                       <!-- Bio -->
                       <div class="form-group">
                         <%= profile_f.label :bio, "Professional Bio" %>

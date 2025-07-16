@@ -1,1 +1,2 @@
-<%= turbo_stream.append "questions-container", partial: "questions/question", locals: { question: @question } %>
+<%= turbo_stream.prepend "questions-container", partial: "questions/question", locals: { question: @question } %>
+<%= turbo_stream.update "empty-chat-notice", "" %>

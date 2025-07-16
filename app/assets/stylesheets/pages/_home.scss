@@ -127,7 +127,8 @@ footer {
     text-align: center;
     overflow: hidden;
     position: relative;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     transition: var(--transition);
 
     .generic_head_price {
@@ -359,4 +360,81 @@ footer {
   .our-team {
     margin-bottom: 2rem;
   }
+}
+
+.feature-card {
+  background-color: transparent;
+  width: 350px;         /* Más ancho */
+  height: 700px;        /* Más alto */
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Efecto flip al hover */
+.feature-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 1rem;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-front i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-front h3 {
+  text-align: center;
+}
+
+/* La parte de atrás con texto justificado */
+.card-back p {
+  text-align: justify;
+  font-size: 0.95rem;
+}
+
+/* Parte trasera rotada */
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.photo-wrapper {
+  width: 160px;      /* O el tamaño que quieras (ejemplo: 160px) */
+  height: 160px;     /* Mismo alto que ancho */
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.photo-wrapper:hover {
+  border: 3px solid #3FA34D;
+}
+
+.team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

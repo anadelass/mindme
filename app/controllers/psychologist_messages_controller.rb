@@ -4,6 +4,7 @@ def index
 end
 
 def create
+  session[:sender_id] = params[:psychologist_message][:sender_id]
   @appointment = Appointment.find(params[:appointment_id])
   @message = @appointment.psychologist_messages.new(message_params)
 
@@ -15,6 +16,7 @@ def create
     @message.patient_id = @appointment.patient_id
   end
 
+  @message.content += "-#{session[:sender_id]}"
   if @message.save
     @message = PsychologistMessage.new
     respond_to do |format|
@@ -55,6 +57,7 @@ def load_chat_data
 
   if @selected_appointment
     @chat_partner = current_user.psychologist? ? @selected_appointment.patient : @selected_appointment.psychologist
+    @user = current_user
     @messages = PsychologistMessage.where(appointment: @selected_appointment).order(:created_at)
     @message = PsychologistMessage.new
   end
