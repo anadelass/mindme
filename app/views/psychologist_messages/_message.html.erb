@@ -1,9 +1,14 @@
+
 <% if message.content.split("-").last.to_i == session[:sender_id].to_i%>
   <% alignment = 'text-end' %>
   <% bg_class = 'bg-light' %>
 <% else %>
   <% alignment = 'text-primary' %>
+
   <% bg_class = 'bg-primary text-white' %>
+<% else %>
+  <% alignment = 'text-start' %>
+  <% bg_class = 'bg-light' %>
 <% end %>
 <div class="mb-2 <%= alignment %>">
   <div class="p-2 rounded <%= bg_class %>" style="max-width: 75%; display: inline-block;">
