@@ -37,12 +37,7 @@
     </div>
   <!-- Slide 3 -->
   <div class="slide slide-3" data-slider-target="slide">
-  <video class="slide-video" autoplay muted loop playsinline>
-    <source src="<%= asset_path('patient2vid.mp4') %>" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="slide-overlay"></div>
-  <div class="slide-content">
+    <div class="slide-content">
       <h1 class="slide-title">Join Our Community</h1>
       <p class="slide-description">Connect with others on their wellness journey</p>
       <div class="slide-actions">
@@ -160,7 +155,7 @@
     <div class="carrusel">
       <div class="testimony-item active" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('patient1.jpg') %>" alt="Andrea Peñaloza" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603731/patient1_slspjx.jpg", class: "rounded-circle avatar-image"%>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">MindMe has been a game-changer for my mental health. I have a safe place where I can share my thoughts and have a professional follow up.</p>
@@ -172,7 +167,7 @@
       </div>
       <div class="testimony-item" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('psychologist1.jpg') %>" alt="Mariana Fernandez" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603733/psychologist1_klyswq.jpg", class: "rounded-circle avatar-image"%>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">I believe that mindme has the potential to change lifes, and I am very excited to be a part of this amazing project.</p>
@@ -185,7 +180,7 @@
 
       <div class="testimony-item" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('patient2.jpg') %>" alt="Emilio Bernal" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603732/patient2_rjmllf.png", class: "rounded-circle avatar-image"%>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">There are many things I wasn't used to talking about, and with MindMe I feel as if I can insert all my thoughts. It sort of feels like a cleansing system for myself. </p>
@@ -197,7 +192,7 @@
       </div>
       <div class="testimony-item" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('psychologist2.jpg') %>" alt="Ana Sofia Sahagun" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603732/psychologist2_p4zufr.jpg", class: "rounded-circle avatar-image"%>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">Mindme has helped me keep a closer follow up to my patients, improving our therapy sessions and also helping me organize my calendar.  </p>
@@ -209,7 +204,7 @@
       </div>
       <div class="testimony-item" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('patient3.jpg') %>" alt="Maria Laguna" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603732/patient3_j4zwg8.jpg", class: "rounded-circle avatar-image"%>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">Through therapy, I learned to understand my feelings, release the burdens I was carrying, and realize that I wasn't broken—I simply needed support. Now I have so much more understanding and respect for myself.</p>
@@ -221,7 +216,7 @@
       </div>
       <div class="testimony-item" data-testimonials-target="item">
         <div class="testimony-avatar">
-          <img src="<%= asset_path('psychologist3.jpg') %>" alt="Danielle Natalie Borja" class="avatar-image">
+          <%= image_tag "https://res.cloudinary.com/duirrlohe/image/upload/v1752603733/psychologist3_c5czmh.jpg", class: "rounded-circle avatar-image" %>
         </div>
         <div class="testimony-content">
           <p class="testimony-text">AI-powered mood tracking apps help my patients identify patterns they might otherwise miss—recognizing that their depression symptoms worsen on specific days or in certain situations gives us crucial data to work with in sessions.</p>

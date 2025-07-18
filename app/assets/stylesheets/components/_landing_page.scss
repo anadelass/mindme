@@ -51,7 +51,7 @@
 /* Diferentes fondos para cada slide */
 .slide-1 {
   background: linear-gradient(135deg, rgba(45, 90, 54, 0.4) 0%, rgba(81, 139, 153, 0.3) 100%),
-              url('/assets/therapy_header2.jpg');
+              url('https://res.cloudinary.com/duirrlohe/image/upload/v1752626602/Untitled_design_hfxjfl.jpg');
   //background: image-url("therapy_header2.jpg");
   background-size: cover;
   background-position: center;
@@ -60,28 +60,19 @@
 
 .slide-2 {
   background: linear-gradient(135deg, rgba(81, 139, 153, 0.4) 0%, rgba(139, 222, 240, 0.3) 100%),
-              url('/assets/therapy_header1.jpg');
+              url('https://res.cloudinary.com/duirrlohe/image/upload/v1752603732/therapy_header1_fjswlv.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .slide-3 {
-  background: linear-gradient(135deg, rgba(81, 139, 153, 0.4) 0%, rgba(139, 222, 240, 0.3) 100%);
+  background: linear-gradient(135deg, rgba(81, 139, 153, 0.4) 0%, rgba(139, 222, 240, 0.3) 100%),
+              url('https://res.cloudinary.com/duirrlohe/image/upload/v1752603732/therapy_header2_meuhty.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat
 
-}
-.slide-video {
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
 }
 
 .slide-overlay {
